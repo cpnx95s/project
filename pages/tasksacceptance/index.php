@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Plans Management</title>
+  <title>Tasks Acceptance</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -41,12 +41,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Plans Management</h1>
+            <h1>Tasks Acceptance</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">Plans Management</li>
+              <li class="breadcrumb-item active">Tasks Acceptance</li>
             </ol>
           </div>
         </div>
@@ -59,8 +59,8 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title d-inline-block">Plans List</h3>
-          <a href="form-create.php" class="btn btn-primary float-right ">Add Plans +</a href="">
+          <h3 class="card-title d-inline-block">Tasks Acceptance List</h3>
+          <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks Acceptance +</a href="">
         </div>
         <!-- /.card-header -->
         <div class="card-body">

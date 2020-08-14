@@ -56,25 +56,25 @@ $name = $link_array[count($link_array) - 2];
           </li> -->
           <li class="nav-item">
             <a href="../customertasks" class="nav-link <?php echo $name == 'customertasks' ? 'active': '' ?>">
-              <i class="fas fa-chalkboard-teacher nav-icon"></i>
+              <i class="fas fa-tasks nav-icon"></i>
               <p>Tasks Management</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="../customerplans" class="nav-link <?php echo $name == 'customerplans' ? 'active': '' ?>">
-              <i class="fas fa-chalkboard-teacher nav-icon"></i>
+              <i class="fas fa-list-alt nav-icon"></i>
               <p>Plans Management</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="../tasksacceptance" class="nav-link <?php echo $name == 'tasksacceptance' ? 'active': '' ?>">
-              <i class="fas fa-chalkboard-teacher nav-icon"></i>
+              <i class="fas fa-check-square nav-icon"></i>
               <p>Tasks Acceptance</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="../customeractivities" class="nav-link <?php echo $name == 'customeractivities' ? 'active': '' ?>">
-              <i class="fas fa-chalkboard-teacher nav-icon"></i>
+              <i class="fas fa-history nav-icon"></i>
               <p>My Activities</p>
             </a>
           </li>

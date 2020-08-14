@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>My Activities</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -43,12 +43,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>My Activities Lists</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Management</li>
+                <li class="breadcrumb-item active">My Activities</li>
               </ol>
             </div>
           </div>
@@ -61,71 +61,43 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
+            <h3 class="card-title">My Activities</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="dataTable" class="table table-bordered table-striped">
               <thead>
-                <tr>
+                <tr class="text-center">
                   <th>No.</th>
-                  <th>Image</th>
-                  <th>Subject</th>
-                  <th>Subtitle</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
                   <th>Created</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "myproject";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // Check connection
-                if ($conn->connect_error) {
-                  die("Connection failed: " . $conn->connect_error);
-                }
-                $sql = "SELECT * FROM task";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                  // output data of each row
-                  while ($row = $result->fetch_assoc()) {
-                    // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                  }
-                } else {
-                  echo "0 results";
-                }
-                // for ($id = 1; $id <= 5; $id++) { 
-                foreach($result as $key => $value){ ?>
+                <?php for ($i = 1; $i < 50; $i++) { ?>
                   <tr>
-                 
-                    <td><?php echo $value['id']; ?></td>
-                    <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
-                    <td><?php echo $value['name']; ?></td>
-                    <td><?php echo $value['detail']; ?></td>
+                    <td><?php echo $i; ?></td>
+                    <td>Lorem, ipsum.</td>
+                    <td>088-888-8888</td>
+                    <td>Test@test</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ad maxime quas esse ipsa exercitationem praesentium hic numquam dignissimos quia?</td>
                     <td>1/12/2018</td>
-                    <td>
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
-                        <i class="fas fa-edit"></i> edit
-                      </a>
-                    </td>
-                    <td>
-                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash-alt"></i> Delete
-                      </a>
-                    </td>
                   </tr>
-                <?php }
-                $conn->close();
-                ?>
+                <?php } ?>
               </tbody>
+              <tfoot>
+                <tr class="text-center">
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Created</th>
+                </tr>
+              </tfoot>
             </table>
           </div>
           <!-- /.card-body -->
@@ -157,7 +129,16 @@
   <script src="../../dist/js/demo.js"></script>
   <!-- DataTables -->
   <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
   <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
 
   <script>
     $(function() {
@@ -167,16 +148,13 @@
         "searching": true,
         "ordering": true,
         "info": true,
-        "autoWidth": true
+        "autoWidth": true,
+        dom: 'Bfrtip',
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
       });
     });
-
-    function deleteItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
-        window.location = `delete.php?id=${id}`;
-        // window.location='delete.php?id='+id;
-      }
-    };
   </script>
 
 </body>

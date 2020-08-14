@@ -67,32 +67,26 @@
         <!-- form start -->
         <form role="form" action="create.php" method="post">
           <div class="card-body">
-
             <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+              <label for="taskname">Task Name</label>
+              <input type="text" class="form-control" name="taskname" id="taskname" placeholder="Task Name">
             </div>
-
             <div class="form-group">
-              <label for="sub_title">Sub title</label>
-              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title">
+              <label>Channel</label>
+              <select class="form-control select2" name="channel" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
+                <option value="html">Facebook</option>
+                <option value="css">Line</option>
+                <option value="javascript">Website</option>
+                <option value="php">Mobile App</option>
+                <option value="mysql">Twitter</option>
+                <option value="mysql">Instagram</option>
+                <option value="mysql">Youtube</option>
+              </select>
             </div>
-
-            <div class="form-group">
-              <label>Upload Image</label>
-              <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file" id="customFile">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
-              </div>
-              <figure class="figure text-center d-none mt-2">
-                  <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
-              </figure>
-            </div>
-
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">
-                  Create Contents
+                  Detail
                 </h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool btn-sm"
@@ -105,22 +99,28 @@
               </div>
               <div class="card-body">
                 <div class="mb-3">
-                  <textarea id="detail" name="detail" style="width: 100%">This is my Contents </textarea>
+                  <textarea id="detail" name="detail" style="width: 100%"> </textarea>
                 </div>
               </div>
             </div>
-
             <div class="form-group">
-              <label>Select a Tags</label>
-              <select class="form-control select2" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
-                <option value="html">html</option>
-                <option value="css">css</option>
-                <option value="javascript">javascript</option>
-                <option value="php">php</option>
-                <option value="mysql">mysql</option>
-              </select>
+              <label>Upload File</label>
+              <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="file" id="customFile">
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+              <figure class="figure text-center d-none mt-2">
+                  <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
+              </figure>
             </div>
-
+            <div class="form-group">
+              <label for="launchdate">Launch Date</label>
+              <input type="date" class="form-control" name=launchdate"" id="launchdate" placeholder="Launch Date">
+            </div>
+            <div class="form-group">
+              <label for="launchtime">Launch Time</label>
+              <input type="time" class="form-control" name=launchtime"" id="launchtime" placeholder="Launch Time">
+            </div>
           </div>
           <div class="card-footer">
               <button type="submit" class="btn btn-primary" name="save">Submit</button>
