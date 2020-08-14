@@ -1,6 +1,7 @@
 <?php include_once('../authen.php') ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,128 +29,157 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
 </head>
+
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-  <!-- Navbar & Main Sidebar Container -->
-  <?php include_once('../includes/sidebar.php') ?>
+  <!-- Site wrapper -->
+  <div class="wrapper">
+    <!-- Navbar & Main Sidebar Container -->
+    <?php include_once('../includes/sidebar.php') ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Tasks Management</h1>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Tasks Management</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active">Tasks Management</li>
+              </ol>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item active">Tasks Management</li>
-            </ol>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title d-inline-block">Tasks List</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
           </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="dataTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Image</th>
+                  <th>Subject</th>
+                  <th>Subtitle</th>
+                  <th>Created</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "myproject";
 
-    <!-- Main content -->
-    <section class="content">
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection
+                if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+                }
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title d-inline-block">Tasks List</h3>
-          <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <table id="dataTable" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-              <th>No.</th>
-              <th>Image</th>
-              <th>Subject</th>
-              <th>Subtitle</th>
-              <th>Created</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php for($id=1; $id <= 5; $id++) { ?>
-              <tr>
-                <td><?php echo $id; ?></td>
-                <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
-                <td>Subject<?php echo $id; ?></td>
-                <td>Subtitle<?php echo $id; ?></td>
-                <td>1/12/2018</td>
-                <td>
-                  <a href="form-edit.php?id=<?php echo $id; ?>" class="btn btn-sm btn-warning text-white">
-                    <i class="fas fa-edit"></i> edit
-                  </a> 
-                </td>
-                <td>
-                  <a href="#" onclick="deleteItem(<?php echo $id; ?>);" class="btn btn-sm btn-danger">
-                    <i class="fas fa-trash-alt"></i> Delete
-                  </a>
-                </td>
-              </tr>
-            <?php } ?>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
+                $sql = "SELECT * FROM task";
+                $result = $conn->query($sql);
 
-    </section>
-    <!-- /.content -->
+                if ($result->num_rows > 0) {
+                  // output data of each row
+                  while ($row = $result->fetch_assoc()) {
+                    // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                  }
+                } else {
+                  echo "0 results";
+                }
+                // for ($id = 1; $id <= 5; $id++) { 
+                foreach($result as $key => $value){ ?>
+                  <tr>
+                 
+                    <td><?php echo $value['id']; ?></td>
+                    <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
+                    <td><?php echo $value['name']; ?></td>
+                    <td><?php echo $value['detail']; ?></td>
+                    <td>1/12/2018</td>
+                    <td>
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                        <i class="fas fa-edit"></i> edit
+                      </a>
+                    </td>
+                    <td>
+                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i> Delete
+                      </a>
+                    </td>
+                  </tr>
+                <?php }
+                $conn->close();
+                ?>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- footer -->
+    <?php include_once('../includes/footer.php') ?>
+
   </div>
-  <!-- /.content-wrapper -->
+  <!-- ./wrapper -->
 
-  <!-- footer -->
-  <?php include_once('../includes/footer.php') ?>
-  
-</div>
-<!-- ./wrapper -->
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="../../plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- DataTables -->
+  <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- DataTables -->
-<script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-
-<script>
-  $(function () {
-    $('#dataTable').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true
+  <script>
+    $(function() {
+      $('#dataTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true
+      });
     });
-  });
 
-  function deleteItem (id) { 
-    if( confirm('Are you sure, you want to delete this item?') == true){
-      window.location=`delete.php?id=${id}`;
-      // window.location='delete.php?id='+id;
-    }
-  };
-
-</script>
+    function deleteItem(id) {
+      if (confirm('Are you sure, you want to delete this item?') == true) {
+        window.location = `delete.php?id=${id}`;
+        // window.location='delete.php?id='+id;
+      }
+    };
+  </script>
 
 </body>
+
 </html>
