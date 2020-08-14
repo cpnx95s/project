@@ -67,11 +67,14 @@
           <table id="dataTable" class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th>No.</th>
-              <th>Image</th>
-              <th>Subject</th>
-              <th>Subtitle</th>
-              <th>Created</th>
+              <th>ID</th>
+              <th>TASK NAME</th>
+              <th>CHANNEL</th>
+              <th>LAUNCH DATE</th>
+              <th>LAUNCH TIME</th>
+              <th>CREATED BY</th>
+              <th>CREATED AT</th>
+              <th>Status</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -80,10 +83,13 @@
             <?php for($id=1; $id <= 5; $id++) { ?>
               <tr>
                 <td><?php echo $id; ?></td>
-                <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
-                <td>Subject<?php echo $id; ?></td>
-                <td>Subtitle<?php echo $id; ?></td>
-                <td>1/12/2018</td>
+                <td>Banner<?php echo $id; ?></td>
+                <td>Website</td>
+                <td>12 Aug 2020</td>
+                <td>09.00</td>
+                <td>TAEYEON</td>
+                <td>07.35</td>
+                <td><span class="badge badge-success">Open</span></td>
                 <td>
                   <a href="form-edit.php?id=<?php echo $id; ?>" class="btn btn-sm btn-warning text-white">
                     <i class="fas fa-edit"></i> edit
