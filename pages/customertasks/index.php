@@ -72,12 +72,12 @@
                   <th>ID</th>
                   <th>Task Name</th>
                   <th>Channel</th>
-                  <th>Detail</th>
                   <th>Launch Date</th>
                   <th>Launch Time</th>
                   <th>Created By</th>
                   <th>Created At</th>
                   <th>Status</th>
+                  <th>View</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -102,10 +102,6 @@
                 if ($result->num_rows > 0) {
                   // output data of each row
                   while ($row = $result->fetch_assoc()) {
-                    $x = $row["channel_id"];
-                    $sql2 = "SELECT * FROM channel WHERE id = ".$x."";
-                    $result2 = $conn->query($sql2);
-                    echo $x;
                     // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
@@ -119,12 +115,16 @@
                     <td><?php echo $value['id']; ?></td>
                     <td><?php echo $value['name']; ?></td>
                     <td><?php echo $value['channel_id']; ?></td>
-                    <td><?php echo $value['detail']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
                     <td><?php echo $value['create_by']; ?></td>
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['status_master_id']; ?></td>
+                    <td>
+                      <a href="view.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-info text-white">
+                        <i class="fas fa-eye"></i> view
+                      </a>
+                    </td>
                     <td>
                       <a href="form-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
                         <i class="fas fa-edit"></i> edit
