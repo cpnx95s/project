@@ -69,11 +69,15 @@
             <table id="dataTable" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>No.</th>
-                  <th>Image</th>
-                  <th>Subject</th>
-                  <th>Subtitle</th>
-                  <th>Created</th>
+                  <th>ID</th>
+                  <th>Task Name</th>
+                  <th>Channel</th>
+                  <th>Detail</th>
+                  <th>Launch Date</th>
+                  <th>Launch Time</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -98,20 +102,29 @@
                 if ($result->num_rows > 0) {
                   // output data of each row
                   while ($row = $result->fetch_assoc()) {
+                    $x = $row["channel_id"];
+                    $sql2 = "SELECT * FROM channel WHERE id = ".$x."";
+                    $result2 = $conn->query($sql2);
+                    echo $x;
                     // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
                   echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
-                foreach($result as $key => $value){ ?>
+                foreach ($result as $key => $value) {
+                ?>
                   <tr>
-                 
+
                     <td><?php echo $value['id']; ?></td>
-                    <td><img class="img-fluid d-block mx-auto" src="https://images.unsplash.com/photo-1531026383433-6ed5a112afbc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c010c700aac502636ad0b579ce1274a4&auto=format&fit=crop&w=1350&q=80" width="150px" alt=""></td>
                     <td><?php echo $value['name']; ?></td>
+                    <td><?php echo $value['channel_id']; ?></td>
                     <td><?php echo $value['detail']; ?></td>
-                    <td>1/12/2018</td>
+                    <td><?php echo $value['launch_date']; ?></td>
+                    <td><?php echo $value['launch_time']; ?></td>
+                    <td><?php echo $value['create_by']; ?></td>
+                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo $value['status_master_id']; ?></td>
                     <td>
                       <a href="form-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
                         <i class="fas fa-edit"></i> edit

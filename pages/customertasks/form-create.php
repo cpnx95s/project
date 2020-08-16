@@ -69,13 +69,29 @@
           <div class="card-body">
 
             <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+              <label for="Task Name">Task Name</label>
+              <input type="text" class="form-control" id="taskname" name="taskname" placeholder="Task Name">
             </div>
 
-            <div class="form-group">
-              <label for="sub_title">Sub title</label>
-              <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Sub title">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  Detail
+                </h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool btn-sm"
+                          data-widget="collapse"
+                          data-toggle="tooltip"
+                          title="Collapse">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <textarea id="detail" name="detail" style="width: 100%"></textarea>
+                </div>
+              </div>
             </div>
 
             <div class="form-group">
