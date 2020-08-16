@@ -1,6 +1,7 @@
 <?php include_once('../authen.php') ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,174 +30,282 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
-  
+
 </head>
+
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-  <!-- Navbar & Main Sidebar Container -->
-  <?php include_once('../includes/sidebar.php') ?>
+  <!-- Site wrapper -->
+  <div class="wrapper">
+    <!-- Navbar & Main Sidebar Container -->
+    <?php include_once('../includes/sidebar.php') ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Tasks Management</h1>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Tasks Management</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="../customertasks">Tasks Management</a></li>
+                <li class="breadcrumb-item active">Edit Data</li>
+              </ol>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-              <li class="breadcrumb-item"><a href="../customertasks">Tasks Management</a></li>
-              <li class="breadcrumb-item active">Edit Data</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        </div><!-- /.container-fluid -->
+      </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="card card-primary">
-        <div class="card-header">
-        <h3 class="card-title">Create Data</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form role="form" action="create.php" method="post">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="taskname">Task Name</label>
-              <input type="text" class="form-control" name="taskname" id="taskname" placeholder="Task Name">
-            </div>
-            <div class="form-group">
-              <label>Channel</label>
-              <select class="form-control select2" name="channel" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
-                <option value="html">Facebook</option>
-                <option value="css">Line</option>
-                <option value="javascript">Website</option>
-                <option value="php">Mobile App</option>
-                <option value="mysql">Twitter</option>
-                <option value="mysql">Instagram</option>
-                <option value="mysql">Youtube</option>
-              </select>
-            </div>
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  Detail
-                </h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool btn-sm"
-                          data-widget="collapse"
-                          data-toggle="tooltip"
-                          title="Collapse">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </div>
-              </div>
+      <!-- Main content -->
+      <section class="content">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Create Data</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <?php
+          $mysqli = new mysqli("localhost", "root", "", "myproject");
+
+          // Check connection
+          if ($mysqli->connect_errno) {
+            echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+            exit();
+          }
+          if ($_GET['id']) {
+            $sql = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
+            $result = $mysqli->query($sql);
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while ($row = $result->fetch_assoc()) {
+                // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+              }
+            } else {
+              echo "0 results";
+            }
+
+          }
+          foreach ($result as $key => $value) { ?>
+            <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post">
               <div class="card-body">
-                <div class="mb-3">
-                  <textarea id="detail" name="detail" style="width: 100%"> </textarea>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" id="subject" name="subject" value="<?php echo $value['name']; ?>">
                 </div>
+
+                <div class="form-group">
+                  <label for="sub_title">Sub title</label>
+                  <input type="text" class="form-control" id="sub_title" name="sub_title" value="<?php echo $value['detail']; ?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Upload Image</label>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                  <figure class="figure text-center d-none mt-2">
+                    <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
+                  </figure>
+                </div>
+
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      Create Contents
+                    </h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <textarea id="detail" name="detail" style="width: 100%">This is my Contents </textarea>
+                    </div>
+                  </div>
+                </div>
+             
+                <!--field ของ channel -->
+                <div class="form-group">
+                  <label>Select Channels</label>
+                  <select class="form-control select2" data-placeholder="Select Channels" style="width: 100%;" name="channel">
+                    <?php
+                    $mysqli = new mysqli("localhost", "root", "", "myproject");
+                    // Check connection
+                    if ($mysqli->connect_errno) {
+                      echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                      exit();
+                    }
+                    $sql = "Select * FROM channel";
+                    $result = $mysqli->query($sql);
+                    if ($result->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result->fetch_assoc()) {
+                        // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                        if ($row["id"] == $value['channel_id']) {
+                          $channel_name = $row["name"];
+                          $channel_id = $row["id"];
+                        }
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                    $sql2 = "Select * FROM channel where NOT id = '".$value['channel_id']."'";
+                    $result2 = $mysqli->query($sql2);
+                    if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while ($row1 = $result2->fetch_assoc()) {
+
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                     ?>
+                      <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name?></option>
+                      <?php foreach($result2 as $key => $value2){ ?>
+                      <option value="<?php echo $value2["id"] ?>"><?php echo $value2["name"] ?></option>
+                      <?php } ?>
+                  </select>
+                </div>
+
+                <!-- field ของ status -->
+                <div class="form-group">
+                  <label>Select Status_master</label>
+                  <select class="form-control select2" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                  <?php
+                    $mysqli = new mysqli("localhost", "root", "", "myproject");
+                    // Check connection
+                    if ($mysqli->connect_errno) {
+                      echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                      exit();
+                    }
+                    $sql = "Select * FROM status_master";
+                    $result3 = $mysqli->query($sql);
+                    if ($result3->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result3->fetch_assoc()) {
+                        // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                        if ($row["id"] == $value['status_master_id']) {
+                          $status_name = $row["status_name"];
+                          $status_id = $row["id"];
+                        }
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                    $sql2 = "Select * FROM status_master where NOT id = '".$value['status_master_id']."'";
+                    $result4 = $mysqli->query($sql2);
+                    if ($result4->num_rows > 0) {
+                      // output data of each row
+                      while ($row1 = $result4->fetch_assoc()) {
+
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                     ?>
+                      <option value="<?php echo $status_id ?>" selected><?php echo $status_name?></option>
+                      <?php foreach($result4 as $key => $value3){ ?>
+                      <option value="<?php echo $value3["id"] ?>"><?php echo $value3["status_name"] ?></option>
+                      <?php } ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Select a Tags</label>
+                  <select class="form-control select2" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
+                    <option value="html">html</option>
+                    <option value="css">css</option>
+                    <option value="javascript">javascript</option>
+                    <option value="php">php</option>
+                    <option value="mysql">mysql</option>
+                  </select>
+                </div>
+
               </div>
-            </div>
-            <div class="form-group">
-              <label>Upload File</label>
-              <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file" id="customFile">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" name="update">Submit</button>
               </div>
-              <figure class="figure text-center d-none mt-2">
-                  <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
-              </figure>
-            </div>
-            <div class="form-group">
-              <label for="launchdate">Launch Date</label>
-              <input type="date" class="form-control" name=launchdate"" id="launchdate" placeholder="Launch Date">
-            </div>
-            <div class="form-group">
-              <label for="launchtime">Launch Time</label>
-              <input type="time" class="form-control" name=launchtime"" id="launchtime" placeholder="Launch Time">
-            </div>
-          </div>
-          <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>    
-    </section>
-    <!-- /.content -->
+            </form>
+          <?php }
+          $mysqli->close();
+          ?>
+        </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- footer -->
+    <?php include_once('../includes/footer.php') ?>
+
   </div>
-  <!-- /.content-wrapper -->
+  <!-- ./wrapper -->
 
-  <!-- footer -->
-  <?php include_once('../includes/footer.php') ?>
-  
-</div>
-<!-- ./wrapper -->
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="../../plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- DataTables -->
+  <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- CK Editor -->
+  <script src="../../plugins/ckeditor/ckeditor.js"></script>
+  <!-- Select2 -->
+  <script src="../../plugins/select2/select2.full.min.js"></script>
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- DataTables -->
-<script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- CK Editor -->
-<script src="../../plugins/ckeditor/ckeditor.js"></script>
-<!-- Select2 -->
-<script src="../../plugins/select2/select2.full.min.js"></script>
+  <script>
+    $(function() {
+      $('#dataTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true
+      });
 
-<script>
-  $(function () {
-    $('#dataTable').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true
-    });
-
-    $('.custom-file-input').on('change', function(){
+      $('.custom-file-input').on('change', function() {
         var fileName = $(this).val().split('\\').pop()
         $(this).siblings('.custom-file-label').html(fileName)
         if (this.files[0]) {
-            var reader = new FileReader()
-            $('.figure').addClass('d-block')
-            reader.onload = function (e) {
-                $('#imgUpload').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0])
+          var reader = new FileReader()
+          $('.figure').addClass('d-block')
+          reader.onload = function(e) {
+            $('#imgUpload').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(this.files[0])
         }
-    })
-
-    ClassicEditor
-      .create(document.querySelector('#detail'))
-      .then(function (editor) {
-        // The editor instance
-      })
-      .catch(function (error) {
-        console.error(error)
       })
 
-    //Initialize Select2 Elements
-    $('.select2').select2()
+      ClassicEditor
+        .create(document.querySelector('#detail'))
+        .then(function(editor) {
+          // The editor instance
+        })
+        .catch(function(error) {
+          console.error(error)
+        })
 
-  });
-  
-</script>
+      //Initialize Select2 Elements
+      $('.select2').select2()
+
+    });
+  </script>
 
 </body>
+
 </html>

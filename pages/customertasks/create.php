@@ -11,10 +11,10 @@ if(isset($_POST['save']))
 {	 
 	 $first_name = $_POST['subject'];
 	 $last_name = $_POST['sub_title'];
-	//  $city_name = $_POST['city_name'];
-	//  $email = $_POST['email'];
+	 $channel = $_POST['channel'];
+	 $status = $_POST['status'];
 	 $sql = "INSERT INTO task (name, detail, create_by, channel_id, status_master_id)
-	 VALUES ('$first_name','$last_name', '1', '1', '1')";
+	 VALUES ('$first_name','$last_name', '1', ' $channel', ' $status')";
 	 if (mysqli_query($mysqli, $sql)) {
 		echo "New record created successfully !";
 	 } else {
