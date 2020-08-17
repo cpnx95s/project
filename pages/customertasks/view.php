@@ -1,4 +1,15 @@
 <?php include_once('../authen.php') ?>
+<?php include_once('../includes/connect.php') ?>
+<?php
+$sql = "SELECT * FROM task WHERE id='" . $_GET['id'] . "'";
+$result = $conn->query($sql) or die($conn->error);
+// print_r($result);
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+} else {
+  header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -105,23 +116,20 @@
             </div>
             <!-- /.col -->
             <div class="col-md-9">
-              
+
               <div class="card card-primary card-outline">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
-                    <h5>รบกวนเซ็ตแบนเนอร์ Splash Banner ให้หน่อยค่ะ</h5>
-                    <h6 class="text-secondary">Created by Taeyeon At Today 08.55 น.</h6>
+
+                    <h5><?php echo $row['name']; ?></h5>
+                    <h6 class="text-secondary">Created by <?php echo $row['create_by']; ?> At <?php echo $row['created']; ?></h6>
                   </div>
                   <!-- /.mailbox-read-info -->
 
                   <!-- /.mailbox-controls -->
                   <div class="mailbox-read-message">
-                    <p>เรียนทีม Mobile Application ค่ะ,</p>
-
-                    <p>รบกวนเซ็ต Splash Banner ตามไฟล์แนบ <br> นำขึ้นวันที่ 20/08/2020 ค่ะ</p>
-
-                    <p>ขอบคุณค่ะ,<br>แทยอน</p>
+                    <p><?php echo $row['detail']; ?></p>
                   </div>
                   <!-- /.mailbox-read-message -->
                 </div>
@@ -177,11 +185,17 @@
                 <!-- /.card-footer -->
                 <div class="card-footer">
                   <div class="float-left">
-                    <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
+                    <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
+                      <i class="fas fa-edit"></i> edit
+                    </a>
+                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </a>
                   </div>
                   <div class="float-right">
-                    <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
+                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-info">
+                      <i class="fas fa fa-reply"></i> Reply
+                    </a>
                   </div>
                 </div>
                 <!-- /.card-footer -->
@@ -209,7 +223,7 @@
                   <!-- /.mailbox-read-message -->
                 </div>
                 <!-- /.card-body -->
-                
+
                 <!-- /.card-footer -->
                 <div class="card-footer">
                   <!-- <div class="float-left">
@@ -244,7 +258,7 @@
                   <!-- /.mailbox-read-message -->
                 </div>
                 <!-- /.card-body -->
-                
+
                 <!-- /.card-footer -->
                 <div class="card-footer">
                   <!-- <div class="float-left">
@@ -270,7 +284,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  <?php $conn->close(); ?>
   <!-- footer -->
   <?php include_once('../includes/footer.php') ?>
 

@@ -1,29 +1,26 @@
 <?php include_once('../authen.php') ?>
+<?php include_once('../includes/connect.php') ?>
 <?php
-$mysqli = new mysqli("localhost", "root", "", "myproject");
-
-// Check connection
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-    exit();
-}
 
 if (isset($_GET['id'])) {
     if (isset($_POST['update'])) {
-        $first_name = $_POST['subject'];
-        $last_name = $_POST['sub_title'];
-        $sql = "UPDATE task set name = '$first_name' , detail = ' $last_name' WHERE id='" . $_GET['id'] . "'";
-        if ($mysqli->query($sql) === TRUE) {
-            echo "Record deleted successfully";
+        $launchdate = $_POST['launchdate'];
+        $launchtime = $_POST['launchtime'];
+        $taskname = $_POST['taskname'];
+        $detail = $_POST['detail'];
+        $channel = $_POST['channel'];
+        //$status = $_POST['status'];
+        
+        $sql = "UPDATE task SET launch_date = '$launchdate',launch_time = '$launchtime', name = '$taskname', detail = ' $detail', channel_id = '$channel' WHERE id='" . $_GET['id'] . "'";
+        if ($conn->query($sql) === TRUE) {
+            echo '<script> alert("Finished Updating!")</script>';
         } else {
-            echo "Error deleting record: " . $mysqli->error;
+            echo "Error Updating record: " . $conn->error;
         }
 
-        //header("Location: product.php");
+        header('Refresh:0; url=index.php');
     }
 }
-$mysqli->close();
+$conn->close();
 
-echo '<script> alert("Finished Updating!")</script>';
-header('Refresh:0; url=index.php');
 ?>

@@ -1,12 +1,7 @@
 <?php include_once('../authen.php') ?>
+<?php include_once('../includes/connect.php') ?>
 <?php
-$mysqli = new mysqli("localhost","root","","myproject");
 
-// Check connection
-if ($mysqli -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-}
 if(isset($_POST['save']))
 {	 
 	 $taskname = $_POST['taskname'];
@@ -15,26 +10,14 @@ if(isset($_POST['save']))
 	 $status = $_POST['status'];
 	 $sql = "INSERT INTO task (name, detail, create_by, channel_id, status_master_id)
 	 VALUES ('$taskname','$detail', '1', ' $channel', ' $status')";
-	 if (mysqli_query($mysqli, $sql)) {
-		echo "New record created successfully !";
-	 } else {
-		echo "Error: " . $sql . "
-" . mysqli_error($mysqli);
-	 }
-	 mysqli_close($mysqli);
+	 if (mysqli_query($conn, $sql)) {
+		echo '<script> alert("Finished Creating!")</script>';
+	} else {
+		echo "Error Creating record: " . $conn->error;
+	}
+
+	header('Refresh:0; url=index.php');
 }
-// $sql = "INSERT INTO task (name, detail)
-// VALUES ('$name', '$detail')";
+$conn->close();
 
-// if ($mysqli->query($sql) === TRUE) {
-//   echo "New record created successfully";
-// } else {
-//   echo "Error: " . $sql . "<br>" . $mysqli->error;
-// }
-
-// $mysqli->close();
-
-
-    echo '<script> alert("Finished Creating!")</script>'; 
-    header('Refresh:0; url=index.php');
 ?>

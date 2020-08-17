@@ -93,44 +93,10 @@
               <div class="card-body">
 
                 <div class="form-group">
-                  <label for="subject">Subject</label>
-                  <input type="text" class="form-control" id="subject" name="subject" value="<?php echo $value['name']; ?>">
+                  <label for="taskname">Task Name</label>
+                  <input type="text" class="form-control" id="taskname" name="taskname" value="<?php echo $value['name']; ?>">
                 </div>
 
-                <div class="form-group">
-                  <label for="sub_title">Sub title</label>
-                  <input type="text" class="form-control" id="sub_title" name="sub_title" value="<?php echo $value['detail']; ?>">
-                </div>
-
-                <div class="form-group">
-                  <label>Upload Image</label>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="file" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                  </div>
-                  <figure class="figure text-center d-none mt-2">
-                    <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
-                  </figure>
-                </div>
-
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">
-                      Create Contents
-                    </h3>
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="mb-3">
-                      <textarea id="detail" name="detail" style="width: 100%">This is my Contents </textarea>
-                    </div>
-                  </div>
-                </div>
-             
                 <!--field ของ channel -->
                 <div class="form-group">
                   <label>Select Channels</label>
@@ -174,10 +140,49 @@
                   </select>
                 </div>
 
-                <!-- field ของ status -->
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      Detail
+                    </h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="form-group">
+                  <label>Upload Files</label>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                  <figure class="figure text-center d-none mt-2">
+                    <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
+                  </figure>
+                </div>
+
+                <div class="form-group">
+                  <label for="launchdate">Launch Date</label>
+                  <input type="date" class="form-control" id="launchdate" name="launchdate" value="<?php echo $value['launch_date']; ?>">
+                </div>
+
+                <div class="form-group">
+                  <label for="launchtime">Launch Time</label>
+                  <input type="time" class="form-control" id="launchtime" name="launchtime" value="<?php echo $value['launch_time']; ?>">
+                </div>
+
+                <!-- field ของ status -->
+                <!-- <div class="form-group">
                   <label>Select Status_master</label>
-                  <select class="form-control select2" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                  <select class="form-control select" style="width: 100%;" name="status">
                   <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
                     // Check connection
@@ -215,17 +220,7 @@
                       <option value="<?php echo $value3["id"] ?>"><?php echo $value3["status_name"] ?></option>
                       <?php } ?>
                   </select>
-                </div>
-                <div class="form-group">
-                  <label>Select a Tags</label>
-                  <select class="form-control select2" multiple="multiple" data-placeholder="Select a Tags" style="width: 100%;">
-                    <option value="html">html</option>
-                    <option value="css">css</option>
-                    <option value="javascript">javascript</option>
-                    <option value="php">php</option>
-                    <option value="mysql">mysql</option>
-                  </select>
-                </div>
+                </div> -->
 
               </div>
               <div class="card-footer">
