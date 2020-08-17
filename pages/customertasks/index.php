@@ -85,14 +85,22 @@
               </thead>
               <tbody>
                 <?php
-                
-                $sql = "SELECT * FROM task";
+
+                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
+                s.status_name  , u.name as username
+                FROM task t 
+                INNER JOIN channel c ON t.channel_id = c.id 
+                INNER JOIN status_master s ON t.status_master_id = s.id
+                INNER JOIN user u ON t.create_by = u.id";
+            
                 $result = $conn->query($sql);
+
+                // if (!empty($result) && $result->num_rows > 0) {
 
                 if ($result->num_rows > 0) {
                   // output data of each row
                   while ($row = $result->fetch_assoc()) {
-                    // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                    // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
                   echo "0 results";
@@ -104,12 +112,12 @@
 
                     <td><?php echo $value['id']; ?></td>
                     <td><?php echo $value['name']; ?></td>
-                    <td><?php echo $value['channel_id']; ?></td>
+                    <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['create_by']; ?></td>
+                    <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['created']; ?></td>
-                    <td><?php echo $value['status_master_id']; ?></td>
+                    <td><?php echo $value['status_name']; ?></td>
                     <td>
                       <a href="view.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-info text-white">
                         <i class="fas fa-eye"></i> view
