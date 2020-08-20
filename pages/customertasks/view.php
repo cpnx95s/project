@@ -24,10 +24,7 @@ if ($result->num_rows > 0) {
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../../dist/img/favicons/favicon-16x16.png">
   <link rel="manifest" href="../../dist/img/favicons/site.webmanifest">
-  <link rel="mask-icon" href="../../dist/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="../../dist/img/favicons/favicon.ico">
   <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-config" content="../../dist/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
@@ -75,17 +72,12 @@ if ($result->num_rows > 0) {
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-3">
-              <a href="../customertasks" class="btn btn-primary btn-block mb-3">Back to Tasks List</a>
+              <!-- <a href="../customertasks" class="btn btn-primary btn-block mb-3">Back to Tasks List</a> -->
 
               <!-- /. box -->
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Status</h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                  </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-3">
@@ -117,7 +109,7 @@ if ($result->num_rows > 0) {
             <!-- /.col -->
             <div class="col-md-9">
 
-              <div class="card card-primary card-outline">
+              <div class="card card-success card-outline">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
@@ -192,18 +184,46 @@ if ($result->num_rows > 0) {
                       <i class="fas fa-trash-alt"></i> Delete
                     </a>
                   </div>
-                  <div class="float-right">
+                  <!-- <div class="float-right">
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-info">
                       <i class="fas fa fa-reply"></i> Reply
                     </a>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-footer -->
                 <!-- /. box -->
               </div>
 
+              <div class="card card-success ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    Comment
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <textarea id="detail" name="detail" style="width: 100%"></textarea>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <!-- <div class="float-left">
+                    <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
+                      <i class="fas fa-edit"></i> edit
+                    </a>
+                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                  </div> -->
+                  <div class="float-right">
+                    <a href="#" class="btn btn-sm btn-success">
+                      <i class="fas fa fa-reply"></i> Comment
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <!-- start comment -->
-              <div class="card card-primary card-outline">
+              <div class="card card-success card-outline">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
@@ -230,15 +250,15 @@ if ($result->num_rows > 0) {
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
                   </div> -->
-                  <div class="float-right">
+                  <!-- <div class="float-right">
                     <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-footer -->
                 <!-- /. box -->
               </div>
 
-              <div class="card card-primary card-outline">
+              <div class="card card-success card-outline">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
@@ -265,9 +285,9 @@ if ($result->num_rows > 0) {
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
                   </div> -->
-                  <div class="float-right">
+                  <!-- <div class="float-right">
                     <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-footer -->
                 <!-- /. box -->

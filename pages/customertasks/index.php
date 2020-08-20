@@ -14,10 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../../dist/img/favicons/favicon-16x16.png">
   <link rel="manifest" href="../../dist/img/favicons/site.webmanifest">
-  <link rel="mask-icon" href="../../dist/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="../../dist/img/favicons/favicon.ico">
   <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-config" content="../../dist/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
@@ -117,7 +114,7 @@
                     <td><?php echo $value['launch_time']; ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['created']; ?></td>
-                    <td><?php echo $value['status_name']; ?></td>
+                    <td><?php echo strtoupper($value['status_name']); ?></td>
                     <td>
                       <a href="view.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-info text-white">
                         <i class="fas fa-eye"></i> view

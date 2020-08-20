@@ -10,6 +10,7 @@ if(isset($_POST['save']))
 	 $status = $_POST['status'];
 	 $sql = "INSERT INTO task (name, detail, create_by, channel_id, status_master_id)
 	 VALUES ('$taskname','$detail', '1', ' $channel', ' $status')";
+	 
 	 if (mysqli_query($conn, $sql)) {
 		echo '<script> alert("Finished Creating!")</script>';
 	} else {
