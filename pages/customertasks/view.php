@@ -193,20 +193,30 @@ if ($result->num_rows > 0) {
                 <!-- /.card-footer -->
                 <!-- /. box -->
               </div>
-
-              <div class="card card-success ">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    Comment
-                  </h3>
-                </div>
-                <div class="card-body">
-                  <div class="mb-3">
-                    <textarea id="detail" name="detail" style="width: 100%"></textarea>
+              <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
+                <div class="card card-success ">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      Comment
+                    </h3>
                   </div>
-                </div>
-                <div class="card-footer">
-                  <!-- <div class="float-left">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-1">
+                        Subject: 
+                      </div>
+                      <div class="col-md-11">
+                        <input type="text" name="title" id="title" style="width: 100%"> 
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="mb-3">
+                      <textarea id="detail" name="detail" style="width: 100%"></textarea>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <!-- <div class="float-left">
                     <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
                       <i class="fas fa-edit"></i> edit
                     </a>
@@ -214,31 +224,55 @@ if ($result->num_rows > 0) {
                       <i class="fas fa-trash-alt"></i> Delete
                     </a>
                   </div> -->
-                  <div class="float-right">
-                    <a href="#" class="btn btn-sm btn-success">
+                    <div class="float-right">
+                      <input type="submit" class="btn btn-success" name="save" value="Comment"></input>
+
+                      <!-- <a href="#" class="btn btn-sm btn-success">
                       <i class="fas fa fa-reply"></i> Comment
-                    </a>
+                    </a> -->
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
+ <!-- start comment -->
+ <?php
+              $sql = "select c.id, c.title, c.content, c.created, u.name as username
+              FROM comments c 
+              INNER JOIN user u ON c.user_id = u.id";
 
-              <!-- start comment -->
+              $result = $conn->query($sql);
+
+              // if (!empty($result) && $result->num_rows > 0) {
+
+              if ($result->num_rows > 0) {
+              // output data of each row
+              while ($row = $result->fetch_assoc()) {
+                // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+              }
+              } else {
+              echo "0 results";
+              }
+              // for ($id = 1; $id <= 5; $id++) { 
+              foreach ($result as $key => $value) {
+              ?>
               <div class="card card-success card-outline">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
-                    <h5>รบกวนรีวิว Splash Banner ให้หน่อยค่ะ</h5>
-                    <h6 class="text-secondary">Created by Tiffany At Today 09.20 น.</h6>
+                    <!-- <h5>รบกวนรีวิว Splash Banner ให้หน่อยค่ะ</h5> -->
+                    <h5><?php echo $value['title']; ?></h5>
+                    <h6 class="text-secondary">Created by <?php echo $value['username']; ?> At <?php echo $value['created']; ?></h6>
                   </div>
                   <!-- /.mailbox-read-info -->
 
                   <!-- /.mailbox-controls -->
                   <div class="mailbox-read-message">
-                    <p>เรียนหัวหน้าค่ะ,</p>
+                  <?php echo $value['content']; ?>
+                    <!-- <p>เรียนหัวหน้าค่ะ,</p>
 
                     <p>ฟานเซ็ต Splash Banner เรียบร้อยแล้ว <br> รบกวนหัวหน้ารีวิวค่ะ</p>
 
-                    <p>ขอบคุณค่ะ,<br>ทิฟฟานี่</p>
+                    <p>ขอบคุณค่ะ,<br>ทิฟฟานี่</p> -->
                   </div>
                   <!-- /.mailbox-read-message -->
                 </div>
@@ -257,41 +291,10 @@ if ($result->num_rows > 0) {
                 <!-- /.card-footer -->
                 <!-- /. box -->
               </div>
+              <?php } ?>
+             
 
-              <div class="card card-success card-outline">
-                <!-- /.card-header -->
-                <div class="card-body p-3">
-                  <div class="mailbox-read-info">
-                    <h5>รบกวนตรวจรับ Splash Banner ค่ะ</h5>
-                    <h6 class="text-secondary">Created by Yoon A At Today 09.30 น.</h6>
-                  </div>
-                  <!-- /.mailbox-read-info -->
-
-                  <!-- /.mailbox-controls -->
-                  <div class="mailbox-read-message">
-                    <p>เรียน คุณแทยอน ค่ะ,</p>
-
-                    <p>ทีมได้เซ็ต Splash Banner เรียบร้อยแล้ว <br> รบกวนตรวจรับงานค่ะ</p>
-
-                    <p>ขอบคุณค่ะ,<br>ยุนอา</p>
-                  </div>
-                  <!-- /.mailbox-read-message -->
-                </div>
-                <!-- /.card-body -->
-
-                <!-- /.card-footer -->
-                <div class="card-footer">
-                  <!-- <div class="float-left">
-                    <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
-                  </div> -->
-                  <!-- <div class="float-right">
-                    <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
-                  </div> -->
-                </div>
-                <!-- /.card-footer -->
-                <!-- /. box -->
-              </div>
+             
 
               <!-- End Comment -->
 
