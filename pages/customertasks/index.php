@@ -64,7 +64,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="dataTable" class="table table-bordered table-striped">
+            <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -72,12 +72,10 @@
                   <th>Channel</th>
                   <th>Launch Date</th>
                   <th>Launch Time</th>
-                  <th>Created By</th>
-                  <th>Created At</th>
+                  <!-- <th>Created By</th>
+                  <th>Created At</th> -->
                   <th>Status</th>
-                  <th>View</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -108,26 +106,26 @@
                   <tr>
 
                     <td><?php echo $value['id']; ?></td>
-                    <td><?php echo $value['name']; ?></td>
+                    <td><a href="view.php?id=<?php echo $value['id']; ?>" ><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['username']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
+                    <!-- <td><?php echo $value['username']; ?></td>
+                    <td><?php echo $value['created']; ?></td> -->
                     <td><?php echo strtoupper($value['status_name']); ?></td>
                     <td>
-                      <a href="view.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-info text-white">
-                        <i class="fas fa-eye"></i> view
+                      <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
+                        <i class="fas fa-eye"></i>
+                      </a> -->
+                    
+                    
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
+                        <i class="fas fa-edit"></i>
                       </a>
-                    </td>
-                    <td>
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
-                        <i class="fas fa-edit"></i> edit
-                      </a>
-                    </td>
-                    <td>
-                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash-alt"></i> Delete
+                   
+               
+                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" >
+                        <i class="fas fa-trash-alt"></i>
                       </a>
                     </td>
                   </tr>

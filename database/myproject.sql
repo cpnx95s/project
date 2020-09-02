@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2020 at 01:27 AM
+-- Generation Time: Aug 21, 2020 at 06:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -55,8 +55,8 @@ INSERT INTO `channel` (`id`, `name`, `description`) VALUES
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL COMMENT 'รหัสของการการแสดงความคิดเห็น',
   `content` varchar(255) DEFAULT NULL COMMENT 'เนื้อหาในการแสดงความคิดเห็น',
-  `created` datetime DEFAULT NULL,
-  `updated` datetime DEFAULT NULL,
+  `created` timestamp NULL DEFAULT NULL,
+  `updated` timestamp NULL DEFAULT NULL,
   `task_id` int(11) NOT NULL COMMENT 'รายการงานของการแสดงความคิดเห็น',
   `user_id` int(11) NOT NULL COMMENT 'ผู้ที่แสดงความคิดเห็น'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
