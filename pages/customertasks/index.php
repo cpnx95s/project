@@ -112,7 +112,7 @@
                     <td><?php echo $value['launch_time']; ?></td>
                     <!-- <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['created']; ?></td> -->
-                    <td><?php echo strtoupper($value['status_name']); ?></td>
+                    <td><a href="#" title="Header" data-toggle="popover" data-placement="left" data-content="Content"><?php echo strtoupper($value['status_name']); ?></li></td>
                     <td>
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-eye"></i>
@@ -185,6 +185,13 @@
       }
     };
   </script>
+
+<script>
+    $(document).ready(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+  </script>
+
 
 </body>
 
