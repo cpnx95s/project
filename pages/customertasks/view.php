@@ -75,14 +75,38 @@ if ($result->num_rows > 0) {
               <!-- <a href="../customertasks" class="btn btn-primary btn-block mb-3">Back to Tasks List</a> -->
 
               <!-- /. box -->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Status</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-3">
-                  <ul class="nav nav-pills flex-column">
-                    <li class="nav-item mb-2">
+              <?php
+              $id = $_GET['id'];
+              $sql = "select th.actiondate, th.actiontime, u.name as username, s.status_name as statusname FROM task_history th 
+              INNER JOIN user u ON th.action_by = u.id
+              INNER JOIN status_master s ON th.status_master_id = s.id  
+              WHERE th.task_id = $id";
+              $result = $conn->query($sql);
+              // if (!empty($result) && $result->num_rows > 0) {
+
+              if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                  // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                }
+              } else {
+                echo "0 results";
+              }
+              // for ($id = 1; $id <= 5; $id++) { 
+              foreach ($result as $key => $value) {
+              ?>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Status</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-3">
+                    <ul class="nav nav-pills flex-column">
+                      <li class="nav-item mb-2">
+                        <i class="fa fa-info-circle text-second"></i> <b class="text-secondary"><?php echo $value['statusname']; ?></b>
+                        By <?php echo $value['username']; ?><br />At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
+                      </li>
+                      <!-- <li class="nav-item mb-2">
                       <i class="fa fa-info-circle text-second"></i> <b class="text-secondary">Plan</b> By Taeyeon <br />At Today 07.55 น.
                     </li>
                     <li class="nav-item mb-2">
@@ -99,33 +123,30 @@ if ($result->num_rows > 0) {
                     </li>
                     <li class="nav-item mb-2">
                       <i class="fa fa-info-circle text-success"></i> <b class="text-success">Done</b> By Taeyeon <br />At Today 10.30 น.
-                    </li>
-                  </ul>
+                    </li> -->
+                    </ul>
+                  </div>
+                  <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
+                <!-- /.card -->
+              <?php } ?>
             </div>
             <!-- /.col -->
             <div class="col-md-9">
 
-              <div class="card card-success card-outline">
-                <!-- /.card-header -->
+              <!-- <div class="card card-success card-outline">
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
 
                     <h5><?php echo $row['name']; ?></h5>
                     <h6 class="text-secondary">Created by <?php echo $row['create_by']; ?> At <?php echo $row['created']; ?></h6>
                   </div>
-                  <!-- /.mailbox-read-info -->
-
-                  <!-- /.mailbox-controls -->
+              
                   <div class="mailbox-read-message">
                     <p><?php echo $row['detail']; ?></p>
                   </div>
-                  <!-- /.mailbox-read-message -->
+              
                 </div>
-                <!-- /.card-body -->
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
                     <li>
@@ -174,7 +195,6 @@ if ($result->num_rows > 0) {
                     </li>
                   </ul>
                 </div>
-                <!-- /.card-footer -->
                 <div class="card-footer">
                   <div class="float-left">
                     <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
@@ -183,16 +203,9 @@ if ($result->num_rows > 0) {
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
                       <i class="fas fa-trash-alt"></i> Delete
                     </a>
-                  </div>
-                  <!-- <div class="float-right">
-                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-info">
-                      <i class="fas fa fa-reply"></i> Reply
-                    </a>
-                  </div> -->
+                  </div>      
                 </div>
-                <!-- /.card-footer -->
-                <!-- /. box -->
-              </div>
+              </div> -->
               <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
                 <div class="card card-success ">
                   <div class="card-header">
@@ -203,10 +216,10 @@ if ($result->num_rows > 0) {
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-1">
-                        Subject: 
+                        Subject:
                       </div>
                       <div class="col-md-11">
-                        <input type="text" name="title" id="title" style="width: 100%"> 
+                        <input type="text" name="title" id="title" style="width: 100%">
                       </div>
                     </div>
                     <br>
@@ -216,6 +229,7 @@ if ($result->num_rows > 0) {
                     </div>
                   </div>
                   <div class="card-footer">
+
                     <!-- <div class="float-left">
                     <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
                       <i class="fas fa-edit"></i> edit
@@ -234,67 +248,77 @@ if ($result->num_rows > 0) {
                   </div>
                 </div>
               </form>
- <!-- start comment -->
- <?php
-              $sql = "select c.id, c.title, c.content, c.created, u.name as username
+              <!-- start comment -->
+              <?php
+              $id = $_GET['id'];
+              $sql = "select c.id, c.title, c.content, c.created, c.task_id, u.name as username
               FROM comments c 
-              INNER JOIN user u ON c.user_id = u.id";
+              INNER JOIN user u ON c.user_id = u.id
+              where c.task_id = $id";
 
               $result = $conn->query($sql);
 
               // if (!empty($result) && $result->num_rows > 0) {
 
               if ($result->num_rows > 0) {
-              // output data of each row
-              while ($row = $result->fetch_assoc()) {
-                // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-              }
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                  // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                }
               } else {
-              echo "0 results";
+                // echo "0 results";
               }
               // for ($id = 1; $id <= 5; $id++) { 
               foreach ($result as $key => $value) {
               ?>
-              <div class="card card-success card-outline">
-                <!-- /.card-header -->
-                <div class="card-body p-3">
-                  <div class="mailbox-read-info">
-                    <!-- <h5>รบกวนรีวิว Splash Banner ให้หน่อยค่ะ</h5> -->
-                    <h5><?php echo $value['title']; ?></h5>
-                    <h6 class="text-secondary">Created by <?php echo $value['username']; ?> At <?php echo $value['created']; ?></h6>
-                  </div>
-                  <!-- /.mailbox-read-info -->
+                <div class="card card-success card-outline">
+                  <!-- /.card-header -->
+                  <div class="card-body p-3">
+                    <div class="mailbox-read-info">
+                      <!-- <h5>รบกวนรีวิว Splash Banner ให้หน่อยค่ะ</h5> -->
+                      <h5><?php echo $value['title']; ?></h5>
+                      <h6 class="text-secondary">Created by <?php echo $value['username']; ?> At <?php echo $value['created']; ?></h6>
+                    </div>
+                    <!-- /.mailbox-read-info -->
 
-                  <!-- /.mailbox-controls -->
-                  <div class="mailbox-read-message">
-                  <?php echo $value['content']; ?>
-                    <!-- <p>เรียนหัวหน้าค่ะ,</p>
+                    <!-- /.mailbox-controls -->
+                    <div class="mailbox-read-message">
+                      <?php echo $value['content']; ?>
+                      <!-- <p>เรียนหัวหน้าค่ะ,</p>
 
                     <p>ฟานเซ็ต Splash Banner เรียบร้อยแล้ว <br> รบกวนหัวหน้ารีวิวค่ะ</p>
 
                     <p>ขอบคุณค่ะ,<br>ทิฟฟานี่</p> -->
+                    </div>
+                    <!-- /.mailbox-read-message -->
                   </div>
-                  <!-- /.mailbox-read-message -->
-                </div>
-                <!-- /.card-body -->
+                  <!-- /.card-body -->
 
-                <!-- /.card-footer -->
-                <div class="card-footer">
-                  <!-- <div class="float-left">
+                  <!-- /.card-footer -->
+                  <div class="card-footer">
+                    <div class="float-left">
+                      <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                        <i class="fas fa-edit"></i> edit
+                      </a>
+                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i> Delete
+                      </a>
+                    </div>
+                    <!-- <div class="float-left">
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
                   </div> -->
-                  <!-- <div class="float-right">
+                    <!-- <div class="float-right">
                     <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
                   </div> -->
+                  </div>
+                  <!-- /.card-footer -->
+                  <!-- /. box -->
                 </div>
-                <!-- /.card-footer -->
-                <!-- /. box -->
-              </div>
               <?php } ?>
-             
 
-             
+
+
 
               <!-- End Comment -->
 
@@ -371,6 +395,13 @@ if ($result->num_rows > 0) {
       $('.select2').select2()
 
     });
+
+    function deleteItem(id) {
+      if (confirm('Are you sure, you want to delete this item?') == true) {
+        window.location = `delete-comment.php?id=${id}`;
+        // window.location='delete.php?id='+id;
+      }
+    };
   </script>
 
 </body>
