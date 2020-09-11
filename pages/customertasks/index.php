@@ -73,9 +73,10 @@
                   <th>Channel</th>
                   <th>Launch Date</th>
                   <th>Launch Time</th>
+                  <th>Created At</th>
                   <!-- <th>Created By</th>
                   <th>Created At</th> -->
-                  <th>Status</th>
+                  <!-- <th>Status</th> -->
                   <th>Action</th>
                 </tr>
               </thead>
@@ -84,10 +85,11 @@
 
                 $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
                 s.status_name  , u.name as username
-                FROM task t 
+                FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
-                INNER JOIN user u ON t.create_by = u.id";
+                INNER JOIN user u ON t.create_by = u.id
+                where s.id = 2";
             
                 $result = $conn->query($sql);
 
@@ -111,13 +113,13 @@
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
-                    <!-- <td><?php echo $value['username']; ?></td>
-                    <td><?php echo $value['created']; ?></td> -->
-                    <td><a href="#" title="Status History" data-toggle="popover" data-placement="left" data-content="Content"><?php echo strtoupper($value['status_name']); ?></li></td>
+                    <!-- <td><?php echo $value['username']; ?></td>-->
+                    
+                    <td><?php echo $value['created']; ?></td>
                     <td>
-                      <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
+                      <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-eye"></i>
-                      </a> -->
+                      </a>
                     
                     
                       <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
@@ -125,7 +127,7 @@
                       </a>
                    
                
-                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" >
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
                         <i class="fas fa-trash-alt"></i>
                       </a>
                     </td>
@@ -179,9 +181,9 @@
       });
     });
 
-    function deleteItem(id) {
+    function disableItem(id) {
       if (confirm('Are you sure, you want to delete this item?') == true) {
-        window.location = `delete.php?id=${id}`;
+        window.location = `disable.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }
     };

@@ -20,12 +20,13 @@ if ($_GET['id']) {
   // } else {
   //   echo "0 results";
   // }
-  $sql = "DELETE FROM task WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id =  '11' WHERE id='" . $_GET['id'] . "'";
+  
   if ($conn->query($sql) === TRUE) {
-    echo '<script> alert("Finished Deleting!")</script>';
+    echo '<script> alert("Finished Disable!")</script>';
     $conn->close();
   } else {
-    echo "Error deleting record: " . $conn->error;
+    echo "Error Disable record: " . $conn->error;
   }
   header('Refresh:0; url=index.php');
 }

@@ -176,7 +176,7 @@
                   <input type="time" class="form-control" id="launchtime" name="launchtime" value="<?php echo $value['launch_time']; ?>">
                 </div>
 
-                <!-- field ของ status -->
+                <!-- field ของ status
                 <div class="form-group">
                   <label>Select Status_master</label>
                   <select class="form-control select" style="width: 100%;" name="status">
@@ -217,7 +217,7 @@
                       <option value="<?php echo $value3["id"] ?>"><?php echo $value3["status_name"] ?></option>
                       <?php } ?>
                   </select>
-                </div> 
+                </div>  -->
 
               </div>
               <div class="card-footer">
