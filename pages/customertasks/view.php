@@ -75,38 +75,41 @@ if ($result->num_rows > 0) {
               <!-- <a href="../customertasks" class="btn btn-primary btn-block mb-3">Back to Tasks List</a> -->
 
               <!-- /. box -->
-              <?php
-              $id = $_GET['id'];
-              $sql = "select th.actiondate, th.actiontime, u.name as username, s.status_name as statusname FROM task_history th 
-              INNER JOIN user u ON th.action_by = u.id
-              INNER JOIN status_master s ON th.status_master_id = s.id  
-              WHERE th.task_id = $id";
-              $result = $conn->query($sql);
-              // if (!empty($result) && $result->num_rows > 0) {
 
-              if ($result->num_rows > 0) {
-                // output data of each row
-                while ($row = $result->fetch_assoc()) {
-                  // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                }
-              } else {
-                echo "0 results";
-              }
-              // for ($id = 1; $id <= 5; $id++) { 
-              foreach ($result as $key => $value) {
-              ?>
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Status</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-3">
-                    <ul class="nav nav-pills flex-column">
-                      <li class="nav-item mb-2">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Status</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-3">
+                  <ul class="nav nav-pills flex-column">
+                    <li class="nav-item mb-2">
+                      <?php
+                      $id = $_GET['id'];
+                      $sql = "select th.actiondate, th.actiontime, u.name as username, s.status_name as statusname FROM task_history th 
+                              INNER JOIN user u ON th.action_by = u.id
+                              INNER JOIN status_master s ON th.status_master_id = s.id  
+                              WHERE th.task_id = $id";
+                      $result = $conn->query($sql);
+                      // if (!empty($result) && $result->num_rows > 0) {
+
+                      if ($result->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                        }
+                      } else {
+                        echo "0 results";
+                      }
+                      // for ($id = 1; $id <= 5; $id++) { 
+                      foreach ($result as $key => $value) {
+                      ?>
                         <i class="fa fa-info-circle text-second"></i> <b class="text-secondary"><?php echo $value['statusname']; ?></b>
                         By <?php echo $value['username']; ?><br />At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
-                      </li>
-                      <!-- <li class="nav-item mb-2">
+                    </li>
+
+                  <?php } ?>
+                  <!-- <li class="nav-item mb-2">
                       <i class="fa fa-info-circle text-second"></i> <b class="text-secondary">Plan</b> By Taeyeon <br />At Today 07.55 น.
                     </li>
                     <li class="nav-item mb-2">
@@ -124,26 +127,47 @@ if ($result->num_rows > 0) {
                     <li class="nav-item mb-2">
                       <i class="fa fa-info-circle text-success"></i> <b class="text-success">Done</b> By Taeyeon <br />At Today 10.30 น.
                     </li> -->
-                    </ul>
-                  </div>
-                  <!-- /.card-body -->
+                  </ul>
                 </div>
-                <!-- /.card -->
-              <?php } ?>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
             </div>
             <!-- /.col -->
             <div class="col-md-9">
 
-              <!-- <div class="card card-success card-outline">
+              <div class="card card-success card-outline">
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
 
-                    <h5><?php echo $row['name']; ?></h5>
-                    <h6 class="text-secondary">Created by <?php echo $row['create_by']; ?> At <?php echo $row['created']; ?></h6>
+                  <?php
+                      $id = $_GET['id'];
+                      $sql2 = "SELECT * FROM `task` 
+                              WHERE id = $id";
+                      $result2 = $conn->query($sql2);
+                      // if (!empty($result) && $result->num_rows > 0) {
+
+                      if ($result2->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $result2->fetch_assoc()) {
+                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                        }
+                      } else {
+                        echo "0 results";
+                      }
+                      // for ($id = 1; $id <= 5; $id++) { 
+                      foreach ($result2 as $key => $value2) {
+                      ?>
+
+                  <?php } ?>
+
+                    <h5><?php echo $value2['name']; ?></h5>
+                    <h6 class="text-secondary">Created by <?php echo  $value['username']; ?> At <?php echo  $value2['created']; ?></h6>
                   </div>
               
                   <div class="mailbox-read-message">
-                    <p><?php echo $row['detail']; ?></p>
+                    <p><?php echo  $value2['detail']; ?></p>
                   </div>
               
                 </div>
@@ -205,7 +229,7 @@ if ($result->num_rows > 0) {
                     </a>
                   </div>      
                 </div>
-              </div> -->
+              </div>
               <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
                 <div class="card card-success ">
                   <div class="card-header">

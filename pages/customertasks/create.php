@@ -12,7 +12,7 @@ if(isset($_POST['save']))
 	 $launch_date = $_POST['launchdate'];
 	 $launch_time = $_POST['launchtime'];
 	 $sql = "INSERT INTO task (name, detail, launch_date, launch_time, create_by, channel_id, status_master_id)
-	 VALUES ('$taskname','$detail', '$launch_date', '$launch_time' ,'$user_id', ' $channel', ' $status')";
+	 VALUES ('$taskname','$detail', '$launch_date', '$launch_time' ,'$user_id', '$channel', '$status')";
 
 	 if (mysqli_query($conn, $sql)) {
 		$taskid = mysqli_insert_id($conn);

@@ -1,5 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
+              
 <!DOCTYPE html>
 <html>
 
@@ -112,7 +113,7 @@
                     <td><?php echo $value['launch_time']; ?></td>
                     <!-- <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['created']; ?></td> -->
-                    <td><a href="#" title="Header" data-toggle="popover" data-placement="left" data-content="Content"><?php echo strtoupper($value['status_name']); ?></li></td>
+                    <td><a href="#" title="Status History" data-toggle="popover" data-placement="left" data-content="Content"><?php echo strtoupper($value['status_name']); ?></li></td>
                     <td>
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-eye"></i>
