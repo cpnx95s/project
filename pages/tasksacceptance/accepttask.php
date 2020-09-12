@@ -20,13 +20,13 @@ if ($_GET['id']) {
   // } else {
   //   echo "0 results";
   // }
-  $sql = "UPDATE task SET status_master_id =  '11' WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id =  '10' WHERE id='" . $_GET['id'] . "'";
   
   if ($conn->query($sql) === TRUE) {
-    echo '<script> alert("Finished Deleting!")</script>';
+    echo '<script> alert("Finished Acceptance!")</script>';
     $conn->close();
   } else {
-    echo "Error Deleting record: " . $conn->error;
+    echo "Error Acceptance record: " . $conn->error;
   }
   header('Refresh:0; url=index.php');
 }

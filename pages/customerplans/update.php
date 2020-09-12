@@ -12,10 +12,10 @@ if (isset($_GET['id'])) {
         //$status = $_POST['status'];
         $taskid = $_GET['id'];
         $user_id = $_SESSION["user_id"];
-        $sql = "UPDATE task SET launch_date = '$launchdate', launch_time = '$launchtime', name = '$taskname', detail = ' $detail', channel_id = '$channel', status_master_id =  '2' WHERE id='" . $_GET['id'] . "'";
+        $sql = "UPDATE task SET launch_date = '$launchdate', launch_time = '$launchtime', name = '$taskname', detail = ' $detail', channel_id = '$channel' WHERE id='" . $_GET['id'] . "'";
         if ($conn->query($sql) === TRUE) {
-            $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
-            VALUES ('$launchdate', '$launchtime', '$user_id', '$taskid', '2')";
+            $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id)
+            VALUES ('$launchdate', '$launchtime', '$user_id', '$taskid')";
             if ($conn->query($sql1)) {
                 echo '<script> alert("Finished Updating!")</script>';
             }

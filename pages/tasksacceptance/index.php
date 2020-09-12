@@ -127,9 +127,9 @@
                       </a>
                    
                
-                      <!-- <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
-                        <i class="fas fa-trash-alt"></i>
-                      </a> -->
+                      <a href="#" onclick="acceptItem(<?php echo $value['id']; ?>);" >
+                        <i class="fas fa-check text-success"></i>
+                      </a>
                     </td>
                   </tr>
                 <?php }
@@ -181,9 +181,9 @@
       });
     });
 
-    function disableItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
-        window.location = `disable.php?id=${id}`;
+    function acceptItem(id) {
+      if (confirm('Are you sure, you want to Accept this task?') == true) {
+        window.location = `accepttask.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }
     };

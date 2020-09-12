@@ -15,7 +15,7 @@ $name = $link_array[count($link_array) - 2];
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fa fa-th-large"></i>
+          โชว์ชื่อคนที่ล็อกอินตรงนี้ให้หน่อย
         </a>
       </li>
     </ul>
