@@ -126,9 +126,11 @@
                         <i class="fas fa-edit"></i>
                       </a>
                    
-               
                       <a href="#" onclick="acceptItem(<?php echo $value['id']; ?>);" >
                         <i class="fas fa-check text-success"></i>
+                      </a>
+                      <a href="#" onclick="denyItem(<?php echo $value['id']; ?>);" >
+                        <i class="fa fa-times text-black"></i>
                       </a>
                     </td>
                   </tr>
@@ -187,6 +189,12 @@
         // window.location='delete.php?id='+id;
       }
     };
+
+    function denyItem(id) {
+      if (confirm('Are you sure, you want to Deny this task?') == true) {
+        window.location = `denytask.php?id=${id}`;
+      }
+    }
   </script>
 
 <script>

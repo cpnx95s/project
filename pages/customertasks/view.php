@@ -143,8 +143,11 @@ if ($result->num_rows > 0) {
 
                   <?php
                       $id = $_GET['id'];
-                      $sql2 = "SELECT * FROM `task` 
-                              WHERE id = $id";
+                      $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
+                      from task
+                      inner join user on task.create_by = user.id
+                      where task.id = $id
+                      ";
                       $result2 = $conn->query($sql2);
                       // if (!empty($result) && $result->num_rows > 0) {
 
@@ -160,16 +163,16 @@ if ($result->num_rows > 0) {
                       foreach ($result2 as $key => $value2) {
                       ?>
 
-                  <?php } ?>
+                 
 
                     <h5><?php echo $value2['name']; ?></h5>
-                    <h6 class="text-secondary">Created by <?php echo  $value['username']; ?> At <?php echo  $value2['created']; ?></h6>
+                    <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?></h6>
                   </div>
               
                   <div class="mailbox-read-message">
                     <p><?php echo  $value2['detail']; ?></p>
                   </div>
-              
+                  <?php } ?>
                 </div>
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
@@ -227,7 +230,7 @@ if ($result->num_rows > 0) {
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
                       <i class="fas fa-trash-alt"></i> Delete
                     </a>
-                  </div>      
+                  </div> 
                 </div>
               </div>
               <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
@@ -275,7 +278,7 @@ if ($result->num_rows > 0) {
               <!-- start comment -->
               <?php
               $id = $_GET['id'];
-              $sql = "select c.id, c.title, c.content, c.created, c.task_id, u.name as username
+              $sql = "select c.id, c.title, c.content, c.created, c.task_id, c.user_id, u.name as username
               FROM comments c 
               INNER JOIN user u ON c.user_id = u.id
               where c.task_id = $id";
@@ -320,6 +323,8 @@ if ($result->num_rows > 0) {
 
                   <!-- /.card-footer -->
                   <div class="card-footer">
+                  <?php if($value["user_id"] == $_SESSION["user_id"]) {?>
+
                     <div class="float-left">
                       <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
                         <i class="fas fa-edit"></i> edit
@@ -328,6 +333,7 @@ if ($result->num_rows > 0) {
                         <i class="fas fa-trash-alt"></i> Delete
                       </a>
                     </div>
+                  <?php } ?>
                     <!-- <div class="float-left">
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
