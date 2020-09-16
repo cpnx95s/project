@@ -88,7 +88,7 @@
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where s.id = 7";
+                where s.id = 5";
             
                 $result = $conn->query($sql);
 
@@ -120,12 +120,6 @@
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-eye"></i>
                       </a> -->
-                    
-                    
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
-                        <i class="fas fa-edit"></i>
-                      </a>
-                   
                       <a href="#" onclick="acceptItem(<?php echo $value['id']; ?>);" >
                         <i class="fas fa-check text-success"></i>
                       </a>

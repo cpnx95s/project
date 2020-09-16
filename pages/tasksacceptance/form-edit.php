@@ -180,10 +180,10 @@
                 <div class="form-group">
                   <label>Select Status_master</label>
                   <select class="form-control select" style="width: 100%;" name="status">
-                  
+                      <option value="6" selected>Accept</option>
                       <option value="4" selected>Deny</option>
-                      <option value="7" selected>In Permit</option>
-                      <option value="10" selected>Accept</option>
+                      <option value="5" selected>In Permit</option>
+                      
                      
                   </select>
                 </div> 

@@ -1,6 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
-              
+
 <!DOCTYPE html>
 <html>
 
@@ -83,14 +83,15 @@
               <tbody>
                 <?php
 
+                $user_id = $_SESSION["user_id"];
                 $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                s.status_name  , u.name as username
-                FROM task t  
-                INNER JOIN channel c ON t.channel_id = c.id 
-                INNER JOIN status_master s ON t.status_master_id = s.id
-                INNER JOIN user u ON t.create_by = u.id
-                where s.id = 1";
-            
+                        s.status_name  , u.name as username
+                        FROM task t  
+                        INNER JOIN channel c ON t.channel_id = c.id 
+                        INNER JOIN status_master s ON t.status_master_id = s.id
+                        INNER JOIN user u ON t.create_by = u.id
+                        where t.status_master_id = 1 and t.create_by = $user_id ";
+
                 $result = $conn->query($sql);
 
                 // if (!empty($result) && $result->num_rows > 0) {
@@ -121,14 +122,14 @@
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-eye"></i>
                       </a> -->
-                    
-                    
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
+
+
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
                         <i class="fas fa-edit"></i>
                       </a>
-                   
-               
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
+
+
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
                         <i class="fas fa-trash-alt"></i>
                       </a>
                     </td>
@@ -190,7 +191,7 @@
     };
   </script>
 
-<script>
+  <script>
     $(document).ready(function() {
       $('[data-toggle="popover"]').popover();
     });
