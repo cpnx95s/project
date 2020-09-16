@@ -4,7 +4,7 @@
 
 if ($_GET['id']) {
 
-  $sql = "UPDATE task SET status_master_id =  '10' WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id =  '6' WHERE id='" . $_GET['id'] . "'";
 
   if ($conn->query($sql) === TRUE) {
     $selectdata = "SELECT * FROM task WHERE id= '" . $_GET['id'] . "'";

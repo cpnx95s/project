@@ -3,8 +3,8 @@
 <?php
 
 if ($_GET['id']) {
-
-  $sql = "UPDATE task SET status_master_id =  '9' WHERE id='" . $_GET['id'] . "'";
+  $remark = $_GET['remark'];
+  $sql = "UPDATE task SET status_master_id = '4' WHERE id='" . $_GET['id'] . "'";
 
   if ($conn->query($sql) === TRUE) {
     $selectdata = "SELECT * FROM task WHERE id= '" . $_GET['id'] . "'";
@@ -17,10 +17,9 @@ if ($_GET['id']) {
         $action_by = $row['create_by'];
         $date = date("Y-m-d");
         $time = date("H:i:s");
-        echo $date;
-        echo $time;
-        $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
-            VALUES ('$date', '$time', '$action_by', '$task_id', '$status_id')";
+  
+        $sql1 = "INSERT INTO task_history(actiondate, actiontime, remark, action_by, task_id, status_master_id)
+            VALUES ('$date', '$time', '$remark', '$action_by', '$task_id', '$status_id')";
         if ($conn->query($sql1)) {
           echo '<script> alert("Finished Acceptance!")</script>';
         }

@@ -185,9 +185,13 @@
     };
 
     function denyItem(id) {
-      if (confirm('Are you sure, you want to Deny this task?') == true) {
-        window.location = `denytask.php?id=${id}`;
+      var retVal = prompt("Enter your Reason for not passing : ");
+      if (retVal != null) {
+        window.location =  `denytask.php?id=${id}&remark=${retVal}`;
       }
+      // if (confirm('Are you sure, you want to Deny this task?') == true) {
+      //   window.location = `denytask.php?id=${id}`;
+      // }
     }
   </script>
 
