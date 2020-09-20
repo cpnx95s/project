@@ -29,4 +29,5 @@ if ($_GET['id']) {
   }
   header('Refresh:0; url=index.php');
 }
+
 ?>

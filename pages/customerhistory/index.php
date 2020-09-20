@@ -78,7 +78,9 @@
                 INNER JOIN status_master s ON s.id = th.status_master_id 
                 INNER JOIN channel c ON t.channel_id = c.id
                 INNER JOIN user u ON action_by = u.id
-                where action_by = $user_id ";
+                where action_by = $user_id 
+                ORDER BY id DESC;
+                ";
 
                 $result = $conn->query($sql);
 
@@ -95,9 +97,9 @@
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
                 ?>
-                  <tr>
-                    <td>คุณได้ทำการ <?php echo $value['statusname']; ?> รายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น. </td>
-                  </tr>
+                  <ul>
+                    <li>คุณได้เปลี่ยนสถานะรายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เป็น <?php echo $value['statusname']; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น. </li>
+                </ul>
                 <?php }
                 $conn->close();
                 ?>
