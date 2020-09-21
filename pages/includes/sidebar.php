@@ -1,3 +1,5 @@
+<?php include_once('../authen.php') ?>
+<?php include_once('../includes/connect.php') ?>
 <?php
 $link = $_SERVER['REQUEST_URI'];
 $link_array = explode('/', $link);
