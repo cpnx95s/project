@@ -38,7 +38,7 @@ $name = $link_array[count($link_array) - 2];
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-        <i class="fa fa-user" aria-hidden="true"></i> <?php echo $value2['surname'].' '.$value2['name']; ?>
+        <i class="fa fa-user" aria-hidden="true"></i> <?php echo $value2['username']; ?>
         </a>
       </li>
     </ul>
@@ -47,6 +47,7 @@ $name = $link_array[count($link_array) - 2];
 <!-- /.navbar -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
+  
   <a href="#" class="brand-link">
     <span class="brand-text font-weight-light text-center d-block"><?php echo ucwords($value2['role_name']); ?> Panel</span>
   </a>
@@ -59,7 +60,7 @@ $name = $link_array[count($link_array) - 2];
         <img src="../../dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">User Customer</a>
+        <a href="#" class="d-block"><?php echo $value2['surname'].' '.$value2['name']; ?></a>
       </div>
     </div>
 
@@ -100,6 +101,12 @@ $name = $link_array[count($link_array) - 2];
           <a href="../customerhistory" class="nav-link <?php echo $name == 'customerhistory' ? 'active' : '' ?>">
             <i class="fas fa-history nav-icon"></i>
             <p>My Activities</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../customerreport" class="nav-link <?php echo $name == 'customerreport' ? 'active' : '' ?>">
+            <i class="fas fa-adjust nav-icon"></i>
+            <p>Report</p>
           </a>
         </li>
         <!-- <li class="nav-item">

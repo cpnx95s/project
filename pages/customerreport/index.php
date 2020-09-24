@@ -1,13 +1,13 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
-
+              
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Plans Management</title>
+  <title>Tasks Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -42,12 +42,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Plans Management</h1>
+              <h1>Tasks Management</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Plans Management</li>
+                <li class="breadcrumb-item active">Tasks Management</li>
               </ol>
             </div>
           </div>
@@ -60,8 +60,8 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Plans List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Plans +</a href="">
+            <h3 class="card-title d-inline-block">Tasks List</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -82,16 +82,15 @@
               </thead>
               <tbody>
                 <?php
-
                 $user_id = $_SESSION["user_id"];
                 $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                        s.status_name  , u.name as username
-                        FROM task t  
-                        INNER JOIN channel c ON t.channel_id = c.id 
-                        INNER JOIN status_master s ON t.status_master_id = s.id
-                        INNER JOIN user u ON t.create_by = u.id
-                        where t.status_master_id = 1 and t.create_by = $user_id ";
-
+                s.status_name  , u.name as username
+                FROM task t  
+                INNER JOIN channel c ON t.channel_id = c.id 
+                INNER JOIN status_master s ON t.status_master_id = s.id
+                INNER JOIN user u ON t.create_by = u.id
+                where t.status_master_id = 2 and t.create_by = $user_id ";
+            
                 $result = $conn->query($sql);
 
                 // if (!empty($result) && $result->num_rows > 0) {
@@ -102,7 +101,7 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                  //echo "0 results";
+                  echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
@@ -110,26 +109,25 @@
                   <tr>
 
                     <td><?php echo $value['id']; ?></td>
-                    <td><?php echo $value['name']; ?></td>
+                    <td><a href="view.php?id=<?php echo $value['id']; ?>" ><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
-                    <!-- <td><?php echo $value['username']; ?></td>
+                    <!-- <td><?php echo $value['username']; ?></td>-->
                     
-                    <!-- <td><a href="#" title="Status History" data-toggle="popover" data-placement="left" data-content="Content"><?php echo strtoupper($value['status_name']); ?></li></td> -->
+                    <td><?php echo $value['created']; ?></td>
                     <td>
-                      <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
+                      <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-eye"></i>
-                      </a> -->
-
-
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
+                      </a>
+                    
+                    
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
                         <i class="fas fa-edit"></i>
                       </a>
-
-
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
+                   
+               
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
                         <i class="fas fa-trash-alt"></i>
                       </a>
                     </td>
@@ -191,7 +189,7 @@
     };
   </script>
 
-  <script>
+<script>
     $(document).ready(function() {
       $('[data-toggle="popover"]').popover();
     });

@@ -92,7 +92,7 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                  echo "0 results";
+                  echo "ยังไม่มีประวัติกิจกรรม";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {

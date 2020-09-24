@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>Tasks Acceptance</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -42,12 +42,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>Tasks Acceptance</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Management</li>
+                <li class="breadcrumb-item active">Tasks Acceptance</li>
               </ol>
             </div>
           </div>
@@ -60,7 +60,7 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
+            <h3 class="card-title d-inline-block">Acceptance List</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -100,7 +100,7 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                  echo "0 results";
+                  //echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
