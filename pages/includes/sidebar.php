@@ -17,7 +17,10 @@ $name = $link_array[count($link_array) - 2];
   <!-- Right navbar links -->
   <?php
   $userid = $_SESSION['user_id'];
-  $sql = "SELECT * FROM user WHERE id = $userid";
+  $sql = "SELECT * FROM user u 
+  INNER JOIN role_master rm ON rm.id = u.role_master_id 
+  WHERE u.id = $userid
+  ";
   $result2 = $conn->query($sql);
   // if (!empty($result) && $result->num_rows > 0) {
 
@@ -35,7 +38,7 @@ $name = $link_array[count($link_array) - 2];
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <?php echo $value2['name'];?>
+        <i class="fa fa-user" aria-hidden="true"></i> <?php echo $value2['surname'].' '.$value2['name']; ?>
         </a>
       </li>
     </ul>
@@ -45,7 +48,7 @@ $name = $link_array[count($link_array) - 2];
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
-    <span class="brand-text font-weight-light text-center d-block">Customer Management</span>
+    <span class="brand-text font-weight-light text-center d-block"><?php echo ucwords($value2['role_name']); ?> Panel</span>
   </a>
 
   <!-- Sidebar -->
@@ -90,13 +93,13 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../tasksacceptance" class="nav-link <?php echo $name == 'tasksacceptance' ? 'active' : '' ?>">
             <i class="fas fa-check-square nav-icon"></i>
-            <p>Tasks Acceptance</p>
+            <p>My Acceptance</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../customerhistory" class="nav-link <?php echo $name == 'customerhistory' ? 'active' : '' ?>">
             <i class="fas fa-history nav-icon"></i>
-            <p>My History Activity</p>
+            <p>My Activities</p>
           </a>
         </li>
         <!-- <li class="nav-item">
