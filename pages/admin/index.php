@@ -83,12 +83,12 @@
                 <td><span class="badge badge-primary">Admin</span></td>
                 <td>
                   <a href="form-edit.php?id=<?php echo $id; ?>" class="btn btn-sm btn-warning text-white">
-                    <i class="fas fa-edit"></i> edit
+                    <i class="fa fa-pencil-square-o"></i> edit
                   </a> 
                 </td>
                 <td>
                   <a href="#" onclick="deleteItem(<?php echo $id; ?>);" class="btn btn-sm btn-danger">
-                    <i class="fas fa-trash-alt"></i> Delete
+                    <i class="fa fa-trash-o"></i> Delete
                   </a>
                 </td>
               </tr>

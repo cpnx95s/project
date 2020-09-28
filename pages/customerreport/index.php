@@ -118,17 +118,17 @@
                     <td><?php echo $value['created']; ?></td>
                     <td>
                       <a href="view.php?id=<?php echo $value['id']; ?>" >
-                        <i class="fas fa-eye"></i>
+                        <i class="fa fa-eye"></i>
                       </a>
                     
                     
                       <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
-                        <i class="fas fa-edit"></i>
+                        <i class="fa fa-pencil-square-o"></i>
                       </a>
                    
                
                       <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
-                        <i class="fas fa-trash-alt"></i>
+                        <i class="fa fa-trash-o"></i>
                       </a>
                     </td>
                   </tr>

@@ -225,10 +225,10 @@ if ($result->num_rows > 0) {
                 <div class="card-footer">
                   <div class="float-left">
                     <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
-                      <i class="fas fa-edit"></i> edit
+                      <i class="fa fa-pencil-square-o"></i> edit
                     </a>
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
-                      <i class="fas fa-trash-alt"></i> Delete
+                      <i class="fa fa-trash-o"></i> Delete
                     </a>
                   </div> 
                 </div>
@@ -259,10 +259,10 @@ if ($result->num_rows > 0) {
 
                     <!-- <div class="float-left">
                     <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
-                      <i class="fas fa-edit"></i> edit
+                      <i class="fa fa-pencil-square-o"></i> edit
                     </a>
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
-                      <i class="fas fa-trash-alt"></i> Delete
+                      <i class="fa fa-trash-o"></i> Delete
                     </a>
                   </div> -->
                     <div class="float-right">
@@ -327,16 +327,16 @@ if ($result->num_rows > 0) {
 
                     <div class="float-left">
                       <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
-                        <i class="fas fa-edit"></i> edit
+                        <i class="fa fa-pencil-square-o"></i> edit
                       </a>
                       <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash-alt"></i> Delete
+                        <i class="fa fa-trash-o"></i> Delete
                       </a>
                     </div>
                   <?php } ?>
                     <!-- <div class="float-left">
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</button>
+                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o-alt"></i> Delete</button>
                   </div> -->
                     <!-- <div class="float-right">
                     <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
