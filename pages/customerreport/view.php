@@ -27,9 +27,9 @@ if ($result->num_rows > 0) {
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <script src="https://use.fontawesome.com/0ff79eb7ba.js"></script>
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
   <!-- Select2 -->
   <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
   <!-- Theme style -->

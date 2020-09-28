@@ -1,6 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
-              
+
 <!DOCTYPE html>
 <html>
 
@@ -74,9 +74,8 @@
                   <th>Launch Date</th>
                   <th>Launch Time</th>
                   <th>Created At</th>
-                  <!-- <th>Created By</th>
-                  <th>Created At</th> -->
-                  <!-- <th>Status</th> -->
+                  <th>Created By</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -89,8 +88,8 @@
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 2 and t.create_by = $user_id ";
-            
+                ";
+
                 $result = $conn->query($sql);
 
                 // if (!empty($result) && $result->num_rows > 0) {
@@ -101,33 +100,34 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                  echo "0 results";
+                  //echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
                 ?>
                   <tr>
 
-                    <td><?php echo $value['id']; ?></td>
-                    <td><a href="view.php?id=<?php echo $value['id']; ?>" ><?php echo $value['name']; ?></a></td>
+                  <td><?php echo $value['id']; ?></td>
+                    <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
-                    <!-- <td><?php echo $value['username']; ?></td>-->
-                    
                     <td><?php echo $value['created']; ?></td>
+                    <td><?php echo $value['username']; ?></td>
+                    <td><?php echo $value['status_name']; ?></td>
+                    
                     <td>
-                      <a href="view.php?id=<?php echo $value['id']; ?>" >
+                      <a href="view.php?id=<?php echo $value['id']; ?>">
                         <i class="fas fa-eye"></i>
                       </a>
-                    
-                    
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
+
+
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
                         <i class="fas fa-edit"></i>
                       </a>
-                   
-               
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
+
+
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
                         <i class="fas fa-trash-alt"></i>
                       </a>
                     </td>
@@ -189,7 +189,7 @@
     };
   </script>
 
-<script>
+  <script>
     $(document).ready(function() {
       $('[data-toggle="popover"]').popover();
     });

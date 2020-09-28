@@ -69,7 +69,7 @@ $name = $link_array[count($link_array) - 2];
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="../dashboard" class="nav-link <?php echo $name == 'dashboard' ? 'active' : '' ?>">
-            <i class="fas fa-tachometer-alt nav-icon"></i>
+            <i class="fa fa-tachometer nav-icon"></i>
             <p>Dashboard</p>
           </a>
         </li>
@@ -81,31 +81,31 @@ $name = $link_array[count($link_array) - 2];
           </li> -->
         <li class="nav-item">
           <a href="../customerplans" class="nav-link <?php echo $name == 'customerplans' ? 'active' : '' ?>">
-            <i class="fas fa-list-alt nav-icon"></i>
+            <i class="fa fa-list nav-icon"></i>
             <p>My Plans</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../customertasks" class="nav-link <?php echo $name == 'customertasks' ? 'active' : '' ?>">
-            <i class="fas fa-tasks nav-icon"></i>
+            <i class="fa fa-tasks nav-icon"></i>
             <p>My Tasks</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../tasksacceptance" class="nav-link <?php echo $name == 'tasksacceptance' ? 'active' : '' ?>">
-            <i class="fas fa-check-square nav-icon"></i>
+            <i class="fa fa-check-square nav-icon"></i>
             <p>My Acceptance</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../customerhistory" class="nav-link <?php echo $name == 'customerhistory' ? 'active' : '' ?>">
-            <i class="fas fa-history nav-icon"></i>
+            <i class="fa fa-history nav-icon"></i>
             <p>My Activities</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../customerreport" class="nav-link <?php echo $name == 'customerreport' ? 'active' : '' ?>">
-            <i class="fas fa-adjust nav-icon"></i>
+            <i class="fa fa-pie-chart nav-icon"></i>
             <p>Report</p>
           </a>
         </li>
