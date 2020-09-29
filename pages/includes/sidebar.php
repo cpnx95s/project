@@ -38,7 +38,7 @@ $name = $link_array[count($link_array) - 2];
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fa fa-user" aria-hidden="true"></i> <?php echo $value2['surname'] . ' ' . $value2['name']; ?>
+          <i class="fa fa-user" aria-hidden="true"></i> <?php echo strtoupper($value2['surname']); ?> <?php echo strtoupper($value2['name']); ?>
         </a>
       </li>
     </ul>

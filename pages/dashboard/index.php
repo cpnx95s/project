@@ -56,45 +56,60 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-6 col-6">
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>10</h3>
-                  <p>New Articles</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-6 col-6">
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>53</h3>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-envelope"></i></span>
 
-                  <p>All Contacts</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <div class="info-box-content">
+                <span class="info-box-text">Messages</span>
+                <span class="info-box-number">1,410</span>
               </div>
+              <!-- /.info-box-content -->
             </div>
+            <!-- /.info-box -->
           </div>
-          <!-- /.row -->
-          <!-- Main row -->
-          <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-12">
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fa fa-flag"></i></span>
 
-            </section>
+              <div class="info-box-content">
+                <span class="info-box-text">Bookmarks</span>
+                <span class="info-box-number">410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
           </div>
-          <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning"><i class="fa fa-copy"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Uploads</span>
+                <span class="info-box-number">13,648</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-star"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Likes</span>
+                <span class="info-box-number">93,139</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
       </section>
 
       <section class="content">
@@ -102,9 +117,170 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <!-- <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href=""> -->
+            <div class="row">
+              <h3>Search By</h3>
+            </div>
+
+            <section class="content">
+              <div class="row">
+                <div class="col-md-4 col-12">
+                  <div class="info-box">
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Name</span>
+                      <input class="form-control" type="input" name="task-name" />
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+
+
+                <div class="col-md-4 col-12">
+                  <div class="info-box">
+
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">User</span>
+                      <span class="info-box-number"><select class="form-control select2" data-placeholder="Select user" name="task-user">
+                          <?php
+                          $mysqli = new mysqli("localhost", "root", "", "myproject");
+
+                          // Check connection
+                          if ($mysqli->connect_errno) {
+                            echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                            exit();
+                          }
+                          $sql = "Select * FROM user";
+                          $result = $mysqli->query($sql);
+                          if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) {
+                              // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                            }
+                          } else {
+                            echo "0 results";
+                          }
+
+                          foreach ($result as $key => $value) { ?>
+                            <option value="<?php echo $value['id']; ?>"><?php echo ucwords($value['name']); ?></option>
+                          <?php } ?>
+                        </select></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+
+                <!-- /.col -->
+                <div class="col-md-4 col-12">
+                  <div class="info-box">
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Channel</span>
+                      <select class="form-control select2" name="task-channel">
+                        <?php
+                        $mysqli = new mysqli("localhost", "root", "", "myproject");
+
+                        // Check connection
+                        if ($mysqli->connect_errno) {
+                          echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                          exit();
+                        }
+                        $sql = "Select * FROM channel";
+                        $result = $mysqli->query($sql);
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                            // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                          }
+                        } else {
+                          echo "0 results";
+                        }
+
+                        foreach ($result as $key => $value) { ?>
+                          <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4 col-12">
+                  <div class="info-box">
+
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Launch Date</span>
+                      <input class="form-control" type="date" name="startDate" id="startDate" />
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4 col-12">
+                  <div class="info-box">
+
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Launch Time</span>
+                      <input class="form-control" type="time" name="startTime" id="startTime" />
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+
+                <!-- /.col -->
+                <div class="col-md-4 col-12">
+                  <div class="info-box">
+
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Status</span>
+                      <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                        <?php
+                        $mysqli = new mysqli("localhost", "root", "", "myproject");
+
+                        // Check connection
+                        if ($mysqli->connect_errno) {
+                          echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                          exit();
+                        }
+                        $sql = "Select * FROM status_master";
+                        $result = $mysqli->query($sql);
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                            // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                          }
+                        } else {
+                          echo "0 results";
+                        }
+
+                        foreach ($result as $key => $value) { ?>
+                          <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+              </div>
+            </section>
+
+            <div class="row float-right">
+              <div class="col">
+                <button type="submit" class="btn btn-info" name="save">Search</button>
+              </div>
+            </div>
+
           </div>
+
           <!-- /.card-header -->
           <div class="card-body">
             <table id="dataTable" class="table table-striped">
@@ -207,6 +383,55 @@
   <script src="../../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
+  <!-- DataTables -->
+  <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <script>
+    $(function() {
+      $('#dataTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true
+      });
+    });
+
+    function disableItem(id) {
+      if (confirm('Are you sure, you want to delete this item?') == true) {
+        window.location = `disable.php?id=${id}`;
+        // window.location='delete.php?id='+id;
+      }
+    };
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+  </script>
+
+  <script>
+    var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    $('#startDate').datepicker({
+      uiLibrary: 'bootstrap4',
+      iconsLibrary: 'fontawesome',
+      minDate: today,
+      maxDate: function() {
+        return $('#endDate').val();
+      }
+    });
+    $('#endDate').datepicker({
+      uiLibrary: 'bootstrap4',
+      iconsLibrary: 'fontawesome',
+      minDate: function() {
+        return $('#startDate').val();
+      }
+    });
+  </script>
+
 
 </body>
 
