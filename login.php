@@ -70,13 +70,13 @@ if (isset($_POST['submit'])) {
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
             <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="txtUsername">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+              <span class="input-group-text"> <i class="fa fa-lock"></i></span>
             </div>
             <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" name="txtPassword">
           </div>
