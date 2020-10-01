@@ -1,4 +1,5 @@
 <?php include_once('../authen.php') ?>
+<?php include_once('../includes/connect.php') ?>
 <!DOCTYPE html>
 <html>
 
@@ -117,6 +118,8 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
+            <!-- <form action="search.php" method="post"> -->
+            <form method="post">
             <div class="row">
               <h3>Search By</h3>
             </div>
@@ -142,7 +145,9 @@
 
                     <div class="info-box-content">
                       <span class="info-box-text">User</span>
-                      <span class="info-box-number"><select class="form-control select2" data-placeholder="Select user" name="task-user">
+                      <span class="info-box-number">
+                        <select class="form-control select2" data-placeholder="Select user" name="task-user">
+                        <option value="" selected></option>
                           <?php
                           $mysqli = new mysqli("localhost", "root", "", "myproject");
 
@@ -179,6 +184,7 @@
                     <div class="info-box-content">
                       <span class="info-box-text">Channel</span>
                       <select class="form-control select2" name="task-channel">
+                      <option value="" selected></option>
                         <?php
                         $mysqli = new mysqli("localhost", "root", "", "myproject");
 
@@ -242,6 +248,7 @@
                     <div class="info-box-content">
                       <span class="info-box-text">Status</span>
                       <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                      <option value="" selected></option>
                         <?php
                         $mysqli = new mysqli("localhost", "root", "", "myproject");
 
@@ -275,10 +282,10 @@
 
             <div class="row float-right">
               <div class="col">
-                <button type="submit" class="btn btn-info" name="save">Search</button>
+                <button type="submit" class="btn btn-info" name="search">Search</button>
               </div>
             </div>
-
+            </form>
           </div>
 
           <!-- /.card-header -->
@@ -299,32 +306,55 @@
               </thead>
               <tbody>
                 <?php
-                $user_id = $_SESSION["user_id"];
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                s.status_name  , u.name as username
-                FROM task t  
-                INNER JOIN channel c ON t.channel_id = c.id 
-                INNER JOIN status_master s ON t.status_master_id = s.id
-                INNER JOIN user u ON t.create_by = u.id
-                ";
-
-                $result = $conn->query($sql);
-
-                // if (!empty($result) && $result->num_rows > 0) {
-
-                if ($result->num_rows > 0) {
-                  // output data of each row
-                  while ($row = $result->fetch_assoc()) {
-                    // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                //  if($issearch == true){
+                  if (isset($_POST['search'])) {
+                    $taskname = $_POST['task-name'];
+                    $taskuser = $_POST['task-user'];
+                    $taskchannel = $_POST['task-channel'];
+                    $startDate = $_POST['startDate'];
+                    $startTime = $_POST['startTime'];
+                    $status = $_POST['status'];
+                    $sql = "SELECT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
+                    s.status_name  , u.name as username
+                    FROM task t  
+                    INNER JOIN channel c ON t.channel_id = c.id 
+                    INNER JOIN status_master s ON t.status_master_id = s.id
+                    INNER JOIN user u ON t.create_by = u.id
+                    where t.name like '%$taskname%' and t.create_by like '%$taskuser%' and t.channel_id like '%$taskchannel%'
+                    and t.launch_date like '%$startDate%' and t.launch_time like '%$startTime%' and t.status_master_id like '%$status%'";
+                    $result = $conn->query($sql);
+                    $GLOBALS['result1'] = $result;
+                // }
+                 
+                 }else {
+                  $user_id = $_SESSION["user_id"];
+                  $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
+                  s.status_name  , u.name as username
+                  FROM task t  
+                  INNER JOIN channel c ON t.channel_id = c.id 
+                  INNER JOIN status_master s ON t.status_master_id = s.id
+                  INNER JOIN user u ON t.create_by = u.id
+                  ";
+  
+                  $result = $conn->query($sql);
+  
+                  // if (!empty($result) && $result->num_rows > 0) {
+  
+                  if ($result->num_rows > 0) {
+                    $GLOBALS['result1'] = $result;
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                      // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                    }
+                  } else {
+                    //echo "0 results";
                   }
-                } else {
-                  //echo "0 results";
-                }
-                // for ($id = 1; $id <= 5; $id++) { 
-                foreach ($result as $key => $value) {
+                  // for ($id = 1; $id <= 5; $id++) { 
+                 }
+               
+                foreach ($GLOBALS['result1'] as $key => $value) {
                 ?>
                   <tr>
-
                     <td><?php echo $value['id']; ?></td>
                     <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
