@@ -42,12 +42,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>My Activities</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Management</li>
+                <li class="breadcrumb-item active">My Activities</li>
               </ol>
             </div>
           </div>
@@ -59,17 +59,21 @@
 
         <!-- Default box -->
         <div class="card">
-          <div class="card-header">
+          <!-- <div class="card-header">
             <h3 class="card-title d-inline-block">Tasks List</h3>
             <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
-          </div>
+          </div> -->
           <!-- /.card-header -->
           <div class="card-body">
             <table id="dataTable" class="table table-striped">
-              
+              <thead>
+                <tr>
+
+                  <th>Activities List</th>
+                </tr>
+              </thead>
               <tbody>
                 <?php
-
                 $user_id = $_SESSION["user_id"];
                 $sql = "SELECT th.id, th.actiondate, th.actiontime, th.remark, th.action_by, th.task_id, th.status_master_id , 
                 t.name as taskname, t.name as taskname, c.name as channelname,s.status_name as statusname,u.name as username
@@ -92,14 +96,16 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                  echo "ยังไม่มีประวัติกิจกรรม";
+                  echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
                 ?>
-                  <ul>
-                    <li>คุณได้เปลี่ยนสถานะรายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เป็น <?php echo $value['statusname']; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น. </li>
-                </ul>
+                  <tr>
+
+                    <td>คุณได้เปลี่ยนสถานะรายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เป็น <?php echo $value['statusname']; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น.</td>
+
+                  </tr>
                 <?php }
                 $conn->close();
                 ?>

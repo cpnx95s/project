@@ -1,6 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
-              
+
 <!DOCTYPE html>
 <html>
 
@@ -27,6 +27,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -42,12 +43,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>Report</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Management</li>
+                <li class="breadcrumb-item active">Report</li>
               </ol>
             </div>
           </div>
@@ -56,92 +57,95 @@
 
       <!-- Main content -->
       <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- AREA CHART -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Area Chart</h3>
 
-        <!-- Default box -->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="areaChart" style="height: 250px; min-height: 250px; display: block; width: 542px;" width="704" height="324" class="chartjs-render-monitor"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+              <!-- DONUT CHART -->
+              <div class="card card-danger">
+                <div class="card-header">
+                  <h3 class="card-title">Donut Chart</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="pieChart" style="height:250px"></canvas>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+            </div>
+            <!-- /.col (LEFT) -->
+            <div class="col-md-6">
+              <!-- LINE CHART -->
+              <div class="card card-info">
+                <div class="card-header">
+                  <h3 class="card-title">Line Chart</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="lineChart" style="height:250px"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+              <!-- BAR CHART -->
+              <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Bar Chart</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="barChart" style="height:230px"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+            </div>
+            <!-- /.col (RIGHT) -->
           </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table id="dataTable" class="table table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Task Name</th>
-                  <th>Channel</th>
-                  <th>Launch Date</th>
-                  <th>Launch Time</th>
-                  <th>Created At</th>
-                  <!-- <th>Created By</th>
-                  <th>Created At</th> -->
-                  <!-- <th>Status</th> -->
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $user_id = $_SESSION["user_id"];
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                s.status_name  , u.name as username
-                FROM task t  
-                INNER JOIN channel c ON t.channel_id = c.id 
-                INNER JOIN status_master s ON t.status_master_id = s.id
-                INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 2 and t.create_by = $user_id ";
-            
-                $result = $conn->query($sql);
-
-                // if (!empty($result) && $result->num_rows > 0) {
-
-                if ($result->num_rows > 0) {
-                  // output data of each row
-                  while ($row = $result->fetch_assoc()) {
-                    // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                  }
-                } else {
-                  echo "0 results";
-                }
-                // for ($id = 1; $id <= 5; $id++) { 
-                foreach ($result as $key => $value) {
-                ?>
-                  <tr>
-
-                    <td><?php echo $value['id']; ?></td>
-                    <td><a href="view.php?id=<?php echo $value['id']; ?>" ><?php echo $value['name']; ?></a></td>
-                    <td><?php echo $value['channel_name']; ?></td>
-                    <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
-                    <!-- <td><?php echo $value['username']; ?></td>-->
-                    
-                    <td><?php echo $value['created']; ?></td>
-                    <td>
-                      <a href="view.php?id=<?php echo $value['id']; ?>" >
-                        <i class="fa fa-eye"></i>
-                      </a>
-                    
-                    
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
-                        <i class="fa fa-pencil-square-o"></i>
-                      </a>
-                   
-               
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
-                        <i class="fa fa-trash-o"></i>
-                      </a>
-                    </td>
-                  </tr>
-                <?php }
-                $conn->close();
-                ?>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>
@@ -189,13 +193,216 @@
     };
   </script>
 
-<script>
+  <script>
     $(document).ready(function() {
       $('[data-toggle="popover"]').popover();
     });
   </script>
 
+  <script>
+    $(function() {
+      /* ChartJS
+       * -------
+       * Here we will create a few charts using ChartJS
+       */
 
+      //--------------
+      //- AREA CHART -
+      //--------------
+
+      // Get context with jQuery - using jQuery's .get() method.
+      var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+      // This will get the first returned node in the jQuery collection.
+      var areaChart = new Chart(areaChartCanvas)
+
+      var areaChartData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Electronics',
+            fillColor: 'rgba(210, 214, 222, 1)',
+            strokeColor: 'rgba(210, 214, 222, 1)',
+            pointColor: 'rgba(210, 214, 222, 1)',
+            pointStrokeColor: '#c1c7d1',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: [65, 59, 80, 81, 56, 55, 40]
+          },
+          {
+            label: 'Digital Goods',
+            fillColor: 'rgba(60,141,188,0.9)',
+            strokeColor: 'rgba(60,141,188,0.8)',
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [28, 48, 40, 19, 86, 27, 90]
+          }
+        ]
+      }
+
+      var areaChartOptions = {
+        //Boolean - If we should show the scale at all
+        showScale: true,
+        //Boolean - Whether grid lines are shown across the chart
+        scaleShowGridLines: false,
+        //String - Colour of the grid lines
+        scaleGridLineColor: 'rgba(0,0,0,.05)',
+        //Number - Width of the grid lines
+        scaleGridLineWidth: 1,
+        //Boolean - Whether to show horizontal lines (except X axis)
+        scaleShowHorizontalLines: true,
+        //Boolean - Whether to show vertical lines (except Y axis)
+        scaleShowVerticalLines: true,
+        //Boolean - Whether the line is curved between points
+        bezierCurve: true,
+        //Number - Tension of the bezier curve between points
+        bezierCurveTension: 0.3,
+        //Boolean - Whether to show a dot for each point
+        pointDot: false,
+        //Number - Radius of each point dot in pixels
+        pointDotRadius: 4,
+        //Number - Pixel width of point dot stroke
+        pointDotStrokeWidth: 1,
+        //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+        pointHitDetectionRadius: 20,
+        //Boolean - Whether to show a stroke for datasets
+        datasetStroke: true,
+        //Number - Pixel width of dataset stroke
+        datasetStrokeWidth: 2,
+        //Boolean - Whether to fill the dataset with a color
+        datasetFill: true,
+        //String - A legend template
+        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+        //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+        maintainAspectRatio: true,
+        //Boolean - whether to make the chart responsive to window resizing
+        responsive: true
+      }
+
+      //Create the line chart
+      areaChart.Line(areaChartData, areaChartOptions)
+
+      //-------------
+      //- LINE CHART -
+      //--------------
+      var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+      var lineChart = new Chart(lineChartCanvas)
+      var lineChartOptions = areaChartOptions
+      lineChartOptions.datasetFill = false
+      lineChart.Line(areaChartData, lineChartOptions)
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+      var pieChart = new Chart(pieChartCanvas)
+      var PieData = [{
+          value: 700,
+          color: '#f56954',
+          highlight: '#f56954',
+          label: 'Chrome'
+        },
+        {
+          value: 500,
+          color: '#00a65a',
+          highlight: '#00a65a',
+          label: 'IE'
+        },
+        {
+          value: 400,
+          color: '#f39c12',
+          highlight: '#f39c12',
+          label: 'FireFox'
+        },
+        {
+          value: 600,
+          color: '#00c0ef',
+          highlight: '#00c0ef',
+          label: 'Safari'
+        },
+        {
+          value: 300,
+          color: '#3c8dbc',
+          highlight: '#3c8dbc',
+          label: 'Opera'
+        },
+        {
+          value: 100,
+          color: '#d2d6de',
+          highlight: '#d2d6de',
+          label: 'Navigator'
+        }
+      ]
+      var pieOptions = {
+        //Boolean - Whether we should show a stroke on each segment
+        segmentShowStroke: true,
+        //String - The colour of each segment stroke
+        segmentStrokeColor: '#fff',
+        //Number - The width of each segment stroke
+        segmentStrokeWidth: 2,
+        //Number - The percentage of the chart that we cut out of the middle
+        percentageInnerCutout: 50, // This is 0 for Pie charts
+        //Number - Amount of animation steps
+        animationSteps: 100,
+        //String - Animation easing effect
+        animationEasing: 'easeOutBounce',
+        //Boolean - Whether we animate the rotation of the Doughnut
+        animateRotate: true,
+        //Boolean - Whether we animate scaling the Doughnut from the centre
+        animateScale: false,
+        //Boolean - whether to make the chart responsive to window resizing
+        responsive: true,
+        // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+        maintainAspectRatio: true,
+        //String - A legend template
+        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      pieChart.Doughnut(PieData, pieOptions)
+
+      //-------------
+      //- BAR CHART -
+      //-------------
+      var barChartCanvas = $('#barChart').get(0).getContext('2d')
+      var barChart = new Chart(barChartCanvas)
+      var barChartData = areaChartData
+      barChartData.datasets[1].fillColor = '#00a65a'
+      barChartData.datasets[1].strokeColor = '#00a65a'
+      barChartData.datasets[1].pointColor = '#00a65a'
+      var barChartOptions = {
+        //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+        scaleBeginAtZero: true,
+        //Boolean - Whether grid lines are shown across the chart
+        scaleShowGridLines: true,
+        //String - Colour of the grid lines
+        scaleGridLineColor: 'rgba(0,0,0,.05)',
+        //Number - Width of the grid lines
+        scaleGridLineWidth: 1,
+        //Boolean - Whether to show horizontal lines (except X axis)
+        scaleShowHorizontalLines: true,
+        //Boolean - Whether to show vertical lines (except Y axis)
+        scaleShowVerticalLines: true,
+        //Boolean - If there is a stroke on each bar
+        barShowStroke: true,
+        //Number - Pixel width of the bar stroke
+        barStrokeWidth: 2,
+        //Number - Spacing between each of the X value sets
+        barValueSpacing: 5,
+        //Number - Spacing between data sets within X values
+        barDatasetSpacing: 1,
+        //String - A legend template
+        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+        //Boolean - whether to make the chart responsive
+        responsive: true,
+        maintainAspectRatio: true
+      }
+
+      barChartOptions.datasetFill = false
+      barChart.Bar(barChartData, barChartOptions)
+    })
+  </script>
 </body>
 
 </html>
