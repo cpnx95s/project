@@ -328,13 +328,14 @@
                   // }
 
                 } else {
-                  $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
+                  $userid = $_SESSION['user_id'];
+                  $sql = "SELECT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
                 s.status_name  , u.name as username
                 FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where s.id = 2 ";
+                WHERE  t.status_master_id = 2 AND  t.create_by = $userid";
 
                   $result = $conn->query($sql);
 
@@ -347,10 +348,11 @@
                       // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                     }
                   } else {
-                    echo "0 results";
+                    // echo "0 results";
                   }
                   // for ($id = 1; $id <= 5; $id++) { 
                 }
+                if ($result ->num_rows > 0) {
 
                 foreach ($GLOBALS['result1'] as $key => $value) {
                 ?>
@@ -372,6 +374,7 @@
                     </td>
                   </tr>
                 <?php }
+                                }
                 $conn->close();
                 ?>
               </tbody>

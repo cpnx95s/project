@@ -1,13 +1,11 @@
 <?php include_once('../authen.php') ?>
-<?php include_once('../includes/connect.php') ?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>My Activities</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -15,7 +13,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../../dist/img/favicons/favicon-16x16.png">
   <link rel="manifest" href="../../dist/img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="../../dist/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="../../dist/img/favicons/favicon.ico">
   <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="../../dist/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/0ff79eb7ba.js"></script>
@@ -33,7 +34,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar_staff.php') ?>
+    <?php include_once('../includes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -42,12 +43,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>My Activities Lists</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Management</li>
+                <li class="breadcrumb-item active">My Activities</li>
               </ol>
             </div>
           </div>
@@ -60,77 +61,43 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
+            <h3 class="card-title">My Activities</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="dataTable" class="table table-striped">
+            <table id="dataTable" class="table table-bordered table-striped">
               <thead>
-                <tr>
-
-                  <th>ID</th>
-                  <th>Task Name</th>
-                  <th>Channel</th>
-                  <th>Launch Date</th>
-                  <th>Launch Time</th>
-                  <th>Created At</th>
-                  <th>Created By</th>
-                 
-                  <!-- <th>Status</th> -->
-                  <th>Action</th>
+                <tr class="text-center">
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Created</th>
                 </tr>
               </thead>
               <tbody>
-                <?php
-                $user_id = $_SESSION["user_id"];
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                s.status_name  , u.name as username
-                FROM task t  
-                INNER JOIN channel c ON t.channel_id = c.id 
-                INNER JOIN status_master s ON t.status_master_id = s.id
-                INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 2 and t.create_by = $user_id ";
-
-                $result = $conn->query($sql);
-
-                // if (!empty($result) && $result->num_rows > 0) {
-
-                if ($result->num_rows > 0) {
-                  // output data of each row
-                  while ($row = $result->fetch_assoc()) {
-                    // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                  }
-                } else {
-                  //echo "0 results";
-                }
-                // for ($id = 1; $id <= 5; $id++) { 
-                foreach ($result as $key => $value) {
-                ?>
+                <?php for ($i = 1; $i < 50; $i++) { ?>
                   <tr>
-
-                    <td><?php echo $value['id']; ?></td>
-                    <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
-                    <td><?php echo $value['channel_name']; ?></td>
-                    <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['username']; ?></td>
-
-                    <td><?php echo $value['created']; ?></td>
-                    <td>
-
-                      <a href="#" onclick="unpickItem(<?php echo $value['id']; ?>);">
-                        <i class="fa fa-undo text-danger"></i>
-                      </a>
-                      <a href="#" onclick="sendItem(<?php echo $value['id']; ?>);">
-                        <i class="fa fa-paper-plane-o text-success"></i>
-                      </a>
-                    </td>
+                    <td><?php echo $i; ?></td>
+                    <td>Lorem, ipsum.</td>
+                    <td>088-888-8888</td>
+                    <td>Test@test</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ad maxime quas esse ipsa exercitationem praesentium hic numquam dignissimos quia?</td>
+                    <td>1/12/2018</td>
                   </tr>
-                <?php }
-                $conn->close();
-                ?>
+                <?php } ?>
               </tbody>
+              <tfoot>
+                <tr class="text-center">
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Created</th>
+                </tr>
+              </tfoot>
             </table>
           </div>
           <!-- /.card-body -->
@@ -162,7 +129,16 @@
   <script src="../../dist/js/demo.js"></script>
   <!-- DataTables -->
   <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
   <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
 
   <script>
     $(function() {
@@ -172,31 +148,14 @@
         "searching": true,
         "ordering": true,
         "info": true,
-        "autoWidth": true
+        "autoWidth": true,
+        dom: 'Bfrtip',
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
       });
     });
-
-    function unpickItem(id) {
-      if (confirm('Are you sure, you want to unpickup this item?') == true) {
-        window.location = `unpickItem.php?id=${id}`;
-        // window.location='delete.php?id='+id;
-      }
-    };
-
-    function sendItem(id) {
-      if (confirm('Are you sure, you want to send this item to Leader?') == true) {
-        window.location = `sendItem.php?id=${id}`;
-        // window.location='delete.php?id='+id;
-      }
-    };
   </script>
-
-  <script>
-    $(document).ready(function() {
-      $('[data-toggle="popover"]').popover();
-    });
-  </script>
-
 
 </body>
 

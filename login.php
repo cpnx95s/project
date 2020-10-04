@@ -24,7 +24,15 @@ if (isset($_POST['submit'])) {
   }
   mysqli_close($conn);
   // $_SESSION['authen_id'] = 1;
-  header('Location: pages/dashboard');
+  if ($objResult["role_master_id"] == 1) {
+    header('Location: pages/dashboard');
+
+  }else if ($objResult["role_master_id"] == 2) {
+    header('Location: pages/staffdashboard');
+
+  }else if ($objResult["role_master_id"] == 3) {
+
+  }
 }
 
 
