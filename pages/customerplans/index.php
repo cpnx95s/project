@@ -90,7 +90,9 @@
                         INNER JOIN channel c ON t.channel_id = c.id 
                         INNER JOIN status_master s ON t.status_master_id = s.id
                         INNER JOIN user u ON t.create_by = u.id
-                        where t.status_master_id = 1 and t.create_by = $user_id ";
+                        where t.status_master_id = 1 and t.create_by = $user_id 
+                        ORDER BY t.launch_date,t.launch_time ASC
+                        ";
 
                 $result = $conn->query($sql);
 
@@ -177,7 +179,7 @@
         "paging": true,
         "lengthChange": true,
         "searching": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "autoWidth": true
       });
