@@ -121,7 +121,7 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-header">Account Settings</li>
         <li class="nav-item">
           <a href="../../logout.php" class="nav-link">
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="fa fa-sign-out"></i>
             <p>Logout</p>
           </a>
         </li>

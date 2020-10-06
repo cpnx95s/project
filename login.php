@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
     header('Location: pages/staffdashboard');
 
   }else if ($objResult["role_master_id"] == 3) {
-
+    header('Location: pages/leaderdashboard');
   }
 }
 

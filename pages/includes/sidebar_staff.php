@@ -82,14 +82,14 @@ $name = $link_array[count($link_array) - 2];
               <p>Admin Management</p>
             </a>
           </li> -->
-        
+
         <li class="nav-item">
           <a href="../stafftasks" class="nav-link <?php echo $name == 'stafftasks' ? 'active' : '' ?>">
             <i class="fa fa-tasks nav-icon"></i>
             <p>My Tasks</p>
           </a>
         </li>
-        
+
         <li class="nav-item">
           <a href="../staffhistory" class="nav-link <?php echo $name == 'staffhistory' ? 'active' : '' ?>">
             <i class="fa fa-history nav-icon"></i>
@@ -111,7 +111,7 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-header">Account Settings</li>
         <li class="nav-item">
           <a href="../../logout.php" class="nav-link">
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="fa fa-sign-out"></i>
             <p>Logout</p>
           </a>
         </li>

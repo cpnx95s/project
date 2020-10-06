@@ -34,7 +34,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar.php') ?>
+    <?php include_once('../includes/sidebar_staff.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

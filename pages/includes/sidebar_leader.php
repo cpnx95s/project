@@ -71,7 +71,7 @@ $name = $link_array[count($link_array) - 2];
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="../dashboard" class="nav-link <?php echo $name == 'dashboard' ? 'active' : '' ?>">
+          <a href="../staffdashboard" class="nav-link <?php echo $name == 'staffdashboard' ? 'active' : '' ?>">
             <i class="fa fa-tachometer nav-icon"></i>
             <p>Dashboard</p>
           </a>
@@ -82,32 +82,22 @@ $name = $link_array[count($link_array) - 2];
               <p>Admin Management</p>
             </a>
           </li> -->
+
         <li class="nav-item">
-          <a href="../customerplans" class="nav-link <?php echo $name == 'customerplans' ? 'active' : '' ?>">
-            <i class="fa fa-list nav-icon"></i>
-            <p>My Plans</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="../customertasks" class="nav-link <?php echo $name == 'customertasks' ? 'active' : '' ?>">
+          <a href="../stafftasks" class="nav-link <?php echo $name == 'stafftasks' ? 'active' : '' ?>">
             <i class="fa fa-tasks nav-icon"></i>
-            <p>My Tasks</p>
+            <p>My Approval</p>
           </a>
         </li>
+
         <li class="nav-item">
-          <a href="../tasksacceptance" class="nav-link <?php echo $name == 'tasksacceptance' ? 'active' : '' ?>">
-            <i class="fa fa-check-square nav-icon"></i>
-            <p>My Acceptance</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="../customerhistory" class="nav-link <?php echo $name == 'customerhistory' ? 'active' : '' ?>">
+          <a href="../staffhistory" class="nav-link <?php echo $name == 'staffhistory' ? 'active' : '' ?>">
             <i class="fa fa-history nav-icon"></i>
             <p>My Activities</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="../customerreport" class="nav-link <?php echo $name == 'customerreport' ? 'active' : '' ?>">
+          <a href="../staffreport" class="nav-link <?php echo $name == 'staffreport' ? 'active' : '' ?>">
             <i class="fa fa-pie-chart nav-icon"></i>
             <p>Report</p>
           </a>
@@ -118,10 +108,35 @@ $name = $link_array[count($link_array) - 2];
               <p>Contacts</p>
             </a> -->
         <!-- </li> -->
+        <li class="nav-header">Connfiguration</li>
+        <li class="nav-item">
+          <a href="../usermanage" class="nav-link <?php echo $name == 'usermanage' ? 'active' : '' ?>">
+            <i class="fa fa-user nav-icon"></i>
+            <p>User Management</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../companymanage" class="nav-link <?php echo $name == 'companymanage' ? 'active' : '' ?>">
+            <i class="fa fa-building-o nav-icon"></i>
+            <p>Company Management</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../channelmanage" class="nav-link <?php echo $name == 'channelmanage' ? 'active' : '' ?>">
+            <i class="fa fa-comments-o nav-icon"></i>
+            <p>Channel Management</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../statusmanage" class="nav-link <?php echo $name == 'statusmanage' ? 'active' : '' ?>">
+            <i class="fa fa-quote-left nav-icon"></i>
+            <p>Status Management</p>
+          </a>
+        </li>
         <li class="nav-header">Account Settings</li>
         <li class="nav-item">
           <a href="../../logout.php" class="nav-link">
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="fa fa-sign-out"></i>
             <p>Logout</p>
           </a>
         </li>
