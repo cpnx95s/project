@@ -1,6 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
-              
+
 <!DOCTYPE html>
 <html>
 
@@ -89,7 +89,7 @@
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
                 where s.id = 5 ";
-            
+
                 $result = $conn->query($sql);
 
                 // if (!empty($result) && $result->num_rows > 0) {
@@ -120,11 +120,11 @@
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-eye"></i>
                       </a> -->
-                      <a href="#" onclick="acceptItem(<?php echo $value['id']; ?>);" >
-                        <i class="fas fa-check text-success"></i>
+                      <a href="#" onclick="acceptItem(<?php echo $value['id']; ?>);">
+                        <i class="fa fa-check text-success"></i>
                       </a>
-                      <a href="#" onclick="denyItem(<?php echo $value['id']; ?>);" >
-                        <i class="fa fa-times text-black"></i>
+                      <a href="#" onclick="denyItem(<?php echo $value['id']; ?>);">
+                        <i class="fa fa-times text-danger"></i>
                       </a>
                     </td>
                   </tr>
@@ -187,7 +187,7 @@
     function denyItem(id) {
       var retVal = prompt("Enter your Reason for not passing : ");
       if (retVal != null) {
-        window.location =  `denytask.php?id=${id}&remark=${retVal}`;
+        window.location = `denytask.php?id=${id}&remark=${retVal}`;
       }
       // if (confirm('Are you sure, you want to Deny this task?') == true) {
       //   window.location = `denytask.php?id=${id}`;
@@ -195,7 +195,7 @@
     }
   </script>
 
-<script>
+  <script>
     $(document).ready(function() {
       $('[data-toggle="popover"]').popover();
     });

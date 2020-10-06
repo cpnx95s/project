@@ -104,8 +104,9 @@ if ($result->num_rows > 0) {
                       // for ($id = 1; $id <= 5; $id++) { 
                       foreach ($result as $key => $value) {
                       ?>
-                        <i class="fa fa-info-circle text-second"></i> <b class="text-secondary"><?php echo $value['statusname']; ?></b>
-                        By <?php echo $value['username']; ?><br />At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
+                        <b class="text-info"><?php echo $value['statusname']; ?></b>
+                        By <?php echo $value['username']; ?><br />
+                        At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
                     </li>
 
                   <?php } ?>

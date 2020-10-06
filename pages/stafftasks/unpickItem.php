@@ -15,8 +15,8 @@ if ($_GET['id']) {
         $task_id = $row['id'];
         $status_id = $row['status_master_id'];
         $action_by = $row['create_by'];
-        $date = date("Y-m-d");
-        $time = date("H:i:s");
+        $date = getdate("Y-m-d");
+        $time = getdate("H:i:s");
         echo $date;
         echo $time;
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)

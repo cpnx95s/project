@@ -76,21 +76,22 @@
                   <th>Launch Time</th>
                   <th>Created At</th>
                   <th>Created By</th>
-                 
+
                   <!-- <th>Status</th> -->
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $user_id = $_SESSION["user_id"];
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
+                $userid = $_SESSION['user_id'];
+                $sql = "SELECT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
                 s.status_name  , u.name as username
                 FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 2 and t.create_by = $user_id ";
+                INNER JOIN task_history th ON th.task_id = t.id
+                WHERE  t.status_master_id = 3 AND  th.action_by = $userid";
 
                 $result = $conn->query($sql);
 

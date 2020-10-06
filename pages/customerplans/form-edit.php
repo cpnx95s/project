@@ -201,7 +201,7 @@
                     } else {
                       echo "0 results";
                     }
-                    $sql2 = "Select * FROM status_master where id in ('2')";
+                    $sql2 = "Select * FROM status_master WHERE id = 2";
                     $result4 = $mysqli->query($sql2);
                     if ($result4->num_rows > 0) {
                       // output data of each row
