@@ -352,29 +352,29 @@
                   }
                   // for ($id = 1; $id <= 5; $id++) { 
                 }
-                if ($result ->num_rows > 0) {
+                if ($result->num_rows > 0) {
 
-                foreach ($GLOBALS['result1'] as $key => $value) {
+                  foreach ($GLOBALS['result1'] as $key => $value) {
                 ?>
-                  <tr>
-                    <td><?php echo $value['id']; ?></td>
-                    <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
-                    <td><?php echo $value['channel_name']; ?></td>
-                    <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
-                    <td><?php echo $value['username']; ?></td>
+                    <tr>
+                      <td><?php echo $value['id']; ?></td>
+                      <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
+                      <td><?php echo $value['channel_name']; ?></td>
+                      <td><?php echo $value['launch_date']; ?></td>
+                      <td><?php echo $value['launch_time']; ?></td>
+                      <td><?php echo $value['created']; ?></td>
+                      <td><?php echo $value['username']; ?></td>
 
 
-                    <td>
+                      <td>
 
-                      <a href="#" onclick="pickItem(<?php echo $value['id']; ?>);">
-                        <i class="fa fa-hand-lizard-o text-black"></i>
-                      </a>
-                    </td>
-                  </tr>
+                        <a href="#" onclick="pickItem(<?php echo $value['id']; ?>);">
+                          <i class="fa fa-hand-lizard-o text-black"></i>
+                        </a>
+                      </td>
+                    </tr>
                 <?php }
-                                }
+                }
                 $conn->close();
                 ?>
               </tbody>
@@ -430,7 +430,7 @@
     };
 
     function pickItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
+      if (confirm('Are you sure, you want to Pick up this item?') == true) {
         window.location = `pickItem.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }

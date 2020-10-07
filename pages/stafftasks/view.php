@@ -58,8 +58,8 @@ if ($result->num_rows > 0) {
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Tasks View</a></li>
+                <li class="breadcrumb-item"><a href="../staffdashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="../stafftasks">Tasks View</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
               </ol>
             </div>
