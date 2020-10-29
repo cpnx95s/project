@@ -60,7 +60,7 @@
       <section class="content">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Edit Data</h3>
+            <h3 class="card-title">Create Data</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -83,6 +83,7 @@
             } else {
               echo "0 results";
             }
+
           }
           foreach ($result as $key => $value) { ?>
             <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post">
@@ -118,20 +119,21 @@
                     } else {
                       echo "0 results";
                     }
-                    $sql2 = "Select * FROM channel where NOT id = '" . $value['channel_id'] . "'";
+                    $sql2 = "Select * FROM channel where NOT id = '".$value['channel_id']."'";
                     $result2 = $mysqli->query($sql2);
                     if ($result2->num_rows > 0) {
                       // output data of each row
                       while ($row1 = $result2->fetch_assoc()) {
+
                       }
                     } else {
                       echo "0 results";
                     }
-                    ?>
-                    <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name ?></option>
-                    <?php foreach ($result2 as $key => $value2) { ?>
+                     ?>
+                      <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name?></option>
+                      <?php foreach($result2 as $key => $value2){ ?>
                       <option value="<?php echo $value2["id"] ?>"><?php echo $value2["name"] ?></option>
-                    <?php } ?>
+                      <?php } ?>
                   </select>
                 </div>
 
@@ -174,47 +176,17 @@
                   <input type="time" class="form-control" id="launchtime" name="launchtime" value="<?php echo $value['launch_time']; ?>">
                 </div>
 
-                <!-- field ของ status
+                <!-- field ของ status -->
                 <div class="form-group">
                   <label>Select Status_master</label>
                   <select class="form-control select" style="width: 100%;" name="status">
-                  <?php
-                  $mysqli = new mysqli("localhost", "root", "", "myproject");
-                  // Check connection
-                  if ($mysqli->connect_errno) {
-                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                    exit();
-                  }
-                  $sql = "Select * FROM status_master";
-                  $result3 = $mysqli->query($sql);
-                  if ($result3->num_rows > 0) {
-                    // output data of each row
-                    while ($row = $result3->fetch_assoc()) {
-                      // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                      if ($row["id"] == $value['status_master_id']) {
-                        $status_name = $row["status_name"];
-                        $status_id = $row["id"];
-                      }
-                    }
-                  } else {
-                    echo "0 results";
-                  }
-                  $sql2 = "Select * FROM status_master where NOT id = '" . $value['status_master_id'] . "'";
-                  $result4 = $mysqli->query($sql2);
-                  if ($result4->num_rows > 0) {
-                    // output data of each row
-                    while ($row1 = $result4->fetch_assoc()) {
-                    }
-                  } else {
-                    echo "0 results";
-                  }
-                  ?>
-                      <option value="<?php echo $status_id ?>" selected><?php echo $status_name ?></option>
-                      <?php foreach ($result4 as $key => $value3) { ?>
-                      <option value="<?php echo $value3["id"] ?>"><?php echo $value3["status_name"] ?></option>
-                      <?php } ?>
+                      <option value="6" selected>Accept</option>
+                      <option value="4" selected>Deny</option>
+                      <option value="5" selected>In Permit</option>
+                      
+                     
                   </select>
-                </div>  -->
+                </div> 
 
               </div>
               <div class="card-footer">

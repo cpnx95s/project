@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>Tasks Approval</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -33,7 +33,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar_staff.php') ?>
+    <?php include_once('../includes/sidebar_leader.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -42,12 +42,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>Tasks Approval</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Management</li>
+                <li class="breadcrumb-item active">Tasks Approval</li>
               </ol>
             </div>
           </div>
@@ -60,15 +60,13 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
+            <h3 class="card-title d-inline-block">Approval List</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
-
                   <th>ID</th>
                   <th>Task Name</th>
                   <th>Channel</th>
@@ -76,21 +74,20 @@
                   <th>Launch Time</th>
                   <th>Created At</th>
                   <th>Created By</th>
-                 
                   <!-- <th>Status</th> -->
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $user_id = $_SESSION["user_id"];
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by, t.status_master_id,  c.name as channel_name,
+
+                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
                 s.status_name  , u.name as username
                 FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 3";
+                where s.id = 4 ";
 
                 $result = $conn->query($sql);
 
@@ -110,20 +107,23 @@
                   <tr>
 
                     <td><?php echo $value['id']; ?></td>
-                    <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
+                    <td><?php echo $value['name']; ?></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
+                    <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
 
-                    <td><?php echo $value['created']; ?></td>
-                    <td>
 
-                      <a href="#" onclick="unpickItem(<?php echo $value['id']; ?>);">
-                        <i class="fa fa-undo text-danger"></i>
+                    <td>
+                      <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
+                        <i class="fa fa-eye"></i>
+                      </a> -->
+                      <a href="#" onclick="acceptItem(<?php echo $value['id']; ?>);">
+                        <i class="fa fa-check text-success"></i>
                       </a>
-                      <a href="#" onclick="sendItem(<?php echo $value['id']; ?>);">
-                        <i class="fa fa-paper-plane-o text-success"></i>
+                      <a href="#" onclick="denyItem(<?php echo $value['id']; ?>);">
+                        <i class="fa fa-times text-danger"></i>
                       </a>
                     </td>
                   </tr>
@@ -176,19 +176,22 @@
       });
     });
 
-    function unpickItem(id) {
-      if (confirm('Are you sure, you want to unpickup this item?') == true) {
-        window.location = `unpickItem.php?id=${id}`;
+    function acceptItem(id) {
+      if (confirm('Are you sure, you want to Accept this task?') == true) {
+        window.location = `accepttask.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }
     };
 
-    function sendItem(id) {
-      if (confirm('Are you sure, you want to send this item to Leader?') == true) {
-        window.location = `sendItem.php?id=${id}`;
-        // window.location='delete.php?id='+id;
+    function denyItem(id) {
+      var retVal = prompt("Enter your Reason for not passing : ");
+      if (retVal != null) {
+        window.location = `denytask.php?id=${id}&remark=${retVal}`;
       }
-    };
+      // if (confirm('Are you sure, you want to Deny this task?') == true) {
+      //   window.location = `denytask.php?id=${id}`;
+      // }
+    }
   </script>
 
   <script>

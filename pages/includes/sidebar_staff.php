@@ -72,8 +72,8 @@ $name = $link_array[count($link_array) - 2];
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="../staffdashboard" class="nav-link <?php echo $name == 'staffdashboard' ? 'active' : '' ?>">
-            <i class="fa fa-tachometer nav-icon"></i>
-            <p>Dashboard</p>
+            <i class="fa fa-search nav-icon"></i>
+            <p>Tasks</p>
           </a>
         </li>
         <!-- <li class="nav-item">

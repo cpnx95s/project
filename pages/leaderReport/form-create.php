@@ -100,6 +100,35 @@
                 </select>
               </div>
 
+              <div class="card card-primary ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    Detail
+                  </h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <textarea id="detail" name="detail" style="width: 100%"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Upload Files</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="file" id="customFile" multiple>
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <figure class="figure text-center d-none mt-2">
+                  <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
+                </figure>
+              </div>
+
               <div class="form-group">
                 <label for="Task Name">Launch Date</label>
                 <input type="date" class="form-control" id="launchdate" name="launchdate" placeholder="Task Name">
@@ -121,7 +150,7 @@
                     echo "Failed to connect to MySQL: " . $mysqli->connect_error;
                     exit();
                   }
-                  $sql = "Select * FROM status_master WHERE ID=1";
+                  $sql = "Select * FROM status_master WHERE ID=2";
                   $result = $mysqli->query($sql);
                   if ($result->num_rows > 0) {
                     // output data of each row

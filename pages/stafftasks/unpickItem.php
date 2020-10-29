@@ -4,7 +4,7 @@
 
 if ($_GET['id']) {
   $userid = $_SESSION['user_id'];
-  $sql = "UPDATE task SET status_master_id =  '2' , update_by =  '" . $userid . "' WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id =  '2' WHERE id='" . $_GET['id'] . "'";
 
   if ($conn->query($sql) === TRUE) {
     $selectdata = "SELECT * FROM task WHERE id= '" . $_GET['id'] . "'";
@@ -12,6 +12,8 @@ if ($_GET['id']) {
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
+
+        $user_id = $_SESSION["user_id"];
         $task_id = $row['id'];
         $status_id = $row['status_master_id'];
         $action_by = $row['create_by'];
@@ -20,7 +22,7 @@ if ($_GET['id']) {
         echo $date;
         echo $time;
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
-            VALUES ('$date', '$time', '$action_by', '$task_id', '2')";
+            VALUES ('$date', '$time', '$user_id', '$task_id', '2')";
         if ($conn->query($sql1)) {
           echo '<script> alert("Finished unpickup!")</script>';
         }

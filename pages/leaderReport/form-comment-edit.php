@@ -49,7 +49,7 @@
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
                 <li class="breadcrumb-item"><a href="../customertasks">Tasks Management</a></li>
-                <li class="breadcrumb-item active">Create Tasks</li>
+                <li class="breadcrumb-item active">Edit Comment</li>
               </ol>
             </div>
           </div>
@@ -58,91 +58,72 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="card card-primary">
+        <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title">Create Tasks</h3>
+            <h3 class="card-title">Edit Comment</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" action="create.php" method="post">
-            <div class="card-body">
+          <?php
+          $mysqli = new mysqli("localhost", "root", "", "myproject");
 
-              <div class="form-group">
-                <label for="Task Name">Task Name</label>
-                <input type="text" class="form-control" id="taskname" name="taskname" placeholder="Task Name">
+          // Check connection
+          if ($mysqli->connect_errno) {
+            echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+            exit();
+          }
+          if ($_GET['id']) {
+            $sql = "select c.id, c.title, c.content, c.created, c.task_id, u.name as username
+            FROM comments c 
+            INNER JOIN user u ON c.user_id = u.id
+            where c.id ='" . $_GET['id'] . "'";
+            // $sql = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
+            $result = $mysqli->query($sql);
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while ($row = $result->fetch_assoc()) {
+                // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+              }
+            } else {
+              echo "0 results";
+            }
+
+          }
+          foreach ($result as $key => $value) { ?>
+            <form role="form" action="update-comment.php?id=<?php echo $value['id']; ?>" method="post">
+              <div class="card-body">
+
+                <div class="form-group">
+                  <label for="title">Subject</label>
+                  <input type="text" class="form-control" id="title" name="title" value="<?php echo $value['title']; ?>">
+                </div>
+
+                <div class="card card-success card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      Detail
+                    </h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <textarea id="content" name="content" style="width: 100%"><?php echo $value['content']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-
-              <div class="form-group">
-                <label>Select Channels</label>
-                <select class="form-control select2" data-placeholder="Select Channels" style="width: 100%;" name="channel">
-                  <?php
-                  $mysqli = new mysqli("localhost", "root", "", "myproject");
-
-                  // Check connection
-                  if ($mysqli->connect_errno) {
-                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                    exit();
-                  }
-                  $sql = "Select * FROM channel";
-                  $result = $mysqli->query($sql);
-                  if ($result->num_rows > 0) {
-                    // output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                      // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                    }
-                  } else {
-                    echo "0 results";
-                  }
-
-                  foreach ($result as $key => $value) { ?>
-                    <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
-                  <?php } ?>
-                </select>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-success" name="update">Submit</button>
               </div>
-
-              <div class="form-group">
-                <label for="Task Name">Launch Date</label>
-                <input type="date" class="form-control" id="launchdate" name="launchdate" placeholder="Task Name">
-              </div>
-
-              <div class="form-group">
-                <label for="Task Name">Launch Time</label>
-                <input type="time" class="form-control" id="launchtime" name="launchtime" placeholder="Task Name">
-              </div>
-
-              <div class="form-group">
-                <label>Select Status</label>
-                <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
-                  <?php
-                  $mysqli = new mysqli("localhost", "root", "", "myproject");
-
-                  // Check connection
-                  if ($mysqli->connect_errno) {
-                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                    exit();
-                  }
-                  $sql = "Select * FROM status_master WHERE ID=1";
-                  $result = $mysqli->query($sql);
-                  if ($result->num_rows > 0) {
-                    // output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                      // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                    }
-                  } else {
-                    echo "0 results";
-                  }
-
-                  foreach ($result as $key => $value) { ?>
-                    <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-
-            </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-primary" name="save">Submit</button>
-            </div>
-          </form>
+            </form>
+          <?php }
+          $mysqli->close();
+          ?>
         </div>
       </section>
       <!-- /.content -->

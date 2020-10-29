@@ -29,6 +29,6 @@ if ($_GET['id']) {
       echo "0 results";
     }
   } 
-  header('Refresh:0; url=index.php');
+  //header('Refresh:0; url=index.php');
 }
 ?>

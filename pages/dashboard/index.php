@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>Tasks</title>
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../dist/img/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
@@ -43,11 +43,11 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Dashboard</h1>
+              <h1 class="m-0 text-dark">Tasks</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Tasks</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -56,62 +56,7 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
-      <section class="content">
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-info"><i class="fa fa-envelope"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Messages</span>
-                <span class="info-box-number">1,410</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-flag"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Bookmarks</span>
-                <span class="info-box-number">410</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-warning"><i class="fa fa-copy"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Uploads</span>
-                <span class="info-box-number">13,648</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-danger"><i class="fa fa-star"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">93,139</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-        </div>
-      </section>
 
       <section class="content">
 
@@ -120,34 +65,71 @@
           <div class="card-header">
             <!-- <form action="search.php" method="post"> -->
             <form method="post">
-            <div class="row">
-              <h3>Search By</h3>
-            </div>
-
-            <section class="content">
               <div class="row">
-                <div class="col-md-4 col-12">
-                  <div class="info-box">
+                <h3>Search By</h3>
+              </div>
 
-                    <div class="info-box-content">
-                      <span class="info-box-text">Name</span>
-                      <input class="form-control" type="input" name="task-name" />
+              <section class="content">
+                <div class="row">
+                  <div class="col-md-4 col-12">
+                    <div class="info-box">
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Name</span>
+                        <input class="form-control" type="input" name="task-name" />
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                   </div>
-                  <!-- /.info-box -->
-                </div>
 
 
-                <div class="col-md-4 col-12">
-                  <div class="info-box">
+                  <div class="col-md-4 col-12">
+                    <div class="info-box">
 
 
-                    <div class="info-box-content">
-                      <span class="info-box-text">User</span>
-                      <span class="info-box-number">
-                        <select class="form-control select2" data-placeholder="Select user" name="task-user">
-                        <option value="" selected></option>
+                      <div class="info-box-content">
+                        <span class="info-box-text">User</span>
+                        <span class="info-box-number">
+                          <select class="form-control select2" data-placeholder="Select user" name="task-user">
+                            <option value="" selected></option>
+                            <?php
+                            $mysqli = new mysqli("localhost", "root", "", "myproject");
+
+                            // Check connection
+                            if ($mysqli->connect_errno) {
+                              echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                              exit();
+                            }
+                            $sql = "Select * FROM user";
+                            $result = $mysqli->query($sql);
+                            if ($result->num_rows > 0) {
+                              // output data of each row
+                              while ($row = $result->fetch_assoc()) {
+                                // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                              }
+                            } else {
+                              echo "0 results";
+                            }
+
+                            foreach ($result as $key => $value) { ?>
+                              <option value="<?php echo $value['id']; ?>"><?php echo ucwords($value['name']); ?></option>
+                            <?php } ?>
+                          </select></span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+
+                  <!-- /.col -->
+                  <div class="col-md-4 col-12">
+                    <div class="info-box">
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Channel</span>
+                        <select class="form-control select2" name="task-channel">
+                          <option value="" selected></option>
                           <?php
                           $mysqli = new mysqli("localhost", "root", "", "myproject");
 
@@ -156,7 +138,7 @@
                             echo "Failed to connect to MySQL: " . $mysqli->connect_error;
                             exit();
                           }
-                          $sql = "Select * FROM user";
+                          $sql = "Select * FROM channel";
                           $result = $mysqli->query($sql);
                           if ($result->num_rows > 0) {
                             // output data of each row
@@ -168,123 +150,86 @@
                           }
 
                           foreach ($result as $key => $value) { ?>
-                            <option value="<?php echo $value['id']; ?>"><?php echo ucwords($value['name']); ?></option>
+                            <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
                           <?php } ?>
-                        </select></span>
+                        </select>
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                   </div>
-                  <!-- /.info-box -->
-                </div>
+                  <!-- /.col -->
+                  <div class="col-md-4 col-12">
+                    <div class="info-box">
 
-                <!-- /.col -->
-                <div class="col-md-4 col-12">
-                  <div class="info-box">
 
-                    <div class="info-box-content">
-                      <span class="info-box-text">Channel</span>
-                      <select class="form-control select2" name="task-channel">
-                      <option value="" selected></option>
-                        <?php
-                        $mysqli = new mysqli("localhost", "root", "", "myproject");
+                      <div class="info-box-content">
+                        <span class="info-box-text">Launch Date</span>
+                        <input class="form-control" type="date" name="startDate" id="startDate" />
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-md-4 col-12">
+                    <div class="info-box">
 
-                        // Check connection
-                        if ($mysqli->connect_errno) {
-                          echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                          exit();
-                        }
-                        $sql = "Select * FROM channel";
-                        $result = $mysqli->query($sql);
-                        if ($result->num_rows > 0) {
-                          // output data of each row
-                          while ($row = $result->fetch_assoc()) {
-                            // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Launch Time</span>
+                        <input class="form-control" type="time" name="startTime" id="startTime" />
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+
+                  <!-- /.col -->
+                  <div class="col-md-4 col-12">
+                    <div class="info-box">
+
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Status</span>
+                        <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                          <option value="" selected></option>
+                          <?php
+                          $mysqli = new mysqli("localhost", "root", "", "myproject");
+
+                          // Check connection
+                          if ($mysqli->connect_errno) {
+                            echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                            exit();
                           }
-                        } else {
-                          echo "0 results";
-                        }
-
-                        foreach ($result as $key => $value) { ?>
-                          <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-4 col-12">
-                  <div class="info-box">
-
-
-                    <div class="info-box-content">
-                      <span class="info-box-text">Launch Date</span>
-                      <input class="form-control" type="date" name="startDate" id="startDate" />
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-4 col-12">
-                  <div class="info-box">
-
-
-                    <div class="info-box-content">
-                      <span class="info-box-text">Launch Time</span>
-                      <input class="form-control" type="time" name="startTime" id="startTime" />
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
-
-                <!-- /.col -->
-                <div class="col-md-4 col-12">
-                  <div class="info-box">
-
-
-                    <div class="info-box-content">
-                      <span class="info-box-text">Status</span>
-                      <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
-                      <option value="" selected></option>
-                        <?php
-                        $mysqli = new mysqli("localhost", "root", "", "myproject");
-
-                        // Check connection
-                        if ($mysqli->connect_errno) {
-                          echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                          exit();
-                        }
-                        $sql = "Select * FROM status_master";
-                        $result = $mysqli->query($sql);
-                        if ($result->num_rows > 0) {
-                          // output data of each row
-                          while ($row = $result->fetch_assoc()) {
-                            // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                          $sql = "Select * FROM status_master";
+                          $result = $mysqli->query($sql);
+                          if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) {
+                              // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                            }
+                          } else {
+                            echo "0 results";
                           }
-                        } else {
-                          echo "0 results";
-                        }
 
-                        foreach ($result as $key => $value) { ?>
-                          <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
-                        <?php } ?>
-                      </select>
+                          foreach ($result as $key => $value) { ?>
+                            <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                   </div>
-                  <!-- /.info-box -->
+                </div>
+              </section>
+
+              <div class="row float-right">
+                <div class="col">
+                  <button type="submit" class="btn btn-info" name="search">Search</button>
                 </div>
               </div>
-            </section>
-
-            <div class="row float-right">
-              <div class="col">
-                <button type="submit" class="btn btn-info" name="search">Search</button>
-              </div>
-            </div>
             </form>
           </div>
 
@@ -307,14 +252,14 @@
               <tbody>
                 <?php
                 //  if($issearch == true){
-                  if (isset($_POST['search'])) {
-                    $taskname = $_POST['task-name'];
-                    $taskuser = $_POST['task-user'];
-                    $taskchannel = $_POST['task-channel'];
-                    $startDate = $_POST['startDate'];
-                    $startTime = $_POST['startTime'];
-                    $status = $_POST['status'];
-                    $sql = "SELECT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
+                if (isset($_POST['search'])) {
+                  $taskname = $_POST['task-name'];
+                  $taskuser = $_POST['task-user'];
+                  $taskchannel = $_POST['task-channel'];
+                  $startDate = $_POST['startDate'];
+                  $startTime = $_POST['startTime'];
+                  $status = $_POST['status'];
+                  $sql = "SELECT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
                     s.status_name  , u.name as username
                     FROM task t  
                     INNER JOIN channel c ON t.channel_id = c.id 
@@ -322,11 +267,11 @@
                     INNER JOIN user u ON t.create_by = u.id
                     where t.name like '%$taskname%' and t.create_by like '%$taskuser%' and t.channel_id like '%$taskchannel%'
                     and t.launch_date like '%$startDate%' and t.launch_time like '%$startTime%' and t.status_master_id like '%$status%'";
-                    $result = $conn->query($sql);
-                    $GLOBALS['result1'] = $result;
-                // }
-                 
-                 }else {
+                  $result = $conn->query($sql);
+                  $GLOBALS['result1'] = $result;
+                  // }
+
+                } else {
                   $user_id = $_SESSION["user_id"];
                   $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
                   s.status_name  , u.name as username
@@ -335,11 +280,11 @@
                   INNER JOIN status_master s ON t.status_master_id = s.id
                   INNER JOIN user u ON t.create_by = u.id
                   ";
-  
+
                   $result = $conn->query($sql);
-  
+
                   // if (!empty($result) && $result->num_rows > 0) {
-  
+
                   if ($result->num_rows > 0) {
                     $GLOBALS['result1'] = $result;
                     // output data of each row
@@ -350,8 +295,8 @@
                     //echo "0 results";
                   }
                   // for ($id = 1; $id <= 5; $id++) { 
-                 }
-               
+                }
+
                 foreach ($GLOBALS['result1'] as $key => $value) {
                 ?>
                   <tr>

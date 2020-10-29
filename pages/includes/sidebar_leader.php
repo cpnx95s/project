@@ -71,9 +71,9 @@ $name = $link_array[count($link_array) - 2];
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="../staffdashboard" class="nav-link <?php echo $name == 'staffdashboard' ? 'active' : '' ?>">
-            <i class="fa fa-tachometer nav-icon"></i>
-            <p>Dashboard</p>
+          <a href="../leaderdashboard" class="nav-link <?php echo $name == 'leaderdashboard' ? 'active' : '' ?>">
+            <i class="fa fa-search nav-icon"></i>
+            <p>Tasks</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -84,20 +84,20 @@ $name = $link_array[count($link_array) - 2];
           </li> -->
 
         <li class="nav-item">
-          <a href="../stafftasks" class="nav-link <?php echo $name == 'stafftasks' ? 'active' : '' ?>">
+          <a href="../leaderApproval" class="nav-link <?php echo $name == 'leaderApproval' ? 'active' : '' ?>">
             <i class="fa fa-tasks nav-icon"></i>
             <p>My Approval</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="../staffhistory" class="nav-link <?php echo $name == 'staffhistory' ? 'active' : '' ?>">
+          <a href="../leaderHistory" class="nav-link <?php echo $name == 'leaderHistory' ? 'active' : '' ?>">
             <i class="fa fa-history nav-icon"></i>
             <p>My Activities</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="../staffreport" class="nav-link <?php echo $name == 'staffreport' ? 'active' : '' ?>">
+          <a href="../leaderReport" class="nav-link <?php echo $name == 'leaderReport' ? 'active' : '' ?>">
             <i class="fa fa-pie-chart nav-icon"></i>
             <p>Report</p>
           </a>
@@ -110,7 +110,7 @@ $name = $link_array[count($link_array) - 2];
         <!-- </li> -->
         <li class="nav-header">Connfiguration</li>
         <li class="nav-item">
-          <a href="../usermanage" class="nav-link <?php echo $name == 'usermanage' ? 'active' : '' ?>">
+          <a href="../leaderUserManage" class="nav-link <?php echo $name == 'leaderUserManage' ? 'active' : '' ?>">
             <i class="fa fa-user nav-icon"></i>
             <p>User Management</p>
           </a>

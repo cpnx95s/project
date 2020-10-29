@@ -4,7 +4,7 @@
 
 if ($_GET['id']) {
   $userid = $_SESSION['user_id'];
-  $sql = "UPDATE task SET status_master_id =  '4' , update_by =  '" . $userid . "' WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id =  '4' WHERE id='" . $_GET['id'] . "'";
 
   if ($conn->query($sql) === TRUE) {
     $selectdata = "SELECT * FROM task 
@@ -19,10 +19,11 @@ if ($_GET['id']) {
         $action_by = $row['create_by'];
         $date = getdate("Y-m-d");
         $time = getdate("H:i:s");
+
         echo $date;
         echo $time;
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
-            VALUES ('$date', '$time', '$action_by','$task_id', '$status_id')";
+            VALUES ('$date', '$time', '$user_id','$task_id', '4')";
         if ($conn->query($sql1)) {
           echo '<script> alert("Finished Send!")</script>';
         }
