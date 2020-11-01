@@ -1,7 +1,7 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
 <?php
-$sql = "SELECT * FROM task WHERE id='" . $_GET['id'] . "'";
+$sql = "SELECT * FROM user WHERE id='" . $_GET['id'] . "'";
 $result = $conn->query($sql) or die($conn->error);
 // print_r($result);
 if ($result->num_rows > 0) {
@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks View</title>
+  <title>User Management View</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -54,12 +54,12 @@ if ($result->num_rows > 0) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks View</h1>
+              <h1>User Management View</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Tasks View</a></li>
+                <li class="breadcrumb-item"><a href="../customertasks">User Management View</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
               </ol>
             </div>
@@ -99,13 +99,14 @@ if ($result->num_rows > 0) {
                           // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                         }
                       } else {
-                        // echo "0 results";
+                        echo "0 results";
                       }
                       // for ($id = 1; $id <= 5; $id++) { 
                       foreach ($result as $key => $value) {
                       ?>
-                        <i class="fa fa-info-circle text-second"></i> <b class="text-secondary"><?php echo $value['statusname']; ?></b>
-                        By <?php echo $value['username']; ?><br />At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
+                        <b class="text-info"><?php echo $value['statusname']; ?></b>
+                        By <?php echo $value['username']; ?><br />
+                        At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
                     </li>
 
                   <?php } ?>

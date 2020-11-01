@@ -43,11 +43,11 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Users Management</h1>
+              <h1 class="m-0 text-dark">Channel Management</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">Users Management</li>
+                <li class="breadcrumb-item active">Channel Management</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -63,8 +63,8 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">User List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add User +</a href="">
+            <h3 class="card-title d-inline-block">Channel List</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">Add Channel +</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -72,27 +72,16 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
-                  <th>Surname</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Company</th>
-                  <th>Role</th>
-                  <th>Created At</th>
+                  <th>ChannelName</th>
+                  <th>Description</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                // $sql = "SELECT u.id, u.name, u.surname, u.username, u.email, u.created, u.channel_id, u.company_id, u.role_master_id, cp.name as cpname, rm.name as rmname FROM user u
-                // INNER JOIN channel c ON c.id = u.channel_id  
-                // INNER JOIN company cp ON cp.id = u.company_id
-                // INNER JOIN role_master rm ON rm.id = u.role_master_id";
 
-                $sql = "SELECT u.id, u.name, u.surname, u.username, u.email, u.created,  u.company_id, 
-                u.role_master_id, cp.name as cpname, rm.role_description as rolename FROM user u
-                 INNER JOIN company cp ON cp.id = u.company_id
-                 INNER JOIN role_master rm ON rm.id = u.role_master_id";
+
+                $sql = "SELECT * FROM channel";
 
                 $result = $conn->query($sql);
 
@@ -104,7 +93,7 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                  // echo "0 results";
+                //   echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
@@ -113,18 +102,17 @@
 
                     <td><?php echo $value['id']; ?></td>
                     <td><?php echo $value['name']; ?></td>
-                    <td><?php echo $value['surname']; ?></td>
-                    <td><?php echo $value['username']; ?></td>
+                    <td><?php echo $value['description']; ?></td>
+                    <!-- <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['email']; ?></td>
                     <td><?php echo $value['cpname']; ?></td>
-                    <td><?php echo $value['rolename']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo $value['rmname']; ?></td>
+                    <td><?php echo $value['created']; ?></td> -->
 
                     <td>
-                    <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
+                      <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-eye"></i>
                       </a> -->
-                  
                       <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-pencil-square-o"></i>
                       </a>

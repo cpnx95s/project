@@ -1,13 +1,11 @@
 <?php include_once('../authen.php') ?>
-<?php include_once('../includes/connect.php') ?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>My Activities</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -15,7 +13,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../../dist/img/favicons/favicon-16x16.png">
   <link rel="manifest" href="../../dist/img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="../../dist/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="../../dist/img/favicons/favicon.ico">
   <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="../../dist/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/0ff79eb7ba.js"></script>
@@ -33,7 +34,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar_leader.php') ?>
+    <?php include_once('../includes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -42,7 +43,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>My Activities</h1>
+              <h1>My Activities Lists</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -59,57 +60,44 @@
 
         <!-- Default box -->
         <div class="card">
-          <!-- <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
-          </div> -->
+          <div class="card-header">
+            <h3 class="card-title">My Activities</h3>
+          </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="dataTable" class="table table-striped">
+            <table id="dataTable" class="table table-bordered table-striped">
               <thead>
-                <tr>
-
-                  <th>Activities List</th>
+                <tr class="text-center">
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Created</th>
                 </tr>
               </thead>
               <tbody>
-                <?php
-                $user_id = $_SESSION["user_id"];
-                $sql = "SELECT th.id, th.actiondate, th.actiontime, th.remark, th.action_by, th.task_id, th.status_master_id , 
-                t.name as taskname, t.name as taskname, c.name as channelname,s.status_name as statusname,u.name as username
-                FROM task_history th
-                INNER JOIN task t ON t.id = th.task_id 
-                INNER JOIN status_master s ON s.id = th.status_master_id 
-                INNER JOIN channel c ON t.channel_id = c.id
-                INNER JOIN user u ON action_by = u.id
-                where action_by = $user_id
-                ORDER BY th.id DESC
-                ";
-
-                $result = $conn->query($sql);
-
-                // if (!empty($result) && $result->num_rows > 0) {
-
-                if ($result->num_rows > 0) {
-                  // output data of each row
-                  while ($row = $result->fetch_assoc()) {
-                    // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                  }
-                } else {
-                  // echo "0 results";
-                }
-                // for ($id = 1; $id <= 5; $id++) { 
-                foreach ($result as $key => $value) {
-                ?>
+                <?php for ($i = 1; $i < 50; $i++) { ?>
                   <tr>
-
-                    <td>คุณ <?php echo $value['statusname']; ?> รายการงาน [ <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> ] เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น.</td>
-
+                    <td><?php echo $i; ?></td>
+                    <td>Lorem, ipsum.</td>
+                    <td>088-888-8888</td>
+                    <td>Test@test</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ad maxime quas esse ipsa exercitationem praesentium hic numquam dignissimos quia?</td>
+                    <td>1/12/2018</td>
                   </tr>
-                <?php }
-                $conn->close();
-                ?>
+                <?php } ?>
               </tbody>
+              <tfoot>
+                <tr class="text-center">
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Created</th>
+                </tr>
+              </tfoot>
             </table>
           </div>
           <!-- /.card-body -->
@@ -141,7 +129,16 @@
   <script src="../../dist/js/demo.js"></script>
   <!-- DataTables -->
   <script src="https://adminlte.io/themes/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
   <script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
 
   <script>
     $(function() {
@@ -149,26 +146,16 @@
         "paging": true,
         "lengthChange": true,
         "searching": true,
-        "ordering": false,
+        "ordering": true,
         "info": true,
-        "autoWidth": true
+        "autoWidth": true,
+        dom: 'Bfrtip',
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
       });
     });
-
-    function disableItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
-        window.location = `disable.php?id=${id}`;
-        // window.location='delete.php?id='+id;
-      }
-    };
   </script>
-
-  <script>
-    $(document).ready(function() {
-      $('[data-toggle="popover"]').popover();
-    });
-  </script>
-
 
 </body>
 

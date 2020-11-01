@@ -17,8 +17,8 @@ if ($_GET['id']) {
         $task_id = $row['id'];
         $status_id = $row['status_master_id'];
         $action_by = $row['create_by'];
-        $date = getdate("Y-m-d");
-        $time = getdate("H:i:s");
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
 
         echo $date;
         echo $time;
