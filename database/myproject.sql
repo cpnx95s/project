@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2020 at 06:15 PM
+-- Generation Time: Nov 04, 2020 at 01:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -41,10 +41,10 @@ CREATE TABLE `channel` (
 INSERT INTO `channel` (`id`, `name`, `description`) VALUES
 (1, 'Facebook', 'Facebook'),
 (2, 'Line', 'Line'),
-(3, 'Website', NULL),
-(4, 'Mobile Application', NULL),
-(5, 'Twitter', NULL),
-(6, 'Instagram', NULL);
+(3, 'Website', 'Website'),
+(4, 'Mobile Application', 'Mobile Application'),
+(5, 'Twitter', 'Twitter'),
+(6, 'Instagram', 'Instagram');
 
 -- --------------------------------------------------------
 
@@ -54,12 +54,24 @@ INSERT INTO `channel` (`id`, `name`, `description`) VALUES
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL COMMENT 'รหัสของการการแสดงความคิดเห็น',
+  `title` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL COMMENT 'เนื้อหาในการแสดงความคิดเห็น',
   `created` timestamp NULL DEFAULT NULL,
   `updated` timestamp NULL DEFAULT NULL,
   `task_id` int(11) NOT NULL COMMENT 'รายการงานของการแสดงความคิดเห็น',
   `user_id` int(11) NOT NULL COMMENT 'ผู้ที่แสดงความคิดเห็น'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `title`, `content`, `created`, `updated`, `task_id`, `user_id`) VALUES
+(1, 'Lorem ipsum', '<p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vit', '2020-11-03 22:45:36', NULL, 50, 1),
+(2, 'เทส', '<p>dcbfnghfkujghjklghfgjh</p>', '2020-11-03 22:47:42', NULL, 50, 1),
+(3, 'fsgdfgsdfg', '<p>sfdgsdfsdfgsd</p>', '2020-11-03 22:48:14', NULL, 50, 1),
+(4, 'fgsdfgsdf', '<p>sdfgsdfgsdfgsdfgsdfg</p>', '2020-11-03 22:50:34', NULL, 50, 1),
+(5, 'เทส', '<p>เทส</p>', '2020-11-03 22:55:11', NULL, 50, 1);
 
 -- --------------------------------------------------------
 
@@ -92,20 +104,19 @@ INSERT INTO `company` (`id`, `name`, `description`) VALUES
 CREATE TABLE `files` (
   `id` int(11) NOT NULL,
   `path` varchar(255) NOT NULL COMMENT 'ที่อยู่ไฟล์',
-  `name` varchar(60) NOT NULL COMMENT 'ชื่อไฟล์',
-  `task_id` int(11) NOT NULL COMMENT 'บอกเจ้าของรายการงานของไฟล์นี้'
+  `name` varchar(60) NOT NULL COMMENT 'ชื่อไฟล์'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_config`
+-- Table structure for table `file_task`
 --
 
-CREATE TABLE `role_config` (
-  `id` int(11) NOT NULL COMMENT 'รหัสหน้าที่ผู้ใช้งานจะเห็น',
-  `roleconfig_menu` text NOT NULL COMMENT 'เมนูที่สามารถมองเห็น',
-  `role_master_id` int(11) NOT NULL COMMENT 'บทบาทของผู้ใช้งาน'
+CREATE TABLE `file_task` (
+  `id` int(11) NOT NULL,
+  `file_id` int(11) DEFAULT NULL,
+  `task_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -132,30 +143,6 @@ INSERT INTO `role_master` (`id`, `role_name`, `role_description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_config`
---
-
-CREATE TABLE `status_config` (
-  `id` int(11) NOT NULL,
-  `status_from` int(11) NOT NULL,
-  `status_to` int(11) NOT NULL,
-  `status_master_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `status_config`
---
-
-INSERT INTO `status_config` (`id`, `status_from`, `status_to`, `status_master_id`) VALUES
-(1, 1, 2, NULL),
-(2, 2, 3, NULL),
-(3, 3, 4, NULL),
-(4, 4, 7, NULL),
-(5, 7, 10, NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `status_master`
 --
 
@@ -170,16 +157,13 @@ CREATE TABLE `status_master` (
 --
 
 INSERT INTO `status_master` (`id`, `status_name`, `status_description`) VALUES
-(1, 'plan', 'สถานะบ่งบอกว่างานนี้ยังมีรายละเอียดไม่ครบสมบูรณ์'),
-(2, 'open', 'สถานะบอกว่างานนี้มีข้อมูลการสั่งงานสมบูรณ์แล้ว พร้อมให้ผู้ปฏิบัติงานนำไปปฏิบัติงาน'),
-(3, 'InProcess', 'สถานะที่แสดงว่ารายการงานนี้กำลังดำเนินการทำอยู่'),
-(4, 'InReview', 'สถานะที่แสดงว่ารายการงานนี้กำลังถูกตรวจสอบความถูกต้องจากหัวหน้างานอยู่'),
-(5, 'Approve', 'สถานะที่แสดงว่ารายการงานนี้ได้รับการอนุมัติงานจากหัวหน้างาน'),
-(6, 'Reject', 'สถานะที่แสดงว่ารายการงานนี้ไม่ได้รับการอนุมัติงานจากหัวหน้างาน'),
-(7, 'InPermit', 'สถานะที่แสดงว่ารายการงานนี้กำลังอยู่ในกระบวนการตรวจรับงานจากลูกค้าอยู่'),
-(8, 'Accept', 'สถานะที่แสดงว่ารายการงานนี้ได้รับการยอมรับงานจากลูกค้า'),
-(9, 'Deny', 'สถานะที่แสดงว่ารายการงานนี้ถูกปฏฺเสธงานจากลูกค้า'),
-(10, 'Done', 'สถานะงานที่แสดงว่ารายการงานนี้ถูกดำเนินการเรียบร้อยแล้ว');
+(1, 'Plan', 'สถานะของรายการงานที่ถูกสร้างขึ้นแต่ระบุข้อมูลไม่สมบูรณ์'),
+(2, 'Open', 'สถานะของรายการที่ถูกสร้างขึ้นใหม่ และระบุข้อมูลสมบูรณ์'),
+(3, 'In Process', 'สถานะที่แสดงว่ารายการงานนี้กำลังดำเนินการทำอยู่'),
+(4, 'In Review', 'สถานะที่แสดงว่ารายการงานนี้กำลังถูกตรวจสอบความถูกต้องจากหัวหน้างานอยู่'),
+(5, 'In Permit', 'สถานะที่แสดงว่ารายการงานนี้กำลังถูกตรวจรับงานจากลูกค้าอยู่'),
+(6, 'Done', 'สถานะงานที่แสดงว่ารายการงานนี้ถูกดำเนินการเรียบร้อยแล้ว'),
+(7, 'Disable', 'สถานะงานที่แสดงว่ารายการงานนี้ถูกลบ');
 
 -- --------------------------------------------------------
 
@@ -205,10 +189,14 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`id`, `created`, `tag`, `launch_date`, `launch_time`, `name`, `detail`, `create_by`, `channel_id`, `status_master_id`) VALUES
-(11, '2020-08-14 16:58:30', NULL, '2020-08-14', '17:06:51', 'Banner Website', ' <p>เรียน ทีมเว็บไซต์ ค่ะ</p><p>รบกวนเซ็ต Banner Website ตามไฟล์แนบ</p><p>ขอบคุณค่ะ</p>', 1, 3, 2),
-(12, '2020-08-14 17:42:26', 'zxvxcvz', '2020-08-21', '10:00:00', 'test Edit 8', ' <p>test Editzcvzcxc 8</p>', 1, 2, 2),
-(17, '2020-08-17 05:34:44', NULL, '2020-08-19', '09:00:00', 'รบกวนเซ็ตแบนเนอร์สแปลชให้หน่อยค่ะ', 'รบกวนเซ็ตแบนเนอร์สแปลชตามไฟล์แนบค่ะ', 1, 4, 2),
-(34, '2020-08-17 06:25:26', NULL, '0000-00-00', '00:00:00', 'ASFDA', '<p>ASFDASDF</p>', 1, 2, 2);
+(50, '2020-10-29 07:51:55', NULL, '2020-10-29', '10:00:00', 'โพสโปรของสด', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 1, 2),
+(51, '2020-10-29 07:52:11', NULL, '2020-10-30', '20:00:00', 'รบกวนแก้ไขปกเว็บไซต์ให้หน่อยค่ะ', '<p>&nbsp;</p>', 1, 3, 6),
+(52, '2020-10-29 07:52:35', NULL, '2020-10-30', '09:00:00', 'Line Push', '<p>&nbsp;</p>', 1, 2, 6),
+(53, '2020-10-29 07:56:45', NULL, '2020-11-05', '09:00:00', 'Promotion 11.11 Notification', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 4, 2),
+(54, '2020-11-04 04:49:20', NULL, '2020-11-03', '11:00:00', 'Mall - Exclusive Deal Promotion', ' <p>&nbsp;</p>', 1, 1, 4),
+(55, '2020-11-04 04:53:29', NULL, '2020-11-12', '09:00:00', 'Express', '<p>&nbsp;</p>', 1, 2, 4),
+(56, '2020-11-04 04:54:19', NULL, '2020-11-13', '09:00:00', 'Banner GHS', NULL, 1, 4, 1),
+(57, '2020-11-04 04:55:42', NULL, '2020-11-25', '10:00:00', 'TL Corporate Agenda', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -226,6 +214,13 @@ CREATE TABLE `task_history` (
   `status_master_id` int(11) NOT NULL COMMENT 'สถานะของประวัติรายการงาน'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `task_history`
+--
+
+INSERT INTO `task_history` (`id`, `actiondate`, `actiontime`, `remark`, `action_by`, `task_id`, `status_master_id`) VALUES
+(0, '2020-11-04', '04:49:20', NULL, 1, 54, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -240,8 +235,6 @@ CREATE TABLE `user` (
   `password` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `created` datetime NOT NULL,
-  `status_master_id` int(11) DEFAULT NULL,
-  `channel_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   `role_master_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -250,10 +243,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `surname`, `username`, `password`, `email`, `created`, `status_master_id`, `channel_id`, `company_id`, `role_master_id`) VALUES
-(1, 'TAEYEON', 'KIM', 'kty309', 'kty309', 'kty309@kty309.com', '2020-08-14 17:03:30', 2, 2, 3, 1),
-(2, 'TIFFANY', 'HWANG', 'hmy801', 'hmy801', 'hmy801@hmy801.com', '2020-08-21 06:23:53', 3, 3, 1, 2),
-(3, 'YoonA', 'Im', 'iya305', 'iya305', 'iya305@iya305.com', '2020-08-21 06:23:53', 4, 3, 1, 3);
+INSERT INTO `user` (`id`, `name`, `surname`, `username`, `password`, `email`, `created`, `company_id`, `role_master_id`) VALUES
+(1, 'Taeyeon', 'Kim', 'kty309', 'kty309', 'kty309@kty309.com', '2020-10-29 07:49:02', 3, 1),
+(2, 'Tiffany', 'Hwang', 'hmy801', 'hmy801', 'hmy801@hmy801.com', '2020-10-29 07:49:02', 1, 2),
+(3, 'YoonA', 'Im', 'iya530', 'iya530', 'iya530@iya530.com', '2020-10-29 07:50:26', 1, 3);
 
 --
 -- Indexes for dumped tables
@@ -283,30 +276,21 @@ ALTER TABLE `company`
 -- Indexes for table `files`
 --
 ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_files_task1_idx` (`task_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role_config`
+-- Indexes for table `file_task`
 --
-ALTER TABLE `role_config`
+ALTER TABLE `file_task`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_role_config_role_master1_idx` (`role_master_id`);
+  ADD KEY `fk_file_id` (`file_id`),
+  ADD KEY `fk_task_id` (`task_id`);
 
 --
 -- Indexes for table `role_master`
 --
 ALTER TABLE `role_master`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `status_config`
---
-ALTER TABLE `status_config`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `status_from` (`status_from`),
-  ADD KEY `status_to` (`status_to`),
-  ADD KEY `status_config2_ibfk_3` (`status_master_id`);
 
 --
 -- Indexes for table `status_master`
@@ -339,8 +323,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username_UNIQUE` (`username`),
   ADD UNIQUE KEY `email_UNIQUE` (`email`),
-  ADD KEY `fk_user_status_master1_idx` (`status_master_id`),
-  ADD KEY `fk_user_channel1_idx` (`channel_id`),
   ADD KEY `fk_user_company1_idx` (`company_id`),
   ADD KEY `fk_user_role_master1_idx` (`role_master_id`);
 
@@ -358,7 +340,7 @@ ALTER TABLE `channel`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสของการการแสดงความคิดเห็น';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสของการการแสดงความคิดเห็น', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -373,10 +355,10 @@ ALTER TABLE `files`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `role_config`
+-- AUTO_INCREMENT for table `file_task`
 --
-ALTER TABLE `role_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสหน้าที่ผู้ใช้งานจะเห็น';
+ALTER TABLE `file_task`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role_master`
@@ -385,22 +367,16 @@ ALTER TABLE `role_master`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสบทบาทผู้ใช้', AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `status_config`
---
-ALTER TABLE `status_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `status_master`
 --
 ALTER TABLE `status_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสถานะงาน', AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสถานะงาน', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการงาน', AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการงาน', AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -420,25 +396,11 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `files`
+-- Constraints for table `file_task`
 --
-ALTER TABLE `files`
-  ADD CONSTRAINT `fk_files_task1` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `role_config`
---
-ALTER TABLE `role_config`
-  ADD CONSTRAINT `fk_role_config_role_master1` FOREIGN KEY (`role_master_id`) REFERENCES `role_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `status_config`
---
-ALTER TABLE `status_config`
-  ADD CONSTRAINT `fk_status_config_status_master` FOREIGN KEY (`status_master_id`) REFERENCES `status_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `status_config_ibfk_1` FOREIGN KEY (`status_from`) REFERENCES `status_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `status_config_ibfk_2` FOREIGN KEY (`status_to`) REFERENCES `status_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `status_config_ibfk_3` FOREIGN KEY (`status_master_id`) REFERENCES `status_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `file_task`
+  ADD CONSTRAINT `fk_file_id` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`),
+  ADD CONSTRAINT `fk_task_id` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`);
 
 --
 -- Constraints for table `task`
@@ -460,10 +422,8 @@ ALTER TABLE `task_history`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `fk_user_channel1` FOREIGN KEY (`channel_id`) REFERENCES `channel` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_company1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_user_role_master1` FOREIGN KEY (`role_master_id`) REFERENCES `role_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_user_status_master1` FOREIGN KEY (`status_master_id`) REFERENCES `status_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_user_role_master1` FOREIGN KEY (`role_master_id`) REFERENCES `role_master` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
