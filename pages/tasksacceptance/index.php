@@ -108,7 +108,7 @@
                   <tr>
 
                     <td><?php echo $value['id']; ?></td>
-                    <td><?php echo $value['name']; ?></td>
+                    <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>

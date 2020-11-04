@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar_leader.php') ?>
+    <?php include_once('../includes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -71,108 +71,48 @@ if ($result->num_rows > 0) {
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-3">
-              <!-- <a href="../customertasks" class="btn btn-primary btn-block mb-3">Back to Tasks List</a> -->
 
-              <!-- /. box -->
-
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Status</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body p-3">
-                  <ul class="nav nav-pills flex-column">
-                    <li class="nav-item mb-2">
-                      <?php
-                      $id = $_GET['id'];
-                      $sql = "select th.actiondate, th.actiontime, u.name as username, s.status_name as statusname FROM task_history th 
-                              INNER JOIN user u ON th.action_by = u.id
-                              INNER JOIN status_master s ON th.status_master_id = s.id  
-                              WHERE th.task_id = $id";
-                      $result = $conn->query($sql);
-                      // if (!empty($result) && $result->num_rows > 0) {
-
-                      if ($result->num_rows > 0) {
-                        // output data of each row
-                        while ($row = $result->fetch_assoc()) {
-                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                        }
-                      } else {
-                        echo "0 results";
-                      }
-                      // for ($id = 1; $id <= 5; $id++) { 
-                      foreach ($result as $key => $value) {
-                      ?>
-                        <i class="fa fa-info-circle text-second"></i> <b class="text-secondary"><?php echo $value['statusname']; ?></b>
-                        By <?php echo $value['username']; ?><br />At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
-                    </li>
-
-                  <?php } ?>
-                  <!-- <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-second"></i> <b class="text-secondary">Plan</b> By Taeyeon <br />At Today 07.55 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-primary"></i> <b class="text-primary">Open</b> By Taeyeon <br />At Today 08.55 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-info"></i> <b class="text-info">In Process</b> By Tiffany <br />At Today 09.00 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-warning"></i> <b class="text-warning">In Approve</b> By Tiffany <br />At Today 09.20 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-warning"></i> <b class="text-warning">In Commit</b> By Yoon A <br />At Today 09.30 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-success"></i> <b class="text-success">Done</b> By Taeyeon <br />At Today 10.30 น.
-                    </li> -->
-                  </ul>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-
-            </div>
             <!-- /.col -->
-            <div class="col-md-9">
+            <div class="col-md-12">
 
               <div class="card card-success card-outline">
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
 
-                  <?php
-                      $id = $_GET['id'];
-                      $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
+                    <?php
+                    $id = $_GET['id'];
+                    $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
                       from task
                       inner join user on task.create_by = user.id
                       where task.id = $id
                       ";
-                      $result2 = $conn->query($sql2);
-                      // if (!empty($result) && $result->num_rows > 0) {
+                    $result2 = $conn->query($sql2);
+                    // if (!empty($result) && $result->num_rows > 0) {
 
-                      if ($result2->num_rows > 0) {
-                        // output data of each row
-                        while ($row = $result2->fetch_assoc()) {
-                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                        }
-                      } else {
-                        echo "0 results";
+                    if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result2->fetch_assoc()) {
+                        // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                       }
-                      // for ($id = 1; $id <= 5; $id++) { 
-                      foreach ($result2 as $key => $value2) {
-                      ?>
+                    } else {
+                      echo "0 results";
+                    }
+                    // for ($id = 1; $id <= 5; $id++) { 
+                    foreach ($result2 as $key => $value2) {
+                    ?>
 
-                 
 
-                    <h5><?php echo $value2['name']; ?></h5>
-                    <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?></h6>
+
+                      <h5><?php echo $value2['name']; ?></h5>
+                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | <a href="#" data-toggle="popover" title="Status" data-content="Some content inside the popover">Status</a></h6>
+
+
                   </div>
-              
+
                   <div class="mailbox-read-message">
                     <p><?php echo  $value2['detail']; ?></p>
                   </div>
-                  <?php } ?>
+                <?php } ?>
                 </div>
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
@@ -230,9 +170,12 @@ if ($result->num_rows > 0) {
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
                       <i class="fa fa-trash-o"></i> Delete
                     </a>
-                  </div> 
+                  </div>
                 </div>
               </div>
+
+              <!-- start comment -->
+
               <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
                 <div class="card card-success ">
                   <div class="card-header">
@@ -275,10 +218,10 @@ if ($result->num_rows > 0) {
                   </div>
                 </div>
               </form>
-              <!-- start comment -->
+
               <?php
               $id = $_GET['id'];
-              $sql = "select c.id, c.title, c.content, c.created, c.task_id, c.user_id, u.name as username
+              $sql = "select c.title, c.content, c.created, c.updated, c.task_id, c.user_id , u.name as username
               FROM comments c 
               INNER JOIN user u ON c.user_id = u.id
               where c.task_id = $id";
@@ -323,17 +266,17 @@ if ($result->num_rows > 0) {
 
                   <!-- /.card-footer -->
                   <div class="card-footer">
-                  <?php if($value["user_id"] == $_SESSION["user_id"]) {?>
+                    <?php if ($value["user_id"] == $_SESSION["user_id"]) { ?>
 
-                    <div class="float-left">
-                      <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
-                        <i class="fa fa-pencil-square-o"></i> edit
-                      </a>
-                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
-                        <i class="fa fa-trash-o"></i> Delete
-                      </a>
-                    </div>
-                  <?php } ?>
+                      <div class="float-left">
+                        <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                          <i class="fa fa-pencil-square-o"></i> edit
+                        </a>
+                        <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                          <i class="fa fa-trash-o"></i> Delete
+                        </a>
+                      </div>
+                    <?php } ?>
                     <!-- <div class="float-left">
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-o-alt"></i> Delete</button>
@@ -432,6 +375,12 @@ if ($result->num_rows > 0) {
         // window.location='delete.php?id='+id;
       }
     };
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="popover"]').popover();
+    });
   </script>
 
 </body>

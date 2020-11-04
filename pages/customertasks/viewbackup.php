@@ -71,9 +71,72 @@ if ($result->num_rows > 0) {
       <section class="content">
         <div class="container-fluid">
           <div class="row">
+            <div class="col-md-3">
+              <!-- <a href="../customertasks" class="btn btn-primary btn-block mb-3">Back to Tasks List</a> -->
 
+              <!-- /. box -->
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Status</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-3">
+                  <ul class="nav nav-pills flex-column">
+                    <li class="nav-item mb-2">
+                      <?php
+                      $id = $_GET['id'];
+                      $sql = "select th.actiondate, th.actiontime, u.name as username, s.status_name as statusname FROM task_history th 
+                              INNER JOIN user u ON th.action_by = u.id
+                              INNER JOIN status_master s ON th.status_master_id = s.id  
+                              WHERE th.task_id = $id";
+                      $result = $conn->query($sql);
+                      // if (!empty($result) && $result->num_rows > 0) {
+
+                      if ($result->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                        }
+                      } else {
+                        echo "0 results";
+                      }
+                      // for ($id = 1; $id <= 5; $id++) { 
+                      foreach ($result as $key => $value) {
+                      ?>
+                        <b class="text-info"><?php echo $value['statusname']; ?></b>
+                        By <?php echo $value['username']; ?><br />
+                        At <?php echo $value['actiondate']; ?> <?php echo $value['actiontime']; ?>
+                    </li>
+
+                  <?php } ?>
+                  <!-- <li class="nav-item mb-2">
+                      <i class="fa fa-info-circle text-second"></i> <b class="text-secondary">Plan</b> By Taeyeon <br />At Today 07.55 น.
+                    </li>
+                    <li class="nav-item mb-2">
+                      <i class="fa fa-info-circle text-primary"></i> <b class="text-primary">Open</b> By Taeyeon <br />At Today 08.55 น.
+                    </li>
+                    <li class="nav-item mb-2">
+                      <i class="fa fa-info-circle text-info"></i> <b class="text-info">In Process</b> By Tiffany <br />At Today 09.00 น.
+                    </li>
+                    <li class="nav-item mb-2">
+                      <i class="fa fa-info-circle text-warning"></i> <b class="text-warning">In Approve</b> By Tiffany <br />At Today 09.20 น.
+                    </li>
+                    <li class="nav-item mb-2">
+                      <i class="fa fa-info-circle text-warning"></i> <b class="text-warning">In Commit</b> By Yoon A <br />At Today 09.30 น.
+                    </li>
+                    <li class="nav-item mb-2">
+                      <i class="fa fa-info-circle text-success"></i> <b class="text-success">Done</b> By Taeyeon <br />At Today 10.30 น.
+                    </li> -->
+                  </ul>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+            </div>
             <!-- /.col -->
-            <div class="col-md-12">
+            <div class="col-md-9">
 
               <div class="card card-success card-outline">
                 <div class="card-body p-3">
@@ -104,9 +167,7 @@ if ($result->num_rows > 0) {
 
 
                       <h5><?php echo $value2['name']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | <a href="#" data-toggle="popover" title="Status" data-content="Some content inside the popover">Status</a></h6>
-
-
+                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?></h6>
                   </div>
 
                   <div class="mailbox-read-message">
@@ -174,8 +235,9 @@ if ($result->num_rows > 0) {
                 </div>
               </div>
 
-              <!-- start comment -->
 
+              <!-- start comment -->
+              
               <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
                 <div class="card card-success ">
                   <div class="card-header">
@@ -221,7 +283,7 @@ if ($result->num_rows > 0) {
 
               <?php
               $id = $_GET['id'];
-              $sql = "select c.title, c.content, c.created, c.updated, c.task_id, c.user_id , u.name as username
+              $sql = "select c.id, c.title, c.content, c.created, c.task_id, c.user_id, u.name as username
               FROM comments c 
               INNER JOIN user u ON c.user_id = u.id
               where c.task_id = $id";
@@ -375,12 +437,6 @@ if ($result->num_rows > 0) {
         // window.location='delete.php?id='+id;
       }
     };
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      $('[data-toggle="popover"]').popover();
-    });
   </script>
 
 </body>

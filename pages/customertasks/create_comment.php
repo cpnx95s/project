@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
             echo "Error Creating record: " . $conn->error;
         }
 
-        header('Refresh:0; url=index.php');
+        header('Refresh:0; url=http://localhost/project/pages/customertasks/view.php?id='.$taskid);
     }
 }
 
