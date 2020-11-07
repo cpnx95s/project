@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2020 at 01:46 AM
+-- Generation Time: Nov 07, 2020 at 05:01 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -71,7 +71,12 @@ INSERT INTO `comments` (`id`, `title`, `content`, `created`, `updated`, `task_id
 (2, 'เทส', '<p>dcbfnghfkujghjklghfgjh</p>', '2020-11-03 22:47:42', NULL, 50, 1),
 (3, 'fsgdfgsdfg', '<p>sfdgsdfsdfgsd</p>', '2020-11-03 22:48:14', NULL, 50, 1),
 (4, 'fgsdfgsdf', '<p>sdfgsdfgsdfgsdfgsdfg</p>', '2020-11-03 22:50:34', NULL, 50, 1),
-(5, 'เทส', '<p>เทส</p>', '2020-11-03 22:55:11', NULL, 50, 1);
+(5, 'เทส', '<p>เทส</p>', '2020-11-03 22:55:11', NULL, 50, 1),
+(6, 'เทสฟานี่', '<p>คอมเม้นท์ฟานี่</p>', '2020-11-07 00:41:16', NULL, 50, 2),
+(7, 'เทสฟานี่', '<p>คอมเม้นท์ฟานี่</p>', '2020-11-07 00:43:02', NULL, 50, 2),
+(8, 'เทส', '<p>asdfasd</p>', '2020-11-07 00:44:51', NULL, 50, 2),
+(9, 'test', '<p>test</p>', '2020-11-07 00:45:52', NULL, 50, 2),
+(10, 'test', '<p>test</p>', '2020-11-07 00:46:18', NULL, 50, 2);
 
 -- --------------------------------------------------------
 
@@ -181,22 +186,41 @@ CREATE TABLE `task` (
   `detail` text DEFAULT NULL COMMENT 'รายละเอียดของงาน',
   `create_by` int(11) DEFAULT NULL COMMENT 'ผู้สร้างรายการงาน',
   `channel_id` int(11) DEFAULT NULL COMMENT 'ช่องทางสังคมออนไลน์ของรายการงาน',
-  `status_master_id` int(11) DEFAULT NULL COMMENT 'สถานะปัจจุบันของรายการงาน'
+  `status_master_id` int(11) DEFAULT NULL COMMENT 'สถานะปัจจุบันของรายการงาน',
+  `filepath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`id`, `created`, `tag`, `launch_date`, `launch_time`, `name`, `detail`, `create_by`, `channel_id`, `status_master_id`) VALUES
-(50, '2020-10-29 07:51:55', NULL, '2020-10-29', '10:00:00', 'โพสโปรของสด', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 1, 2),
-(51, '2020-10-29 07:52:11', NULL, '2020-10-30', '20:00:00', 'รบกวนแก้ไขปกเว็บไซต์ให้หน่อยค่ะ', '<p>&nbsp;</p>', 1, 3, 6),
-(52, '2020-10-29 07:52:35', NULL, '2020-10-30', '09:00:00', 'Line Push', '<p>&nbsp;</p>', 1, 2, 6),
-(53, '2020-10-29 07:56:45', NULL, '2020-11-05', '09:00:00', 'Promotion 11.11 Notification', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 4, 2),
-(54, '2020-11-04 04:49:20', NULL, '2020-11-03', '11:00:00', 'Mall - Exclusive Deal Promotion', ' <p>&nbsp;</p>', 1, 1, 4),
-(55, '2020-11-04 04:53:29', NULL, '2020-11-12', '09:00:00', 'Express', '<p>&nbsp;</p>', 1, 2, 4),
-(56, '2020-11-04 04:54:19', NULL, '2020-11-13', '09:00:00', 'Banner GHS', NULL, 1, 4, 1),
-(57, '2020-11-04 04:55:42', NULL, '2020-11-25', '10:00:00', 'TL Corporate Agenda', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 2, 2);
+INSERT INTO `task` (`id`, `created`, `tag`, `launch_date`, `launch_time`, `name`, `detail`, `create_by`, `channel_id`, `status_master_id`, `filepath`) VALUES
+(50, '2020-10-29 07:51:55', NULL, '2020-10-29', '10:00:00', 'โพสโปรของสด', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 1, 2, NULL),
+(51, '2020-10-29 07:52:11', NULL, '2020-10-30', '20:00:00', 'รบกวนแก้ไขปกเว็บไซต์ให้หน่อยค่ะ', '<p>&nbsp;</p>', 1, 3, 6, NULL),
+(52, '2020-10-29 07:52:35', NULL, '2020-10-30', '09:00:00', 'Line Push', '<p>&nbsp;</p>', 1, 2, 6, NULL),
+(53, '2020-10-29 07:56:45', NULL, '2020-11-05', '09:00:00', 'Promotion 11.11 Notification', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 4, 2, NULL),
+(54, '2020-11-04 04:49:20', NULL, '2020-11-03', '11:00:00', 'Mall - Exclusive Deal Promotion', ' <p>&nbsp;</p>', 1, 1, 4, NULL),
+(55, '2020-11-04 04:53:29', NULL, '2020-11-12', '09:00:00', 'Express', '<p>&nbsp;</p>', 1, 2, 4, NULL),
+(56, '2020-11-04 04:54:19', NULL, '2020-11-13', '09:00:00', 'Banner GHS', NULL, 1, 4, 1, NULL),
+(57, '2020-11-04 04:55:42', NULL, '2020-11-25', '10:00:00', 'TL Corporate Agenda', ' <p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet est placerat in egestas erat imperdiet sed. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Vel risus commodo viverra maecenas accumsan lacus vel. Erat velit scelerisque in dictum non. Id leo in vitae turpis massa sed. <strong>Amet est placerat</strong> in egestas erat imperdiet sed euismod nisi. Bibendum at varius vel pharetra vel turpis nunc. Lacus vel facilisis volutpat est velit egestas dui. Etiam sit amet nisl purus in mollis nunc. Gravida in <strong>fermentum et sollicitudin</strong> ac orci.</p><blockquote><p>Massa vitae tortor condimentum lacinia quis. Amet consectetur adipiscing elit ut. Placerat duis ultricies lacus sed turpis. Tristique sollicitudin nibh sit amet commodo nulla. Nisi scelerisque eu ultrices vitae auctor eu. Purus sit amet luctus venenatis lectus magna. Scelerisque varius morbi enim nunc. In nulla posuere sollicitudin aliquam. Cras sed felis eget velit aliquet sagittis. Amet consectetur adipiscing elit duis.</p></blockquote><p><i><strong>Faucibus interdum</strong></i> posuere lorem ipsum dolor. Integer quis auctor elit sed. Id interdum velit laoreet id donec ultrices tincidunt arcu. Nunc lobortis mattis aliquam faucibus. Elementum nisi quis eleifend quam adipiscing. Consectetur purus ut faucibus pulvinar. Risus nec feugiat in fermentum posuere urna nec tincidunt. Diam phasellus vestibulum lorem sed risus ultricies tristique. Risus nec feugiat in fermentum. Tortor pretium viverra suspendisse potenti nullam ac. Feugiat scelerisque varius <i>morbi enim</i> nunc faucibus a.</p>', 1, 2, 2, NULL),
+(58, '2020-11-06 22:07:48', NULL, '0000-00-00', '00:00:00', 'sadfsdfas', ' <p>&nbsp;</p>', 1, 1, 2, NULL),
+(59, '2020-11-06 22:08:03', NULL, '0000-00-00', '00:00:00', 'asdfadsf', ' <p>&nbsp;</p>', 1, 2, 2, NULL),
+(60, '2020-11-06 22:08:27', NULL, '2020-11-20', '12:00:00', 'asdfsdfghytr', ' <p>&nbsp;</p>', 1, 3, 2, NULL),
+(61, '2020-11-06 22:09:56', NULL, '2020-11-13', '10:00:00', 'yjrtyujy', ' <p>&nbsp;</p>', 1, 5, 1, NULL),
+(62, '2020-11-07 09:18:20', NULL, '2020-11-07', '04:05:55', '', '<p>&nbsp;</p>', 1, 1, 7, NULL),
+(63, '2020-11-07 10:00:09', NULL, '2020-11-07', '04:05:58', 'เทสไฟล์', '<p>&nbsp;</p>', 1, 5, 7, NULL),
+(64, '2020-11-07 10:01:21', NULL, '2020-11-07', '04:05:51', 'เทสอัปไฟล์', '<p>ฟหกดฟก</p>', 1, 1, 7, NULL),
+(65, '2020-11-07 10:03:35', NULL, '2020-11-07', '04:05:47', 'เทสอัปไฟล์2', '<p>ฟหกดฟก</p>', 1, 1, 7, NULL),
+(66, '2020-11-07 10:10:04', NULL, '2020-11-07', '04:11:13', 'เทสไฟล์', '<p>หเฟดหดเ</p>', 1, 1, 7, '2020-11-07480558346'),
+(67, '2020-11-07 10:11:31', NULL, '2020-11-07', '04:15:46', 'เทสไฟล์', '<p>ผปแอผแป</p>', 1, 1, 7, '202011071536342268'),
+(68, '2020-11-07 10:14:20', NULL, '2020-11-07', '04:15:42', 'เทสไฟล์', '<p>ผปแอผแป</p>', 1, 1, 7, '202011071168133022'),
+(69, '2020-11-07 10:14:50', NULL, '2020-11-07', '04:15:37', 'เทสไฟล์', '<p>ผปแอผแป</p>', 1, 1, 7, '20201107760918554'),
+(70, '2020-11-07 10:15:54', NULL, '0000-00-00', '00:00:00', 'เทสไฟล์', '<p>&nbsp;</p>', 1, 1, 2, '202011071996435985'),
+(71, '2020-11-07 10:16:57', NULL, '0000-00-00', '00:00:00', 'เทสไฟล์', '<p>ปแผอปแอ</p>', 1, 1, 2, '20201107558996470'),
+(72, '2020-11-07 10:20:34', NULL, '0000-00-00', '00:00:00', 'เทสไฟล์dfg', '<p>ปแผอปแอ</p>', 1, 1, 2, '202011071174360687'),
+(73, '2020-11-07 10:25:40', NULL, '2020-11-07', '04:26:22', 'เทสอีสเซ็ต', '<p>&nbsp;</p>', 1, 1, 7, '20201107399730325'),
+(74, '2020-11-07 10:26:43', NULL, '0000-00-00', '00:00:00', 'เทสอีสเซ็ต', '<p>ฟกหกดฟห</p>', 1, 1, 2, '202011071961061194.jpg'),
+(75, '2020-11-07 10:29:46', NULL, '0000-00-00', '00:00:00', 'เทสอีสเซ็ตสองภาพ', ' <p>ฟกหกดฟห</p>', 1, 1, 2, '20201107300998207.gif');
 
 -- --------------------------------------------------------
 
@@ -219,7 +243,55 @@ CREATE TABLE `task_history` (
 --
 
 INSERT INTO `task_history` (`id`, `actiondate`, `actiontime`, `remark`, `action_by`, `task_id`, `status_master_id`) VALUES
-(0, '2020-11-04', '04:49:20', NULL, 1, 54, 1);
+(1, '2020-11-06', '10:07:48', NULL, 1, 58, 1),
+(2, '2020-11-06', '10:09:56', NULL, 1, 61, 1),
+(3, '2020-11-06', '10:12:48', NULL, 1, 59, 2),
+(4, '2020-11-07', '07:27:36', NULL, 1, 60, 2),
+(5, '2020-11-07', '07:28:18', NULL, 1, 61, 1),
+(6, '2020-11-07', '09:18:20', NULL, 1, 62, 2),
+(7, '2020-11-07', '10:00:09', NULL, 1, 63, 2),
+(8, '2020-11-07', '10:01:21', NULL, 1, 64, 2),
+(9, '2020-11-07', '10:03:35', NULL, 1, 65, 2),
+(10, '2020-11-07', '04:05:47', NULL, 1, 65, 7),
+(11, '2020-11-07', '04:05:51', NULL, 1, 64, 7),
+(12, '2020-11-07', '04:05:55', NULL, 1, 62, 7),
+(13, '2020-11-07', '04:05:58', NULL, 1, 63, 7),
+(14, '2020-11-07', '10:10:04', NULL, 1, 66, 2),
+(15, '2020-11-07', '04:11:13', NULL, 1, 66, 7),
+(16, '2020-11-07', '10:11:31', NULL, 1, 67, 2),
+(17, '2020-11-07', '10:14:20', NULL, 1, 68, 2),
+(18, '2020-11-07', '10:14:50', NULL, 1, 69, 2),
+(19, '2020-11-07', '04:15:37', NULL, 1, 69, 7),
+(20, '2020-11-07', '04:15:42', NULL, 1, 68, 7),
+(21, '2020-11-07', '04:15:46', NULL, 1, 67, 7),
+(22, '2020-11-07', '10:15:54', NULL, 1, 70, 2),
+(23, '2020-11-07', '10:16:57', NULL, 1, 71, 2),
+(24, '2020-11-07', '10:20:34', NULL, 1, 72, 2),
+(25, '2020-11-07', '10:25:40', NULL, 1, 73, 2),
+(26, '2020-11-07', '04:26:22', NULL, 1, 73, 7),
+(27, '2020-11-07', '10:26:43', NULL, 1, 74, 2),
+(28, '2020-11-07', '10:29:46', NULL, 1, 75, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uploadfile`
+--
+
+CREATE TABLE `uploadfile` (
+  `fileID` int(5) NOT NULL,
+  `fileupload` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `dateup` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `uploadfile`
+--
+
+INSERT INTO `uploadfile` (`fileID`, `fileupload`, `dateup`) VALUES
+(1, '2020-11-07943136836', '2020-11-07 03:00:09'),
+(2, '2020-11-07526255305', '2020-11-07 03:01:21'),
+(3, '2020-11-071493393431', '2020-11-07 03:03:35');
 
 -- --------------------------------------------------------
 
@@ -246,7 +318,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `surname`, `username`, `password`, `email`, `created`, `company_id`, `role_master_id`) VALUES
 (1, 'Taeyeon', 'Kim', 'kty309', 'kty309', 'kty309@kty309.com', '2020-10-29 07:49:02', 3, 1),
 (2, 'Tiffany', 'Hwang', 'hmy801', 'hmy801', 'hmy801@hmy801.com', '2020-10-29 07:49:02', 1, 2),
-(3, 'YoonA', 'Im', 'iya530', 'iya530', 'iya530@iya530.com', '2020-10-29 07:50:26', 1, 3);
+(3, 'YoonA', 'Im', 'iya530', 'iya530', 'iya530@iya530.com', '2020-10-29 07:50:26', 1, 3),
+(4, 'Chungha', 'Kim', 'kch018', 'kch018', 'kch018@kch018.com', '2020-11-06 22:28:14', 4, 1);
 
 --
 -- Indexes for dumped tables
@@ -317,6 +390,12 @@ ALTER TABLE `task_history`
   ADD KEY `fk_task_history_status_master1_idx` (`status_master_id`);
 
 --
+-- Indexes for table `uploadfile`
+--
+ALTER TABLE `uploadfile`
+  ADD PRIMARY KEY (`fileID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -340,7 +419,7 @@ ALTER TABLE `channel`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสของการการแสดงความคิดเห็น', AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสของการการแสดงความคิดเห็น', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -376,13 +455,25 @@ ALTER TABLE `status_master`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการงาน', AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการงาน', AUTO_INCREMENT=76;
+
+--
+-- AUTO_INCREMENT for table `task_history`
+--
+ALTER TABLE `task_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประวัติรายการงาน', AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `uploadfile`
+--
+ALTER TABLE `uploadfile`
+  MODIFY `fileID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
