@@ -245,8 +245,9 @@
                   <th>Launch Time</th>
                   <th>Created At</th>
                   <th>Created By</th>
+                  <!-- <th>Updated By</th> -->
                   <th>Status</th>
-                  <th>Action</th>
+                 
                 </tr>
               </thead>
               <tbody>
@@ -273,12 +274,12 @@
 
                 } else {
                   $user_id = $_SESSION["user_id"];
-                  $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                  s.status_name  , u.name as username
+                  $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by, t.status_master_id, c.name as channel_name, s.status_name, u.name as username
                   FROM task t  
                   INNER JOIN channel c ON t.channel_id = c.id 
                   INNER JOIN status_master s ON t.status_master_id = s.id
                   INNER JOIN user u ON t.create_by = u.id
+                 
                   ";
 
                   $result = $conn->query($sql);
@@ -307,24 +308,11 @@
                     <td><?php echo $value['launch_time']; ?></td>
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
+                    <!-- <td><?php echo $value['usernamelast']; ?></td> -->
                     <td><?php echo $value['status_name']; ?></td>
 
 
-                    <td>
-                      <a href="view.php?id=<?php echo $value['id']; ?>">
-                        <i class="fa fa-eye"></i>
-                      </a>
-
-
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
-                        <i class="fa fa-pencil-square-o"></i>
-                      </a>
-
-
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
-                        <i class="fa fa-trash-o"></i>
-                      </a>
-                    </td>
+                   
                   </tr>
                 <?php }
                 $conn->close();

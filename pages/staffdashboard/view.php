@@ -162,16 +162,7 @@ if ($result->num_rows > 0) {
                     </li>
                   </ul>
                 </div>
-                <div class="card-footer">
-                  <div class="float-left">
-                    <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
-                      <i class="fa fa-pencil-square-o"></i> edit
-                    </a>
-                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
-                      <i class="fa fa-trash-o"></i> Delete
-                    </a>
-                  </div>
-                </div>
+
               </div>
 
               <!-- start comment -->

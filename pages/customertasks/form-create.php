@@ -64,7 +64,7 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" action="create.php" method="post">
+          <form role="form" action="create.php" method="post" enctype="multipart/form-data">
             <div class="card-body">
 
               <div class="form-group">
@@ -121,7 +121,7 @@
               <div class="form-group">
                 <label>Upload Files</label>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file" id="customFile" multiple>
+                  <input type="file" class="custom-file-input" name="fileupload" id="customFile" multiple>
                   <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
                 <figure class="figure text-center d-none mt-2">

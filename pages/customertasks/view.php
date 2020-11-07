@@ -81,7 +81,7 @@ if ($result->num_rows > 0) {
 
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
+                    $sql2 = "select task.id, task.created, task.name, task.detail,task.filepath, user.name as username
                       from task
                       inner join user on task.create_by = user.id
                       where task.id = $id
@@ -117,60 +117,34 @@ if ($result->num_rows > 0) {
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
                     <li>
-                      <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                      <span class="mailbox-attachment-icon"><img src="../fileupload/<?php echo $value2['filepath']; ?>" max-width="200">
+                    </span>
 
                       <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Sep2014-report.pdf</a>
+                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
+                          <p><?php echo  $value2['filepath']; ?></p>
+                        </a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
                           <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
                       </div>
                     </li>
-                    <li>
-                      <span class="mailbox-attachment-icon"><i class="fa fa-file-word-o"></i></span>
-
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> App Description.docx</a>
-                        <span class="mailbox-attachment-size">
-                          1,245 KB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo1.png" alt="Attachment"></span>
-
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo1.png</a>
-                        <span class="mailbox-attachment-size">
-                          2.67 MB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo2.png" alt="Attachment"></span>
-
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo2.png</a>
-                        <span class="mailbox-attachment-size">
-                          1.9 MB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
-                    </li>
+                    
                   </ul>
                 </div>
                 <div class="card-footer">
-                  <div class="float-left">
-                    <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
-                      <i class="fa fa-pencil-square-o"></i> edit
-                    </a>
-                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
-                      <i class="fa fa-trash-o"></i> Delete
-                    </a>
-                  </div>
+                  <?php if ($value["user_id"] == $_SESSION["user_id"]) { ?>
+
+                    <div class="float-left">
+                      <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                        <i class="fa fa-pencil-square-o"></i> edit
+                      </a>
+                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash-o"></i> Delete
+                      </a>
+                    </div>
+                  <?php } ?>
                 </div>
               </div>
 
@@ -199,21 +173,8 @@ if ($result->num_rows > 0) {
                     </div>
                   </div>
                   <div class="card-footer">
-
-                    <!-- <div class="float-left">
-                    <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
-                      <i class="fa fa-pencil-square-o"></i> edit
-                    </a>
-                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
-                      <i class="fa fa-trash-o"></i> Delete
-                    </a>
-                  </div> -->
                     <div class="float-right">
                       <input type="submit" class="btn btn-success" name="save" value="Comment"></input>
-
-                      <!-- <a href="#" class="btn btn-sm btn-success">
-                      <i class="fas fa fa-reply"></i> Comment
-                    </a> -->
                     </div>
                   </div>
                 </div>
@@ -277,13 +238,6 @@ if ($result->num_rows > 0) {
                         </a>
                       </div>
                     <?php } ?>
-                    <!-- <div class="float-left">
-                    <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o-alt"></i> Delete</button>
-                  </div> -->
-                    <!-- <div class="float-right">
-                    <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
-                  </div> -->
                   </div>
                   <!-- /.card-footer -->
                   <!-- /. box -->
