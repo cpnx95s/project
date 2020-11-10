@@ -76,7 +76,7 @@
                   <th>Launch Time</th>
                   <th>Created At</th>
                   <th>Created By</th>
-                 
+                  <th>Remark</th>
                   <!-- <th>Status</th> -->
                   <th>Action</th>
                 </tr>
@@ -84,8 +84,8 @@
               <tbody>
                 <?php
                 $user_id = $_SESSION["user_id"];
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by, t.status_master_id,  c.name as channel_name,
-                s.status_name  , u.name as username
+                $sql = "select  DISTINCT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by, t.status_master_id,  c.name as channel_name,
+                s.status_name  , u.name as username, t.remark
                 FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
@@ -115,8 +115,8 @@
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
                     <td><?php echo $value['username']; ?></td>
-
                     <td><?php echo $value['created']; ?></td>
+                    <td style="color:#C70039"><?php echo $value['remark']; ?></td>
                     <td>
 
                       <a href="#" onclick="unpickItem(<?php echo $value['id']; ?>);">

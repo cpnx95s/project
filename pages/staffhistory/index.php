@@ -75,14 +75,14 @@
               <tbody>
                 <?php
                 $user_id = $_SESSION["user_id"];
-                $sql = "SELECT th.id, th.actiondate, th.actiontime, th.remark, th.action_by, th.task_id, th.status_master_id , 
-                t.name as taskname, t.name as taskname, c.name as channelname,s.status_name as statusname,u.name as username
+                $sql = "SELECT th.id, th.actiondate, th.actiontime, th.remark, th.action_by, th.task_id, th.status_master_id, 
+                t.name as taskname, c.name as channelname, s.status_name as statusname,u.name as username
                 FROM task_history th
                 INNER JOIN task t ON t.id = th.task_id 
                 INNER JOIN status_master s ON s.id = th.status_master_id 
                 INNER JOIN channel c ON t.channel_id = c.id
-                INNER JOIN user u ON action_by = u.id
-                where action_by = $user_id
+                INNER JOIN user u ON th.action_by = u.id
+                where th.action_by = $user_id
                 ORDER BY th.id DESC
                 ";
 

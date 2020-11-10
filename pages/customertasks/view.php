@@ -81,9 +81,11 @@ if ($result->num_rows > 0) {
 
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail,task.filepath, user.name as username
+                    $sql2 = "select task.id, task.created, task.name, task.detail,task.filepath, user.name as username, status_name as statusname,
+                      user.id as user_id
                       from task
                       inner join user on task.create_by = user.id
+                      inner join status_master on task.status_master_id = status_master.id
                       where task.id = $id
                       ";
                     $result2 = $conn->query($sql2);
@@ -104,7 +106,8 @@ if ($result->num_rows > 0) {
 
 
                       <h5><?php echo $value2['name']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | <a href="#" data-toggle="popover" title="Status" data-content="Some content inside the popover">Status</a></h6>
+                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> |
+                       <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname']?>">Status</a></h6>
 
 
                   </div>
@@ -112,7 +115,6 @@ if ($result->num_rows > 0) {
                   <div class="mailbox-read-message">
                     <p><?php echo  $value2['detail']; ?></p>
                   </div>
-                <?php } ?>
                 </div>
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
@@ -134,18 +136,19 @@ if ($result->num_rows > 0) {
                   </ul>
                 </div>
                 <div class="card-footer">
-                  <?php if ($value["user_id"] == $_SESSION["user_id"]) { ?>
+                  <?php if ($value2["user_id"] == $_SESSION["user_id"]) { ?>
 
                     <div class="float-left">
-                      <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                      <a href="form-comment-edit.php?id=<?php echo $value2['id']; ?>" class="btn btn-sm btn-warning text-white">
                         <i class="fa fa-pencil-square-o"></i> edit
                       </a>
-                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                      <a href="#" onclick="deleteItem(<?php echo $value2['id']; ?>);" class="btn btn-sm btn-danger">
                         <i class="fa fa-trash-o"></i> Delete
                       </a>
                     </div>
                   <?php } ?>
                 </div>
+                <?php } ?>
               </div>
 
               <!-- start comment -->

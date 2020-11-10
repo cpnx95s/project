@@ -81,7 +81,7 @@ if ($result->num_rows > 0) {
 
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
+                    $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username, status_name as statusname
                       from task
                       inner join user on task.create_by = user.id
                       where task.id = $id
@@ -104,7 +104,8 @@ if ($result->num_rows > 0) {
 
 
                       <h5><?php echo $value2['name']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | <a href="#" data-toggle="popover" title="Status" data-content="Some content inside the popover">Status</a></h6>
+                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | 
+                      <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname']?>">Status</a></h6>
 
 
                   </div>

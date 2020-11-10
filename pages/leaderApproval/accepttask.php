@@ -3,8 +3,9 @@
 <?php
 
 if ($_GET['id']) {
+  $user_id = $_SESSION["user_id"];
 
-  $sql = "UPDATE task SET status_master_id =  '5' WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id =  '5', action_by = $user_id WHERE id='" . $_GET['id'] . "'";
 
   if ($conn->query($sql) === TRUE) {
     $selectdata = "SELECT * FROM task WHERE id= '" . $_GET['id'] . "'";

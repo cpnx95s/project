@@ -4,7 +4,7 @@
 
 if ($_GET['id']) {
   $userid = $_SESSION['user_id'];
-  $sql = "UPDATE task SET status_master_id =  '3' WHERE id='" . $_GET['id'] . "'";
+  $sql = "UPDATE task SET status_master_id = '3', action_by = $userid WHERE id='" . $_GET['id'] . "'";
 
   if ($conn->query($sql) === TRUE) {
     
