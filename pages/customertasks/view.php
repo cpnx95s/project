@@ -107,7 +107,7 @@ if ($result->num_rows > 0) {
 
                       <h5><?php echo $value2['name']; ?></h5>
                       <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> |
-                       <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname']?>">Status</a></h6>
+                        <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname'] ?>">Status</a></h6>
 
 
                   </div>
@@ -119,10 +119,15 @@ if ($result->num_rows > 0) {
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
                     <li>
-                      <span class="mailbox-attachment-icon"><img src="../fileupload/<?php echo $value2['filepath']; ?>" max-width="200">
-                    </span>
 
-                      <div class="mailbox-attachment-info">
+                      <?php
+                      foreach ($result as $key => $value) {
+                      ?>
+                        <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" max-width="200">
+                        </span>
+                      <?php } ?>
+
+                      <!-- <div class="mailbox-attachment-info">
                         <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
                           <p><?php echo  $value2['filepath']; ?></p>
                         </a>
@@ -130,9 +135,9 @@ if ($result->num_rows > 0) {
                           1,245 KB
                           <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
-                      </div>
+                      </div> -->
                     </li>
-                    
+
                   </ul>
                 </div>
                 <div class="card-footer">
@@ -148,7 +153,7 @@ if ($result->num_rows > 0) {
                     </div>
                   <?php } ?>
                 </div>
-                <?php } ?>
+              <?php } ?>
               </div>
 
               <!-- start comment -->

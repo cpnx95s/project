@@ -45,7 +45,7 @@ if (isset($_POST['save'])) {
 		echo "Error Creating record: " . $conn->error;
 	}
 
-	//header('Refresh:0; url=index.php');
+	header('Refresh:0; url=index.php');
 }
 $conn->close();
 

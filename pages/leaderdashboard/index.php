@@ -274,12 +274,13 @@
 
                 } else {
                   $user_id = $_SESSION["user_id"];
-                  $sql = "select DISTINCT  t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                  s.status_name  , u.name as username, u.name  as username1
+                  $sql = "select DISTINCT  t.id, t.created, t.tag, t.launch_date, t.launch_time, t.name, t.detail, t.create_by, t.action_by, t.channel_id, t.status_master_id, t.filepath, t.remark,  c.name as channel_name, s.status_name  , u.name as username, uc.name  as actionby
                   FROM task t  
                   INNER JOIN channel c ON t.channel_id = c.id 
                   INNER JOIN status_master s ON t.status_master_id = s.id
                   INNER JOIN user u ON t.create_by = u.id
+                  INNER JOIN user uc ON t.action_by = uc.id
+                  WHERE t.status_master_id != 1;
                   ";
 
                   $result = $conn->query($sql);
@@ -308,7 +309,7 @@
                     <td><?php echo $value['launch_time']; ?></td>
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
-                    <td><?php echo $value['username1']; ?></td>
+                    <td><?php echo $value['actionby']; ?></td>
                     <td><?php echo $value['status_name']; ?></td>
 
 

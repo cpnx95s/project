@@ -14,7 +14,7 @@ if ($_GET['id']) {
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
-        $user_id = $_SESSION["user_id"];
+        $userid = $_SESSION['user_id'];
         $task_id = $row['id'];
         $status_id = $row['status_master_id'];
         $action_by = $row['create_by'];
@@ -23,9 +23,10 @@ if ($_GET['id']) {
         $time = date("h:i:s");
         echo $date;
         echo $time;
-        echo $user_id;
+        echo $userid;
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
-            VALUES ('$date', '$time', '$user_id', '$task_id', '$status_id')";
+            VALUES ('$date', '$time', '$userid','$task_id', '3')";
+    
         if ($conn->query($sql1)) {
           echo '<script> alert("Finished Pickup!")</script>';
         }
@@ -40,4 +41,4 @@ if ($_GET['id']) {
   }
   header('Refresh:0; url=index.php');
 }
-?>
+?> 

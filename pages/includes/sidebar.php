@@ -106,12 +106,12 @@ $name = $link_array[count($link_array) - 2];
             <p>My Activities</p>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="../customerreport" class="nav-link <?php echo $name == 'customerreport' ? 'active' : '' ?>">
             <i class="fa fa-pie-chart nav-icon"></i>
             <p>Report</p>
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
             <a href="../contacts" class="nav-link <?php echo $name == 'contacts' ? 'active' : '' ?>">
               <i class="fas fa-chalkboard-teacher nav-icon"></i>

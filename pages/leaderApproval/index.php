@@ -74,19 +74,19 @@
                   <th>Launch Time</th>
                   <th>Created At</th>
                   <th>Created By</th>
-                  <!-- <th>Status</th> -->
+                  <th>Update By</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
 
-                $sql = "select t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by,  t.status_master_id,  c.name as channel_name,
-                s.status_name  , u.name as username
-                FROM task t  
-                INNER JOIN channel c ON t.channel_id = c.id 
-                INNER JOIN status_master s ON t.status_master_id = s.id
-                INNER JOIN user u ON t.create_by = u.id
+                $sql = "select DISTINCT  t.id, t.created, t.tag, t.launch_date, t.launch_time, t.name, t.detail, t.create_by, t.action_by, t.channel_id, t.status_master_id, t.filepath, t.remark,  c.name as channel_name, s.status_name  , u.name as username, uc.name  as actionby
+                  FROM task t  
+                  INNER JOIN channel c ON t.channel_id = c.id 
+                  INNER JOIN status_master s ON t.status_master_id = s.id
+                  INNER JOIN user u ON t.create_by = u.id
+                  INNER JOIN user uc ON t.action_by = uc.id
                 where s.id = 4 ";
 
                 $result = $conn->query($sql);
@@ -113,7 +113,7 @@
                     <td><?php echo $value['launch_time']; ?></td>
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
-
+                    <td><?php echo $value['actionby']; ?></td>
 
                     <td>
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
