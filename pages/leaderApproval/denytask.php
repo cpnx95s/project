@@ -23,7 +23,7 @@ if ($_GET['id']) {
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, remark, action_by, task_id, status_master_id)
             VALUES ('$date', '$time', '$remark', '$user_id', '$task_id', '$status_id')";
         if ($conn->query($sql1)) {
-          echo '<script> alert("Finished Acceptance!")</script>';
+          echo '<script> alert("Finished Denial!")</script>';
         }
       }
     } else {
@@ -32,7 +32,7 @@ if ($_GET['id']) {
 
     $conn->close();
   } else {
-    echo "Error Acceptance record: " . $conn->error;
+    echo "Error record: " . $conn->error;
   }
   header('Refresh:0; url=index.php');
 }

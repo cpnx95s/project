@@ -75,6 +75,7 @@
                   <th>Created At</th>
                   <th>Created By</th>
                   <th>Update By</th>
+                  <th>Remark</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -114,7 +115,7 @@
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['actionby']; ?></td>
-
+                    <td class="text-danger"><?php echo $value['remark']; ?></td>
                     <td>
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-eye"></i>

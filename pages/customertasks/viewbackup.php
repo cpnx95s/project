@@ -110,24 +110,7 @@ if ($result->num_rows > 0) {
                     </li>
 
                   <?php } ?>
-                  <!-- <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-second"></i> <b class="text-secondary">Plan</b> By Taeyeon <br />At Today 07.55 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-primary"></i> <b class="text-primary">Open</b> By Taeyeon <br />At Today 08.55 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-info"></i> <b class="text-info">In Process</b> By Tiffany <br />At Today 09.00 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-warning"></i> <b class="text-warning">In Approve</b> By Tiffany <br />At Today 09.20 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-warning"></i> <b class="text-warning">In Commit</b> By Yoon A <br />At Today 09.30 น.
-                    </li>
-                    <li class="nav-item mb-2">
-                      <i class="fa fa-info-circle text-success"></i> <b class="text-success">Done</b> By Taeyeon <br />At Today 10.30 น.
-                    </li> -->
+
                   </ul>
                 </div>
                 <!-- /.card-body -->

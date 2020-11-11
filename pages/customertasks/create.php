@@ -31,8 +31,8 @@ if (isset($_POST['save'])) {
 
 	move_uploaded_file($_FILES['fileupload']['tmp_name'], $path_copy);
 
-	$sql = "INSERT INTO task (name, detail, launch_date, launch_time, create_by, channel_id, status_master_id, filepath)
-	 VALUES ('$taskname','$detail', '$launch_date', '$launch_time' ,'$user_id', '$channel', '$status','$newname')";
+	$sql = "INSERT INTO task (name, detail, launch_date, launch_time, create_by,action_by, channel_id, status_master_id, filepath)
+	 VALUES ('$taskname','$detail', '$launch_date', '$launch_time' ,'$user_id','$user_id', '$channel', '$status','$newname')";
 
 	if (mysqli_query($conn, $sql)) {
 		$taskid = mysqli_insert_id($conn);
