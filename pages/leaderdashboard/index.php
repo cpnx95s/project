@@ -278,8 +278,8 @@
                   FROM task t  
                   INNER JOIN channel c ON t.channel_id = c.id 
                   INNER JOIN status_master s ON t.status_master_id = s.id
-                  INNER JOIN user u ON t.create_by = u.id
-                  INNER JOIN user uc ON t.action_by = uc.id
+                  LEFT JOIN user u ON t.create_by = u.id
+                  LEFT JOIN user uc ON t.action_by = uc.id
                   WHERE t.status_master_id != 1;
                   ";
 
