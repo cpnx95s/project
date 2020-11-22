@@ -2969,6 +2969,12 @@ input[type="button"].btn-block {
   border-top: 1px solid #e9ecef;
 }
 
+.scrollable-bootstrap-menu {
+  height: auto;
+  max-height: 400px;
+  overflow-x: hidden;
+}
+
 .dropdown-item {
   display: block;
   width: 100%;
