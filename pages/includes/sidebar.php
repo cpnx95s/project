@@ -75,7 +75,7 @@ $name = $link_array[count($link_array) - 2];
           <i class="fa fa-bell"></i>
           <span class="badge badge-danger navbar-badge count"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right scrollable-bootstrap-menu">
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- <span class="dropdown-item dropdown-header">15 Notifications</span>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">

@@ -5,35 +5,6 @@ $link = $_SERVER['REQUEST_URI'];
 $link_array = explode('/', $link);
 $name = $link_array[count($link_array) - 2];
 ?>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="../../dist/img/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../../dist/img/favicons/favicon-16x16.png">
-  <link rel="manifest" href="../../dist/img/favicons/site.webmanifest">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <!-- Font Awesome -->
-  <script src="https://use.fontawesome.com/0ff79eb7ba.js"></script>
-  <!-- Ionicons -->
-  <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="../../dist/css/adminlte.css">
-
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-</head>
 
 <nav class="main-header navbar navbar-expand border-bottom navbar-dark bg-success">
   <!-- Left navbar links -->
@@ -69,14 +40,6 @@ $name = $link_array[count($link_array) - 2];
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
           <i class="fa fa-user" aria-hidden="true"></i> <?php echo strtoupper($value2['surname']); ?> <?php echo strtoupper($value2['name']); ?>
         </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-bell"></i>
-          <span class="badge badge-danger navbar-badge count"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right scrollable-bootstrap-menu">
-        </div>
       </li>
     </ul>
   <?php } ?>
@@ -158,54 +121,3 @@ $name = $link_array[count($link_array) - 2];
   </div>
   <!-- /.sidebar -->
 </aside>
-<script>
-  $(document).ready(function() {
-
-    function load_unseen_notification(view = '') {
-      $.ajax({
-        url: "fetch.php",
-        method: "POST",
-        data: {
-          view: view
-        },
-        dataType: "json",
-        success: function(data) {
-          $('.dropdown-menu').html(data.notification);
-          if (data.unseen_notification > 0) {
-            $('.count').html(data.unseen_notification);
-          }
-        }
-      });
-    }
-
-    load_unseen_notification();
-
-    $('#comment_form').on('submit', function(event) {
-      event.preventDefault();
-      if ($('#subject').val() != '' && $('#comment').val() != '') {
-        var form_data = $(this).serialize();
-        $.ajax({
-          url: "insert.php",
-          method: "POST",
-          data: form_data,
-          success: function(data) {
-            $('#comment_form')[0].reset();
-            load_unseen_notification();
-          }
-        });
-      } else {
-        alert("Both Fields are Required");
-      }
-    });
-
-    $(document).on('click', '.dropdown-toggle', function() {
-      $('.count').html('');
-      load_unseen_notification('yes');
-    });
-
-    setInterval(function() {
-      load_unseen_notification();;
-    }, 5000);
-
-  });
-</script>
