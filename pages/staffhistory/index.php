@@ -1,6 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
-
+<?php include_once('../includes/convertstatus.php') ?>
 <!DOCTYPE html>
 <html>
 
@@ -100,10 +100,12 @@
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
+                  $statusth1 = statusth($value['statusname']);
+
                 ?>
                   <tr>
 
-                    <td>คุณได้เปลี่ยนสถานะรายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เป็น <?php echo $value['statusname']; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น.</td>
+                    <td>คุณได้เปลี่ยนสถานะรายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เป็น <?php echo $statusth1; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น.</td>
 
                   </tr>
                 <?php }

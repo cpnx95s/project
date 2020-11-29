@@ -28,7 +28,7 @@ if (isset($_POST['save'])) {
 	$numrand = (mt_rand());
 	$path = "../fileupload/";
 	$type = strrchr($_FILES['fileupload']['name'],".");
-
+	$size = ($_FILES['fileupload']['size']);
 	$newname = $datepic.$numrand.$type;
 	$path_copy = $path . $newname;
 	$path_link= "../fileupload/". $newname;
@@ -44,6 +44,16 @@ if (isset($_POST['save'])) {
 		VALUES ('$date', '$time','$user_id', '$status', '$taskid')";
 		if (mysqli_query($conn, $sql1)) {
 			$user_id = $_SESSION["user_id"];
+			$sql_file= "INSERT INTO files(path, name, size)
+			VALUES ('$path_copy', '$newname', '$size')";
+			if (mysqli_query($conn, $sql_file)) {
+				$fileid = mysqli_insert_id($conn);
+				$sql_filetask = "INSERT INTO file_task(file_id, task_id)
+				VALUES ('$fileid', '$taskid')";
+				if (mysqli_query($conn, $sql_filetask)) {
+			
+				}
+			}
 			$sql2 = "SELECT * FROM user WHERE id = $user_id";
 			$result2 = $conn->query($sql2);
 			foreach ($result2 as $key => $value2) {
@@ -56,7 +66,7 @@ if (isset($_POST['save'])) {
 				$mail->SMTPAuth = true;
 
 				$gmail_username = "thetong1911.2@gmail.com"; // gmail ที่ใช้ส่ง
-				$gmail_password = "0816068459"; // รหัสผ่าน gmail
+				$gmail_password = "Tongmook080859"; // รหัสผ่าน gmail
 				// ตั้งค่าอนุญาตการใช้งานได้ที่นี่ https://myaccount.google.com/lesssecureapps?pli=1
 
 				$sender = "IBS Support"; // ชื่อผู้ส่ง

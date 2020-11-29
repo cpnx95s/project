@@ -1,5 +1,7 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
+<?php include_once('../includes/convertstatus.php') ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -300,6 +302,8 @@
                 }
 
                 foreach ($GLOBALS['result1'] as $key => $value) {
+                  $statusth1 = statusth($value['status_name']);
+
                 ?>
                   <tr>
                     <td><?php echo $value['id']; ?></td>
@@ -310,7 +314,7 @@
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['actionby']; ?></td>
-                    <td><?php echo $value['status_name']; ?></td>
+                    <td><?php echo $statusth1; ?></td>
 
 
                     <!-- <td>

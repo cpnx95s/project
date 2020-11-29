@@ -1,5 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
+<?php include_once('../includes/convertstatus.php') ?>
 
 <!DOCTYPE html>
 <html>
@@ -92,7 +93,7 @@
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
                 where t.create_by = $user_id 
-                ORDER BY t.launch_date,t.launch_time ASC
+                ORDER BY t.id ASC
                 ";
 
                 $result = $conn->query($sql);
@@ -109,6 +110,7 @@
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
+                  $statusth1 = statusth($value['status']);
                 ?>
                   <tr>
 
@@ -117,7 +119,7 @@
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
                     <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['status']; ?></td>
+                    <td><?php echo $statusth1; ?></td>
 
                     <td><?php echo $value['created']; ?></td>
                     <td>

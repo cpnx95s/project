@@ -1,5 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
+<?php include_once('../includes/convertstatus.php') ?>
 <?php
 $sql = "SELECT * FROM task WHERE id='" . $_GET['id'] . "'";
 $result = $conn->query($sql) or die($conn->error);
@@ -82,10 +83,12 @@ if ($result->num_rows > 0) {
                     <?php
                     $id = $_GET['id'];
                     $sql2 = "select task.id, task.created, task.name, task.detail,task.filepath, user.name as username, status_name as statusname,
-                      user.id as user_id
+                      user.id as user_id, files.size as sizefile
                       from task
                       inner join user on task.create_by = user.id
                       inner join status_master on task.status_master_id = status_master.id
+                      inner join file_task on task.id = file_task.task_id
+                      inner join files on files.id = file_task.file_id
                       where task.id = $id
                       ";
                     $result2 = $conn->query($sql2);
@@ -97,17 +100,18 @@ if ($result->num_rows > 0) {
                         // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                       }
                     } else {
-                      echo "0 results";
+
                     }
                     // for ($id = 1; $id <= 5; $id++) { 
                     foreach ($result2 as $key => $value2) {
                     ?>
 
-
-
                       <h5><?php echo $value2['name']; ?></h5>
                       <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> |
-                        <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname'] ?>">Status</a></h6>
+                        <a href="#" data-toggle="popover" title="Status" data-content="<?php
+                         $statusth1 = statusth($value2['statusname']);
+                         echo $statusth1;
+                          ?>">Status</a></h6>
 
 
                   </div>
@@ -123,19 +127,24 @@ if ($result->num_rows > 0) {
                       <?php
                       foreach ($result as $key => $value) {
                       ?>
-                        <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" max-width="200">
+                        <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" width="400" height="400">
                         </span>
-                      <?php } ?>
 
-                      <!-- <div class="mailbox-attachment-info">
+                      <div class="mailbox-attachment-info">
                         <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
-                          <p><?php echo  $value2['filepath']; ?></p>
-                        </a>
+                        <?php echo  $value2['filepath']; ?>                       
+                       </a>
                         <span class="mailbox-attachment-size">
-                          1,245 KB
+                          <?php 
+                            $size = convertTodigitalStorage($value2['sizefile']);
+                            echo $size;
+                          ?>
+                          <!-- 1,245 KB -->
                           <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
-                      </div> -->
+                      </div>
+                      <?php } ?>
+
                     </li>
 
                   </ul>

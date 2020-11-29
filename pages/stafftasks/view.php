@@ -87,25 +87,24 @@ if ($result->num_rows > 0) {
                       where task.id = $id
                       ";
                     $result2 = $conn->query($sql2);
-                    // if (!empty($result) && $result->num_rows > 0) {
+                    if (!empty($result2) && $result2->num_rows > 0) {
 
-                    if ($result2->num_rows > 0) {
-                      // output data of each row
-                      while ($row = $result2->fetch_assoc()) {
-                        // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                      if ($result2->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $result2->fetch_assoc()) {
+                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                        }
+                      } else {
                       }
-                    } else {
-                      echo "0 results";
-                    }
-                    // for ($id = 1; $id <= 5; $id++) { 
-                    foreach ($result2 as $key => $value2) {
+                      // for ($id = 1; $id <= 5; $id++) { 
+                      foreach ($result2 as $key => $value2) {
                     ?>
 
 
 
-                      <h5><?php echo $value2['name']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | 
-                      <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname']?>">Status</a></h6>
+                        <h5><?php echo $value2['name']; ?></h5>
+                        <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> |
+                          <a href="#" data-toggle="popover" title="Status" data-content="<?php echo $value2['statusname'] ?>">Status</a></h6>
 
 
                   </div>
@@ -113,7 +112,8 @@ if ($result->num_rows > 0) {
                   <div class="mailbox-read-message">
                     <p><?php echo  $value2['detail']; ?></p>
                   </div>
-                <?php } ?>
+              <?php }
+                    } ?>
                 </div>
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
