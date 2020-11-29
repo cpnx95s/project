@@ -11,7 +11,7 @@ if (isset($_POST['view'])) {
     mysqli_query($conn, $update_query);
   }
   $user_id = $_SESSION["user_id"];
-  $query = "SELECT task.name as name , sm.status_name as status FROM task INNER JOIN status_master sm ON sm.id = task.status_master_id 
+  $query = "SELECT task.id as taskid, task.name as name , sm.status_name as status FROM task INNER JOIN status_master sm ON sm.id = task.status_master_id 
  WHERE task.create_by = $user_id ORDER BY task.id DESC ";
   $result = mysqli_query($conn, $query);
   $output = '';
@@ -19,7 +19,7 @@ if (isset($_POST['view'])) {
     while ($row = mysqli_fetch_array($result)) {
       $output .= '
    <div class="dropdown-divider"></div>
-   <a href="#" class="dropdown-item">
+   <a href="http://localhost/project/pages/customertasks/view.php?id=' . $row["taskid"] . '" class="dropdown-item">
     <strong>ชื่องาน: ' . $row["name"] . '</strong><br />
    <small><em>สถานะของงาน: ' . $row["status"] . '</em></small>
    </a>
