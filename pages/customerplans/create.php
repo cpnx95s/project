@@ -46,7 +46,7 @@ if (isset($_POST['save'])) {
 
 				$sender = "IBS Support"; // ชื่อผู้ส่ง
 				$email_sender = "noreply@ibsone.com"; // เมล์ผู้ส่ง 
-				$email_receiver = $value2['email']; // เมล์ผู้รับ ***
+				$email_receiver = "thetong1911.2@gmail.com"; // เมล์ผู้รับ ***
 
 				$subject = "สร้างงาน"; // หัวข้อเมล์
 
