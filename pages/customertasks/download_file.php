@@ -13,25 +13,46 @@ if ($_GET['id']) {
     foreach ($result2 as $key => $value2) {
         $file_name = $value2['name'];
         $file_path = $value2['path'];
-        echo $file_name;
-        echo $file_path;
+        // echo $file_name;
 
-        if (file_exists($file_path)) {
+        // if (file_exists($file_name)) {
+        // header('Content-Description: File Transfer');
+        // header('Content-Type: application/zip');
+        // header('Content-Disposition: attachment; filename="' . $file_name . '"');
+        // header('Expires: 0');
+        // header('Cache-Control: public');
+        // header('Content-Transfer-Encoding: binary');
+        // readfile($file_path);
+        // die();
+        // } else {
+        //     http_response_code(404);
+        //     die();
+        // }
+
+
+        // if (file_exists($file_name)) {
             header('Content-Description: File Transfer');
-            header('Content-Type: application/zip');
+            header('Content-Type: application/octet-stream');
             header('Content-Disposition: attachment; filename="' . $file_name . '"');
-            header('Expires: 0');
-            header('Cache-Control: public');
             header('Content-Transfer-Encoding: binary');
-            // header('Pragma: public');
-            // header('Content-Length: ' . filesize($file_path));
-            // flush(); // Flush system output buffer
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file_path));
+            ob_clean();
+            flush();
             readfile($file_path);
-            die();
-        } else {
-            http_response_code(404);
-            die();
-        }
+            exit();
+            // header('Content-Description: File Transfer');
+            // header('Content-Type: application/octet-stream');
+            // header('Content-Disposition: attachment; filename="' . basename($file_name) . '"');
+            // header('Expires: 0');
+            // header('Cache-Control: must-revalidate');
+            // header('Pragma: public');
+            // header('Content-Length: ' . filesize($file_name));
+            // readfile($file_name);
+            // exit;
+        // }
     }
 }
 
