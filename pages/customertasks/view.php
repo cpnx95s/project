@@ -82,7 +82,7 @@ if ($result->num_rows > 0) {
 
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail,task.filepath, user.name as username, status_name as statusname,
+                    $sql2 = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
                       user.id as user_id, files.size as sizefile
                       from task
                       inner join user on task.create_by = user.id
@@ -132,7 +132,7 @@ if ($result->num_rows > 0) {
 
                       <div class="mailbox-attachment-info">
                         <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
-                        <?php echo  $value2['filepath']; ?>                       
+                        <?php echo  $value2['filename']; ?>                       
                        </a>
                         <span class="mailbox-attachment-size">
                           <?php 
@@ -140,7 +140,7 @@ if ($result->num_rows > 0) {
                             echo $size;
                           ?>
                           <!-- 1,245 KB -->
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="download_file.php?id=<?php echo $value2['fileid']?>" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
                       </div>
                       <?php } ?>

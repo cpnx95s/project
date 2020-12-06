@@ -70,32 +70,14 @@ $name = $link_array[count($link_array) - 2];
           <i class="fa fa-user" aria-hidden="true"></i> <?php echo strtoupper($value2['surname']); ?> <?php echo strtoupper($value2['name']); ?>
         </a>
       </li>
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-bell"></i>
           <span class="badge badge-danger navbar-badge count"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right scrollable-bootstrap-menu">
-          <!-- <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> -->
         </div>
-      </li>
+      </li> -->
     </ul>
   <?php } ?>
 </nav>
@@ -186,7 +168,7 @@ $name = $link_array[count($link_array) - 2];
   </div>
   <!-- /.sidebar -->
 </aside>
-<script>
+<!-- <script>
   $(document).ready(function() {
 
     function load_unseen_notification(view = '') {
@@ -236,4 +218,4 @@ $name = $link_array[count($link_array) - 2];
     }, 5000);
 
   });
-</script>
+</script> -->

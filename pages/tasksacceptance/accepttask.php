@@ -3,7 +3,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 
-require '/xampp/htdocs/MyPJ/pages/vendor/autoload.php';
+require '/xampp/htdocs/project/pages/vendor/autoload.php';
 if ($_GET['id']) {
 
   $sql = "UPDATE task SET status_master_id =  '6' WHERE id='" . $_GET['id'] . "'";
@@ -25,7 +25,8 @@ if ($_GET['id']) {
             VALUES ('$date', '$time', '$action_by', '$task_id', '$status_id')";
         if ($conn->query($sql1)) {
           $user_id = $_SESSION["user_id"];
-          $sql2 = "SELECT * FROM user WHERE id = $user_id";
+          $sql2 = "SELECT user.name as name, task.name as taskname, task.id as taskid FROM task 
+          INNER JOIN user on task.action_by = user.id WHERE task.id = '" . $_GET['id'] . "'";
           $result2 = $conn->query($sql2);
           foreach ($result2 as $key => $value2) {
               $mail = new PHPMailer(true);
@@ -66,7 +67,7 @@ if ($_GET['id']) {
                       <div style='padding:20px;'>
                           <div>				
                               <h2>ชื่่องานที่แก้ไข : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
-                              <a href='http://localhost/MyPJ/' target='_blank'>
+                              <a href='http://localhost/project/pages/taskacceptance/view.php?id=". $taskid ."' target='_blank'>
                                   <h1><strong style='color:#3c83f9;'> >> กรุณาคลิ๊กที่นี่ เพื่อตั้งรหัสผ่านใหม่<< </strong> </h1>
                               </a>
                           </div>

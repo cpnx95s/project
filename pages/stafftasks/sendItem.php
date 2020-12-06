@@ -28,7 +28,8 @@ if ($_GET['id']) {
             VALUES ('$date', '$time', '$user_id','$task_id', '4')";
         if ($conn->query($sql1)) {
           $user_id = $_SESSION["user_id"];
-          $sql2 = "SELECT * FROM user WHERE id = $user_id";
+          $sql2 = "SELECT user.name as name, task.name as taskname, task.id as taskid FROM task 
+          INNER JOIN user ON task.action_by = user.id  WHERE user.role_master_id = '3'";
           $result2 = $conn->query($sql2);
           foreach ($result2 as $key => $value2) {
               $mail = new PHPMailer(true);
@@ -45,7 +46,7 @@ if ($_GET['id']) {
 
               $sender = "IBS Support"; // ชื่อผู้ส่ง
               $email_sender = "noreply@ibsone.com"; // เมล์ผู้ส่ง 
-              $email_receiver = "thetong1911.2@gmail.com"; // เมล์ผู้รับ ***
+              $email_receiver = $value2['email']; // เมล์ผู้รับ ***
 
               $subject = "แก้ไขสถานะงาน"; // หัวข้อเมล์
 
@@ -69,7 +70,7 @@ if ($_GET['id']) {
                       <div style='padding:20px;'>
                           <div>				
                               <h2>ชื่่องานที่แก้ไข : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
-                              <a href='http://localhost/MyPJ/' target='_blank'>
+                              <a href='http://localhost/project/pages/stafftasks/view.php?id=". $taskid ."' target='_blank'>
                                   <h1><strong style='color:#3c83f9;'> >> กรุณาคลิ๊กที่นี่ เพื่อตั้งรหัสผ่านใหม่<< </strong> </h1>
                               </a>
                           </div>
