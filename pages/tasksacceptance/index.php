@@ -38,45 +38,30 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Tasks Acceptance</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tasks Acceptance</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Acceptance List</h3>
+            <h3 class="card-title d-inline-block">รายการตรวจรับงาน</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>รหัส</th>
                   <th>ชื่องาน</th>
-                  <th>Channel</th>
+                  <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
                   <th>เวลาเผยแพร่</th>
-                  <th>Created At</th>
+                  <th>วันเวลาที่สร้าง</th>
                   <!-- <th>Created By</th>
                   <th>Created At</th> -->
                   <!-- <th>Status</th> -->
-                  <th>Action</th>
+                  <th>จัดการ</th>
                 </tr>
               </thead>
               <tbody>
@@ -178,14 +163,14 @@
     });
 
     function acceptItem(id) {
-      if (confirm('Are you sure, you want to Accept this task?') == true) {
+      if (confirm('ยันยันการตรวจรับงานใช่หรือไม่') == true) {
         window.location = `accepttask.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }
     };
 
     function denyItem(id) {
-      var retVal = prompt("Enter your Reason for not passing : ");
+      var retVal = prompt("เหตุผลที่ไม่ยอมรับงานนี้คือ");
       if (retVal != null) {
         window.location = `denytask.php?id=${id}&remark=${retVal}`;
       }

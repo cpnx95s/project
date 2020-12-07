@@ -241,14 +241,14 @@
                 <tr>
                   <th>ID</th>
                   <th>ชื่องาน</th>
-                  <th>Channel</th>
+                  <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
                   <th>เวลาเผยแพร่</th>
-                  <th>Created At</th>
-                  <th>Created By</th>
+                  <th>วันเวลาที่สร้าง</th>
+                  <th>สร้างโดย</th>
                   <!-- <th>Updated By</th> -->
-                  <th>Status</th>
-                 
+                  <th>สถานะงาน</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -306,14 +306,14 @@
                     <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
+                    <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
                     <td><?php echo $value['created']; ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <!-- <td><?php echo $value['usernamelast']; ?></td> -->
                     <td><?php echo $statusth1; ?></td>
 
 
-                   
+
                   </tr>
                 <?php }
                 $conn->close();

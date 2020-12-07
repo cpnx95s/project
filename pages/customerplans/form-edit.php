@@ -39,28 +39,12 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>จัดการรายการงาน</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
-                <li class="breadcrumb-item active">Edit Data</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
       <section class="content">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create Data</h3>
+            <h3 class="card-title">แก้ไขแผนงาน</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -83,7 +67,6 @@
             } else {
               echo "0 results";
             }
-
           }
           foreach ($result as $key => $value) { ?>
             <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post">
@@ -96,7 +79,7 @@
 
                 <!--field ของ channel -->
                 <div class="form-group">
-                  <label>Select ช่องทางสังคมออนไลน์</label>
+                  <label>ช่องทางสังคมออนไลน์</label>
                   <select class="form-control select2" data-placeholder="Select ช่องทางสังคมออนไลน์" style="width: 100%;" name="channel">
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -119,47 +102,35 @@
                     } else {
                       echo "0 results";
                     }
-                    $sql2 = "Select * FROM channel where NOT id = '".$value['channel_id']."'";
+                    $sql2 = "Select * FROM channel where NOT id = '" . $value['channel_id'] . "'";
                     $result2 = $mysqli->query($sql2);
                     if ($result2->num_rows > 0) {
                       // output data of each row
                       while ($row1 = $result2->fetch_assoc()) {
-
                       }
                     } else {
                       echo "0 results";
                     }
-                     ?>
-                      <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name?></option>
-                      <?php foreach($result2 as $key => $value2){ ?>
+                    ?>
+                    <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name ?></option>
+                    <?php foreach ($result2 as $key => $value2) { ?>
                       <option value="<?php echo $value2["id"] ?>"><?php echo $value2["name"] ?></option>
-                      <?php } ?>
+                    <?php } ?>
                   </select>
                 </div>
 
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">
-                      Detail
-                    </h3>
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="mb-3">
-                      <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
-                    </div>
+                <div class="form-group">
+                  <label for="ชื่องาน">รายละเอียด</label>
+                  <div class="mb-3">
+                    <textarea id="detail" name="detail" style="width: 100%" ><?php echo $value['detail']; ?></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label>Upload Files</label>
+                  <label>ไฟล์</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="file" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
                   </div>
                   <figure class="figure text-center d-none mt-2">
                     <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
@@ -177,10 +148,10 @@
                 </div>
 
                 <!-- field ของ status -->
-                <div class="form-group">
-                  <label>สถานะงาน_master</label>
+                <!-- <div class="form-group">
+                  <label>สถานะงาน</label>
                   <select class="form-control select" style="width: 100%;" name="status">
-                  <?php
+                    <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
                     // Check connection
                     if ($mysqli->connect_errno) {
@@ -206,22 +177,21 @@
                     if ($result4->num_rows > 0) {
                       // output data of each row
                       while ($row1 = $result4->fetch_assoc()) {
-
                       }
                     } else {
                       echo "0 results";
                     }
-                     ?>
-                      <option value="<?php echo $status_id ?>" selected><?php echo $status_name?></option>
-                      <?php foreach($result4 as $key => $value3){ ?>
+                    ?>
+                    <option value="<?php echo $status_id ?>" selected><?php echo $status_name ?></option>
+                    <?php foreach ($result4 as $key => $value3) { ?>
                       <option value="<?php echo $value3["id"] ?>"><?php echo $value3["status_name"] ?></option>
-                      <?php } ?>
+                    <?php } ?>
                   </select>
-                </div> 
+                </div> -->
 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" name="update">Submit</button>
+                <button type="submit" class="btn btn-primary" name="update">บันทึก</button>
               </div>
             </form>
           <?php }

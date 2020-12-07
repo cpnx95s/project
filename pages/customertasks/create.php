@@ -124,7 +124,7 @@ if (isset($_POST['save'])) {
 					}
 				}
 			}
-			echo '<script> alert("สร้างสำเร็จ")</script>';
+			echo '<script> alert("สร้างรายการงานสำเร็จ")</script>';
 		}
 	} else {
 		echo "Error Creating record: " . $conn->error;

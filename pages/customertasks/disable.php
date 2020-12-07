@@ -22,7 +22,7 @@ if ($_GET['id']) {
             VALUES ('$date', '$time', '$action_by', '$task_id', '$status_id')";
         if ($conn->query($sql1)) {
           $user_id = $_SESSION["user_id"];
-          echo '<script> alert("ลบสำเร็จ")</script>';
+          echo '<script> alert("ลบรายการงานสำเร็จ")</script>';
           $conn->close();
         } else {
           echo "Error deleting record: " . $conn->error;

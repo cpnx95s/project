@@ -39,28 +39,13 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>จัดการรายการงาน</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
-                <li class="breadcrumb-item active">สร้างรายการงาน</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
+
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">สร้างรายการงาน</h3>
+            <h3 class="card-title">สร้างรายการแผนงาน</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -73,7 +58,7 @@
               </div>
 
               <div class="form-group">
-                <label>Select ช่องทางสังคมออนไลน์</label>
+                <label>ช่องทางสังคมออนไลน์</label>
                 <select class="form-control select2" data-placeholder="Select ช่องทางสังคมออนไลน์" style="width: 100%;" name="channel">
                   <?php
                   $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -110,37 +95,9 @@
                 <input type="time" class="form-control" id="launchtime" name="launchtime" placeholder="ชื่องาน">
               </div>
 
-              <div class="form-group">
-                <label>สถานะงาน</label>
-                <select class="form-control select" data-placeholder="สถานะงาน_master" style="width: 100%;" name="status">
-                  <?php
-                  $mysqli = new mysqli("localhost", "root", "", "myproject");
-
-                  // Check connection
-                  if ($mysqli->connect_errno) {
-                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                    exit();
-                  }
-                  $sql = "Select * FROM status_master WHERE ID=1";
-                  $result = $mysqli->query($sql);
-                  if ($result->num_rows > 0) {
-                    // output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                      // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                    }
-                  } else {
-                    echo "0 results";
-                  }
-
-                  foreach ($result as $key => $value) { ?>
-                    <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-
             </div>
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary" name="save">Submit</button>
+              <button type="submit" class="btn btn-primary" name="save">บันทึก</button>
             </div>
           </form>
         </div>

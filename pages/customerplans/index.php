@@ -38,46 +38,32 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Plans Management</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Plans Management</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
+
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Plans List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Plans +</a href="">
+            <h3 class="card-title d-inline-block">รายการแผนงาน</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">สร้างแผนงาน</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>รหัส</th>
                   <th>ชื่องาน</th>
-                  <th>Channel</th>
+                  <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
                   <th>เวลาเผยแพร่</th>
-                  <th>Created At</th>
+                  <th>วันเวลาที่สร้าง</th>
                   <!-- <th>Created By</th>
                   <th>Created At</th> -->
                   <!-- <th>Status</th> -->
-                  <th>Action</th>
+                  <th>จัดการ</th>
                 </tr>
               </thead>
               <tbody>
@@ -115,7 +101,7 @@
                     <td><?php echo $value['name']; ?></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
+                    <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
                     <td><?php echo $value['created']; ?></td>
                     <!-- <td><?php echo $value['username']; ?></td>
                     

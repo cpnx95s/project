@@ -108,7 +108,7 @@
               </div>
 
               <div class="form-group">
-                <label>อัปโหลดไฟล์</label>
+                <label>ไฟล์</label>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" name="fileupload" id="customFile" multiple>
                   <label class="custom-file-label" for="customFile">เลือกไฟล์</label>

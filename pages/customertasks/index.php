@@ -39,30 +39,15 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>จัดการรายการงาน</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">จัดการรายการงาน</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href="">
+            <h3 class="card-title d-inline-block">รายการงาน</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">สร้างรายการงาน</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -70,17 +55,17 @@
               <thead>
                 <tr>
 
-                  <th>ID</th>
+                  <th>รหัส</th>
                   <th>ชื่องาน</th>
-                  <th>Channel</th>
+                  <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
                   <th>เวลาเผยแพร่</th>
 
                   <!-- <th>Created By</th>
                   <th>Created At</th> -->
-                  <th>Status</th>
-                  <th>Created At</th>
-                  <th>Action</th>
+                  <th>สถานะงาน</th>
+                  <th>วันเวลาที่สร้าง</th>
+                  <th>จัดการ</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,7 +77,7 @@
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.create_by = $user_id 
+                where t.create_by = $user_id and t.status_master_id != 7
                 ORDER BY t.id ASC
                 ";
 
@@ -118,7 +103,7 @@
                     <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
+                    <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
                     <td><?php echo $statusth1; ?></td>
 
                     <td><?php echo $value['created']; ?></td>
@@ -181,7 +166,7 @@
         "paging": true,
         "lengthChange": true,
         "searching": true,
-        "ordering": false,
+        "ordering": true,
         "info": true,
         "autoWidth": true
       });
