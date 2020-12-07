@@ -110,7 +110,7 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../leaderdashboard" class="nav-link <?php echo $name == 'leaderdashboard' ? 'active' : '' ?>">
             <i class="fa fa-search nav-icon"></i>
-            <p>Tasks</p>
+            <p>ค้นหางาน</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -123,14 +123,14 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../leaderApproval" class="nav-link <?php echo $name == 'leaderApproval' ? 'active' : '' ?>">
             <i class="fa fa-tasks nav-icon"></i>
-            <p>My Approval</p>
+            <p>ตรวจสอบงาน</p>
           </a>
         </li>
 
         <li class="nav-item">
           <a href="../leaderHistory" class="nav-link <?php echo $name == 'leaderHistory' ? 'active' : '' ?>">
             <i class="fa fa-history nav-icon"></i>
-            <p>My Activities</p>
+            <p>ดูประวัติงาน</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -145,36 +145,36 @@ $name = $link_array[count($link_array) - 2];
               <p>Contacts</p>
             </a> -->
         <!-- </li> -->
-        <li class="nav-header">Connfiguration</li>
+        <li class="nav-header">จัดการข้อมูล</li>
         <li class="nav-item">
           <a href="../leaderUserManage" class="nav-link <?php echo $name == 'leaderUserManage' ? 'active' : '' ?>">
             <i class="fa fa-user nav-icon"></i>
-            <p>User Management</p>
+            <p>บัญชีผู้ใช้</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../companymanage" class="nav-link <?php echo $name == 'companymanage' ? 'active' : '' ?>">
             <i class="fa fa-building-o nav-icon"></i>
-            <p>Company Management</p>
+            <p>องค์กร</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../channelmanage" class="nav-link <?php echo $name == 'channelmanage' ? 'active' : '' ?>">
             <i class="fa fa-comments-o nav-icon"></i>
-            <p>Channel Management</p>
+            <p>ช่องทางสังคมออนไลน์</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../statusmanage" class="nav-link <?php echo $name == 'statusmanage' ? 'active' : '' ?>">
             <i class="fa fa-quote-left nav-icon"></i>
-            <p>Status Management</p>
+            <p>สถานะงาน</p>
           </a>
         </li>
-        <li class="nav-header">Account Settings</li>
+        <li class="nav-header">ตั้งค่าบัญชี</li>
         <li class="nav-item">
           <a href="../../logout.php" class="nav-link">
             <i class="fa fa-sign-out"></i>
-            <p>Logout</p>
+            <p>ลงชื่อออก</p>
           </a>
         </li>
       </ul>

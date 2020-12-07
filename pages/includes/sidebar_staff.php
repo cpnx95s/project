@@ -110,7 +110,7 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../staffdashboard" class="nav-link <?php echo $name == 'staffdashboard' ? 'active' : '' ?>">
             <i class="fa fa-search nav-icon"></i>
-            <p>Tasks</p>
+            <p>หยิบงาน</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -123,14 +123,14 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../stafftasks" class="nav-link <?php echo $name == 'stafftasks' ? 'active' : '' ?>">
             <i class="fa fa-tasks nav-icon"></i>
-            <p>My Tasks</p>
+            <p>งานของฉัน</p>
           </a>
         </li>
 
         <li class="nav-item">
           <a href="../staffhistory" class="nav-link <?php echo $name == 'staffhistory' ? 'active' : '' ?>">
             <i class="fa fa-history nav-icon"></i>
-            <p>My Activities</p>
+            <p>ดูประวัติงาน</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -145,11 +145,11 @@ $name = $link_array[count($link_array) - 2];
               <p>Contacts</p>
             </a> -->
         <!-- </li> -->
-        <li class="nav-header">Account Settings</li>
+        <li class="nav-header">ตั้งค่าบัญชี</li>
         <li class="nav-item">
           <a href="../../logout.php" class="nav-link">
             <i class="fa fa-sign-out"></i>
-            <p>Logout</p>
+            <p>ลงชื่อออก</p>
           </a>
         </li>
       </ul>

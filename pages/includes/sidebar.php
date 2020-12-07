@@ -110,7 +110,7 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../dashboard" class="nav-link <?php echo $name == 'dashboard' ? 'active' : '' ?>">
             <i class="fa fa-search nav-icon"></i>
-            <p>Tasks</p>
+            <p>ค้นหารายการงาน</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -122,25 +122,25 @@ $name = $link_array[count($link_array) - 2];
         <li class="nav-item">
           <a href="../customerplans" class="nav-link <?php echo $name == 'customerplans' ? 'active' : '' ?>">
             <i class="fa fa-list nav-icon"></i>
-            <p>My Plans</p>
+            <p>จัดการแผนงาน</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../customertasks" class="nav-link <?php echo $name == 'customertasks' ? 'active' : '' ?>">
             <i class="fa fa-tasks nav-icon"></i>
-            <p>My Tasks</p>
+            <p>จัดการรายการงาน</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../tasksacceptance" class="nav-link <?php echo $name == 'tasksacceptance' ? 'active' : '' ?>">
             <i class="fa fa-check-square nav-icon"></i>
-            <p>My Acceptance</p>
+            <p>จัดการการตรวจรับงาน</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="../customerhistory" class="nav-link <?php echo $name == 'customerhistory' ? 'active' : '' ?>">
             <i class="fa fa-history nav-icon"></i>
-            <p>My Activities</p>
+            <p>ดูประวัติงาน</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -155,11 +155,11 @@ $name = $link_array[count($link_array) - 2];
               <p>Contacts</p>
             </a> -->
         <!-- </li> -->
-        <li class="nav-header">Account Settings</li>
+        <li class="nav-header">ตั้งค่าบัญชี</li>
         <li class="nav-item">
           <a href="../../logout.php" class="nav-link">
             <i class="fa fa-sign-out"></i>
-            <p>Logout</p>
+            <p>ลงชื่อออก</p>
           </a>
         </li>
       </ul>
