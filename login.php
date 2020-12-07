@@ -26,11 +26,9 @@ if (isset($_POST['submit'])) {
   // $_SESSION['authen_id'] = 1;
   if ($objResult["role_master_id"] == 1) {
     header('Location: pages/dashboard');
-
-  }else if ($objResult["role_master_id"] == 2) {
+  } else if ($objResult["role_master_id"] == 2) {
     header('Location: pages/staffdashboard');
-
-  }else if ($objResult["role_master_id"] == 3) {
+  } else if ($objResult["role_master_id"] == 3) {
     header('Location: pages/leaderdashboard');
   }
 }
@@ -66,13 +64,13 @@ if (isset($_POST['submit'])) {
 
 <body class="hold-transition login-page">
   <div class="login-box">
-    <div class="login-logo">
-      <a href="#"><b>Admin</b></a>
+    <div class="text-center">
+      <p><b>ระบบติดตามสำหรับการจัดการ<br/>สื่อโฆษณาบนสังคมออนไลน์</b></p>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Login to start your Admin</p>
+        <p class="login-box-msg">ลงชื่อเข้าใช้สู่ระบบ</p>
 
         <form action="" method="post">
 
@@ -80,19 +78,19 @@ if (isset($_POST['submit'])) {
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="txtUsername">
+            <input type="text" class="form-control" placeholder="ชื่อผู้ใช้" aria-label="Username" aria-describedby="basic-addon1" name="txtUsername">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-lock"></i></span>
             </div>
-            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" name="txtPassword">
+            <input type="password" class="form-control" placeholder="รหัสผ่าน" aria-label="Password" aria-describedby="basic-addon1" name="txtPassword">
           </div>
 
           <div class="row">
             <!-- /.col -->
             <div class="col-12">
-              <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+              <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">ลงชื่อเข้าใช้</button>
             </div>
             <!-- /.col -->
           </div>
