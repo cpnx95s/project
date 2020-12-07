@@ -1,5 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
+<?php include_once('../includes/convertstatus.php') ?>
 <?php
 $sql = "SELECT * FROM task WHERE id='" . $_GET['id'] . "'";
 $result = $conn->query($sql) or die($conn->error);
@@ -16,7 +17,7 @@ if ($result->num_rows > 0) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks View</title>
+  <title>รายละเอียดรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -50,25 +51,9 @@ if ($result->num_rows > 0) {
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Tasks View</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Tasks View</a></li>
-                <li class="breadcrumb-item active">Tasks</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-3">
         <div class="container-fluid">
           <div class="row">
 
@@ -81,12 +66,18 @@ if ($result->num_rows > 0) {
 
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
+                    $sql2 = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
+                      user.id as user_id, files.size as sizefile
                       from task
                       inner join user on task.create_by = user.id
+                      inner join status_master on task.status_master_id = status_master.id
+                      inner join file_task on task.id = file_task.task_id
+                      inner join files on files.id = file_task.file_id
                       where task.id = $id
                       ";
                     $result2 = $conn->query($sql2);
+
+
                     // if (!empty($result) && $result->num_rows > 0) {
 
                     if ($result2->num_rows > 0) {
@@ -95,74 +86,65 @@ if ($result->num_rows > 0) {
                         // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                       }
                     } else {
-                      echo "0 results";
                     }
                     // for ($id = 1; $id <= 5; $id++) { 
+
                     foreach ($result2 as $key => $value2) {
+                      $statusth1 = statusth($value2['statusname']);
                     ?>
 
-
-
                       <h5><?php echo $value2['name']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?> | <a href="#" data-toggle="popover" title="Status" data-content="Some content inside the popover">Status</a></h6>
-
+                      <h6 class="text-secondary">สร้างโดย <?php echo  $value2['username']; ?> วันที่ <?php echo substr($value2['created'], 0, 10); ?> เวลา <?php echo substr($value2['created'], 11, 5); ?> น. | <?php echo  $statusth1; ?>
 
                   </div>
 
                   <div class="mailbox-read-message">
                     <p><?php echo  $value2['detail']; ?></p>
                   </div>
-                <?php } ?>
                 </div>
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
                     <li>
-                      <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
 
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Sep2014-report.pdf</a>
-                        <span class="mailbox-attachment-size">
-                          1,245 KB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="mailbox-attachment-icon"><i class="fa fa-file-word-o"></i></span>
+                      <?php
+                      foreach ($result as $key => $value) {
+                      ?>
+                        <!-- <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" width="400" height="400">
+                        </span> -->
 
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> App Description.docx</a>
-                        <span class="mailbox-attachment-size">
-                          1,245 KB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo1.png" alt="Attachment"></span>
+                        <div class="mailbox-attachment-info">
+                          <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
+                            <?php echo  $value2['filename']; ?>
+                          </a>
+                          <span class="mailbox-attachment-size">
+                            <?php
+                            $size = convertTodigitalStorage($value2['sizefile']);
+                            echo $size;
+                            ?>
+                            <!-- 1,245 KB -->
+                            <a href="download_file.php?id=<?php echo $value2['fileid'] ?>" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
+                          </span>
+                        </div>
+                      <?php } ?>
 
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo1.png</a>
-                        <span class="mailbox-attachment-size">
-                          2.67 MB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
                     </li>
-                    <li>
-                      <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo2.png" alt="Attachment"></span>
 
-                      <div class="mailbox-attachment-info">
-                        <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo2.png</a>
-                        <span class="mailbox-attachment-size">
-                          1.9 MB
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                      </div>
-                    </li>
                   </ul>
                 </div>
+                <div class="card-footer">
+                  <?php if ($value2["user_id"] == $_SESSION["user_id"]) { ?>
 
+                    <div class="float-left">
+                      <a href="form-comment-edit.php?id=<?php echo $value2['id']; ?>" class="btn btn-sm btn-warning text-white">
+                        <i class="fa fa-pencil-square-o"></i> แก้ไข
+                      </a>
+                      <a href="#" onclick="deleteItem(<?php echo $value2['id']; ?>);" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash-o"></i> ลบ
+                      </a>
+                    </div>
+                  <?php } ?>
+                </div>
+              <?php } ?>
               </div>
 
               <!-- start comment -->
@@ -171,13 +153,13 @@ if ($result->num_rows > 0) {
                 <div class="card card-success ">
                   <div class="card-header">
                     <h3 class="card-title">
-                      Comment
+                      แสดงความคิดเห็น
                     </h3>
                   </div>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-1">
-                        Subject:
+                        หัวข้อ:
                       </div>
                       <div class="col-md-11">
                         <input type="text" name="title" id="title" style="width: 100%">
@@ -190,21 +172,8 @@ if ($result->num_rows > 0) {
                     </div>
                   </div>
                   <div class="card-footer">
-
-                    <!-- <div class="float-left">
-                    <a href="form-edit.php?id=<?php echo $_GET['id']; ?>" class="btn btn-sm btn-warning text-white">
-                      <i class="fa fa-pencil-square-o"></i> edit
-                    </a>
-                    <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
-                      <i class="fa fa-trash-o"></i> Delete
-                    </a>
-                  </div> -->
                     <div class="float-right">
-                      <input type="submit" class="btn btn-success" name="save" value="Comment"></input>
-
-                      <!-- <a href="#" class="btn btn-sm btn-success">
-                      <i class="fas fa fa-reply"></i> Comment
-                    </a> -->
+                      <input type="submit" class="btn btn-success" name="save" value="แสดงความคิดเห็น"></input>
                     </div>
                   </div>
                 </div>
@@ -261,20 +230,13 @@ if ($result->num_rows > 0) {
 
                       <div class="float-left">
                         <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
-                          <i class="fa fa-pencil-square-o"></i> edit
+                          <i class="fa fa-pencil-square-o"></i> แก้ไข
                         </a>
                         <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
-                          <i class="fa fa-trash-o"></i> Delete
+                          <i class="fa fa-trash-o"></i> ลบ
                         </a>
                       </div>
                     <?php } ?>
-                    <!-- <div class="float-left">
-                    <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o-alt"></i> Delete</button>
-                  </div> -->
-                    <!-- <div class="float-right">
-                    <button type="button" class="btn btn-info"><i class="fa fa-reply"></i> Reply</button>
-                  </div> -->
                   </div>
                   <!-- /.card-footer -->
                   <!-- /. box -->
