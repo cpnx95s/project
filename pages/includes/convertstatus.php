@@ -27,6 +27,23 @@
         }       
     }
 
+function roleth($role_name)
+{
+    $roleeng = $role_name;
+    switch ($roleeng) {
+        case "customer":
+            return "ลูกค้า";
+            break;
+        case "staff":
+            return "ผู้ปฏิบัติงาน";
+            break;
+        case "leader":
+            return "หัวหน้างาน";
+            break;
+        
+    }
+}
+
     function convertTodigitalStorage($sizefile) {
         switch ($sizefile) {
             case $sizefile > 1000 && $sizefile < 1000000:
@@ -39,5 +56,3 @@
                 break;
         }
     }
-
-?>
