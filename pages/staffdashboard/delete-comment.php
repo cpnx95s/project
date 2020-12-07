@@ -6,7 +6,7 @@ if ($_GET['id']) {
 
   $sql = "DELETE FROM comments WHERE id='" . $_GET['id'] . "'";
   if ($conn->query($sql) === TRUE) {
-    echo '<script> alert("Finished Deleting!")</script>';
+    echo '<script> alert("ลบสำเร็จ")</script>';
     $conn->close();
   } else {
     echo "Error deleting record: " . $conn->error;

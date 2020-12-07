@@ -171,7 +171,7 @@
     });
 
     function disableItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
+      if (confirm('ยันยันการลบใช่หรือไม่') == true) {
         window.location = `delete.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }

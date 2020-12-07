@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>จัดการรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -43,12 +43,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>จัดการรายการงาน</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Tasks Management</a></li>
+                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
                 <li class="breadcrumb-item active">Edit Comment</li>
               </ol>
             </div>

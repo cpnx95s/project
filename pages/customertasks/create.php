@@ -14,7 +14,7 @@ if (isset($_POST['save'])) {
 	$taskname = $_POST['taskname'];
 	$detail = $_POST['detail'];
 	$channel = $_POST['channel'];
-	$status = $_POST['status'];
+	//$status = $_POST['status'];
 	$user_id = $_SESSION["user_id"];
 	$launch_date = $_POST['launchdate'];
 	$launch_time = $_POST['launchtime'];
@@ -36,12 +36,12 @@ if (isset($_POST['save'])) {
 	move_uploaded_file($_FILES['fileupload']['tmp_name'], $path_copy);
 
 	$sql = "INSERT INTO task (name, detail, launch_date, launch_time, create_by,action_by, channel_id, status_master_id, filepath)
-	 VALUES ('$taskname','$detail', '$launch_date', '$launch_time' ,'$user_id','$user_id', '$channel', '$status','$newname')";
+	 VALUES ('$taskname','$detail', '$launch_date', '$launch_time' ,'$user_id','$user_id', '$channel', '2','$newname')";
 
 	if (mysqli_query($conn, $sql)) {
 		$taskid = mysqli_insert_id($conn);
 		$sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, status_master_id, task_id)
-		VALUES ('$date', '$time','$user_id', '$status', '$taskid')";
+		VALUES ('$date', '$time','$user_id', '2', '$taskid')";
 		if (mysqli_query($conn, $sql1)) {
 			$user_id = $_SESSION["user_id"];
 			$sql_file= "INSERT INTO files(path, name, size)
@@ -94,9 +94,9 @@ if (isset($_POST['save'])) {
 						</h1>
 						<div style='padding:20px;'>
 							<div>				
-								<h2>ชื่่องานที่สร้าง : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
+								<h2>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
 								<a href='http://localhost/project/pages/customertasks/view.php?id=". $taskid ."' target='_blank'>
-									<h1><strong style='color:#3c83f9;'> >> กรุณาคลิ๊กที่นี่ เพื่อตั้งรหัสผ่านใหม่<< </strong> </h1>
+									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อไปยังรายการงาน<< </strong> </h1>
 								</a>
 							</div>
 							<div style='margin-top:30px;'>
@@ -120,11 +120,11 @@ if (isset($_POST['save'])) {
 						echo $mail->ErrorInfo; // ข้อความ รายละเอียดการ error
 					} else {
 						// กรณีส่ง email สำเร็จ
-						echo "ระบบได้ส่งข้อความไปเรียบร้อย";
+						echo "ระบบได้ส่งอีเมลแจ้งเตือนเรียบร้อยแล้ว";
 					}
 				}
 			}
-			echo '<script> alert("Finished Creating!")</script>';
+			echo '<script> alert("สร้างสำเร็จ")</script>';
 		}
 	} else {
 		echo "Error Creating record: " . $conn->error;

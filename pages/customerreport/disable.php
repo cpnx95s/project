@@ -19,7 +19,7 @@ if ($_GET['id']) {
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
             VALUES ('$date', '$time', '$action_by', '$task_id', '$status_id')";
         if ($conn->query($sql1)) {
-          echo '<script> alert("Finished Deleting!")</script>';
+          echo '<script> alert("ลบสำเร็จ")</script>';
           $conn->close();
         } else {
           echo "Error deleting record: " . $conn->error;

@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>จัดการรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -186,7 +186,7 @@
     });
 
     function disableItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
+      if (confirm('ยันยันการลบใช่หรือไม่') == true) {
         window.location = `disable.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }

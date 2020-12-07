@@ -165,7 +165,7 @@
 
 
                       <div class="info-box-content">
-                        <span class="info-box-text">Launch Date</span>
+                        <span class="info-box-text">วันเผยแพร่</span>
                         <input class="form-control" type="date" name="startDate" id="startDate" />
                       </div>
                       <!-- /.info-box-content -->
@@ -178,7 +178,7 @@
 
 
                       <div class="info-box-content">
-                        <span class="info-box-text">Launch Time</span>
+                        <span class="info-box-text">เวลาเผยแพร่</span>
                         <input class="form-control" type="time" name="startTime" id="startTime" />
                       </div>
                       <!-- /.info-box-content -->
@@ -193,7 +193,7 @@
 
                       <div class="info-box-content">
                         <span class="info-box-text">Status</span>
-                        <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                        <select class="form-control select" data-placeholder="สถานะงาน_master" style="width: 100%;" name="status">
                           <option value="" selected></option>
                           <?php
                           $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -240,10 +240,10 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Task Name</th>
+                  <th>ชื่องาน</th>
                   <th>Channel</th>
-                  <th>Launch Date</th>
-                  <th>Launch Time</th>
+                  <th>วันเผยแพร่</th>
+                  <th>เวลาเผยแพร่</th>
                   <th>Created At</th>
                   <th>Created By</th>
                   <!-- <th>Updated By</th> -->
@@ -364,7 +364,7 @@
     });
 
     function disableItem(id) {
-      if (confirm('Are you sure, you want to delete this item?') == true) {
+      if (confirm('ยันยันการลบใช่หรือไม่') == true) {
         window.location = `disable.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }

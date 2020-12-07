@@ -26,7 +26,7 @@ if (isset($_POST['search'])) {
             echo $value['username'], "\n";
             echo $value['status_name'];
         }
-        // echo '<script> alert("Finished Updating!")</script>';
+        // echo '<script> alert("แก้ไขสำเร็จ")</script>';
     // } else {
     //     echo "Select Error: " . $conn->error;
     // }

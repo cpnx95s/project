@@ -15,8 +15,8 @@ if (isset($_GET['id'])) {
         // $user_id = $_SESSION["user_id"];
         $sql = "UPDATE channel SET name = '$channelname', description = '$description' WHERE id='" . $_GET['id'] . "'";
         if ($conn->query($sql) === TRUE) {
-            echo '<script> alert("Finished Updating!")</script>';
-            // echo '<script> alert("Finished Updating!")</script>';
+            echo '<script> alert("แก้ไขสำเร็จ")</script>';
+            // echo '<script> alert("แก้ไขสำเร็จ")</script>';
         } else {
             echo "Error Updating record: " . $conn->error;
         }

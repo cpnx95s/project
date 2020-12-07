@@ -20,9 +20,9 @@ if (isset($_GET['id'])) {
             VALUES ('$launchdate', '$launchtime', '$user_id', '$taskid','$status')";
             if ($conn->query($sql1)) {
                 $user_id = $_SESSION["user_id"];
-                echo '<script> alert("Finished Updating!")</script>';
+                echo '<script> alert("แก้ไขสำเร็จ")</script>';
             }
-            // echo '<script> alert("Finished Updating!")</script>';
+            // echo '<script> alert("แก้ไขสำเร็จ")</script>';
         } else {
             echo "Error Updating record: " . $conn->error;
         }

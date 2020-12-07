@@ -17,9 +17,9 @@ if (isset($_GET['id'])) {
             $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id, status_master_id)
             VALUES ('$launchdate', '$launchtime', '$user_id', '$taskid','$status')";
             if ($conn->query($sql1)) {
-                echo '<script> alert("Finished Updating!")</script>';
+                echo '<script> alert("แก้ไขสำเร็จ")</script>';
             }
-            // echo '<script> alert("Finished Updating!")</script>';
+            // echo '<script> alert("แก้ไขสำเร็จ")</script>';
         } else {
             echo "Error Updating record: " . $conn->error;
         }

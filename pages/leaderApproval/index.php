@@ -68,10 +68,10 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Task Name</th>
+                  <th>ชื่องาน</th>
                   <th>Channel</th>
-                  <th>Launch Date</th>
-                  <th>Launch Time</th>
+                  <th>วันเผยแพร่</th>
+                  <th>เวลาเผยแพร่</th>
                   <th>Created At</th>
                   <th>Created By</th>
                   <th>Update By</th>

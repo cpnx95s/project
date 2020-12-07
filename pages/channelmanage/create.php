@@ -14,7 +14,7 @@ if (isset($_POST['save'])) {
 
 	if (mysqli_query($conn, $sql)) {
 
-		echo '<script> alert("Finished Creating!")</script>';
+		echo '<script> alert("สร้างสำเร็จ")</script>';
 	} else {
 		echo "Error Creating record: " . $conn->error;
 	}

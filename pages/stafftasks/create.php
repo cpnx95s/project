@@ -19,7 +19,7 @@ if(isset($_POST['save']))
 		$sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, status_master_id, task_id)
 		VALUES ('$launch_date', '$launch_time','$user_id', '$status', '$taskid')";
 		if (mysqli_query($conn, $sql1)) {
-			echo '<script> alert("Finished Creating!")</script>';
+			echo '<script> alert("สร้างสำเร็จ")</script>';
 		}
 	} else {
 		echo "Error Creating record: " . $conn->error;

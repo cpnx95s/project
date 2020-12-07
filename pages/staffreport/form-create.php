@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>จัดการรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -43,13 +43,13 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>จัดการรายการงาน</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Tasks Management</a></li>
-                <li class="breadcrumb-item active">Create Tasks</li>
+                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
+                <li class="breadcrumb-item active">สร้างรายการงาน</li>
               </ol>
             </div>
           </div>
@@ -60,7 +60,7 @@
       <section class="content">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create Tasks</h3>
+            <h3 class="card-title">สร้างรายการงาน</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -68,13 +68,13 @@
             <div class="card-body">
 
               <div class="form-group">
-                <label for="Task Name">Task Name</label>
-                <input type="text" class="form-control" id="taskname" name="taskname" placeholder="Task Name">
+                <label for="ชื่องาน">ชื่องาน</label>
+                <input type="text" class="form-control" id="taskname" name="taskname" placeholder="ชื่องาน">
               </div>
 
               <div class="form-group">
-                <label>Select Channels</label>
-                <select class="form-control select2" data-placeholder="Select Channels" style="width: 100%;" name="channel">
+                <label>Select ช่องทางสังคมออนไลน์</label>
+                <select class="form-control select2" data-placeholder="Select ช่องทางสังคมออนไลน์" style="width: 100%;" name="channel">
                   <?php
                   $mysqli = new mysqli("localhost", "root", "", "myproject");
 
@@ -130,18 +130,18 @@
               </div>
 
               <div class="form-group">
-                <label for="Task Name">Launch Date</label>
-                <input type="date" class="form-control" id="launchdate" name="launchdate" placeholder="Task Name">
+                <label for="ชื่องาน">วันเผยแพร่</label>
+                <input type="date" class="form-control" id="launchdate" name="launchdate" placeholder="ชื่องาน">
               </div>
 
               <div class="form-group">
-                <label for="Task Name">Launch Time</label>
-                <input type="time" class="form-control" id="launchtime" name="launchtime" placeholder="Task Name">
+                <label for="ชื่องาน">เวลาเผยแพร่</label>
+                <input type="time" class="form-control" id="launchtime" name="launchtime" placeholder="ชื่องาน">
               </div>
 
               <div class="form-group">
-                <label>Select Status</label>
-                <select class="form-control select" data-placeholder="Select Status_master" style="width: 100%;" name="status">
+                <label>สถานะงาน</label>
+                <select class="form-control select" data-placeholder="สถานะงาน_master" style="width: 100%;" name="status">
                   <?php
                   $mysqli = new mysqli("localhost", "root", "", "myproject");
 

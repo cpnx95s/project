@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks Management</title>
+  <title>จัดการรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -43,12 +43,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Tasks Management</h1>
+              <h1>จัดการรายการงาน</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Tasks Management</a></li>
+                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
                 <li class="breadcrumb-item active">Edit Data</li>
               </ol>
             </div>
@@ -90,14 +90,14 @@
               <div class="card-body">
 
                 <div class="form-group">
-                  <label for="taskname">Task Name</label>
+                  <label for="taskname">ชื่องาน</label>
                   <input type="text" class="form-control" id="taskname" name="taskname" value="<?php echo $value['name']; ?>">
                 </div>
 
                 <!--field ของ channel -->
                 <div class="form-group">
-                  <label>Select Channels</label>
-                  <select class="form-control select2" data-placeholder="Select Channels" style="width: 100%;" name="channel">
+                  <label>Select ช่องทางสังคมออนไลน์</label>
+                  <select class="form-control select2" data-placeholder="Select ช่องทางสังคมออนไลน์" style="width: 100%;" name="channel">
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
                     // Check connection
@@ -167,18 +167,18 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="launchdate">Launch Date</label>
+                  <label for="launchdate">วันเผยแพร่</label>
                   <input type="date" class="form-control" id="launchdate" name="launchdate" value="<?php echo $value['launch_date']; ?>">
                 </div>
 
                 <div class="form-group">
-                  <label for="launchtime">Launch Time</label>
+                  <label for="launchtime">เวลาเผยแพร่</label>
                   <input type="time" class="form-control" id="launchtime" name="launchtime" value="<?php echo $value['launch_time']; ?>">
                 </div>
 
                 <!-- field ของ status -->
                 <div class="form-group">
-                  <label>Select Status_master</label>
+                  <label>สถานะงาน_master</label>
                   <select class="form-control select" style="width: 100%;" name="status">
                       <option value="6" selected>Accept</option>
                       <option value="4" selected>Deny</option>

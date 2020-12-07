@@ -28,7 +28,7 @@ if ($_GET['id']) {
   //     // if ($conn->query($sql1)) {
   //       $sql = "UPDATE task SET launch_date = '$date', launch_time = '$time', status_master_id = '7' WHERE id='" . $_GET['id'] . "'";
   //       if ($conn->query($sql) === TRUE) {
-  //         echo '<script> alert("Finished Deleting!")</script>';
+  //         echo '<script> alert("ลบสำเร็จ")</script>';
   //         $conn->close();
   //       } else {
   //         echo "Error deleting record: " . $conn->error;
