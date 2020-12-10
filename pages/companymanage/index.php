@@ -45,13 +45,13 @@
       <!-- Main content -->
 
 
-      <section class="content">
+      <section class="content  mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Company List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Company +</a href="">
+            <h3 class="card-title d-inline-block">รายชื่อองค์กร</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">เพิ่มองค์กร</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -59,8 +59,8 @@
               <thead>
                 <tr>
                   <th>รหัส</th>
-                  <th>CompanyName</th>
-                  <th>Description</th>
+                  <th>ชื่อองค์กร</th>
+                  <th>คำอธิบาย</th>
                   <th>จัดการ</th>
                 </tr>
               </thead>
@@ -80,7 +80,7 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                //   echo "0 results";
+                  //   echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
@@ -100,11 +100,11 @@
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-eye"></i>
                       </a> -->
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
                         <i class="fa fa-pencil-square-o"></i>
                       </a>
-                   
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
+
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
                         <i class="fa fa-trash-o"></i>
                       </a>
                     </td>

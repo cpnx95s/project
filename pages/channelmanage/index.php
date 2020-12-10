@@ -45,13 +45,13 @@
       <!-- Main content -->
 
 
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Channel List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add Channel +</a href="">
+            <h3 class="card-title d-inline-block">รายการช่องทางสังคมออนไลน์</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">เพิ่มช่องทางสังคมออนไลน์</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -59,8 +59,8 @@
               <thead>
                 <tr>
                   <th>รหัส</th>
-                  <th>ChannelName</th>
-                  <th>Description</th>
+                  <th>ชื่อช่องทางสังคมออนไลน์</th>
+                  <th>คำอธิบาย</th>
                   <th>จัดการ</th>
                 </tr>
               </thead>

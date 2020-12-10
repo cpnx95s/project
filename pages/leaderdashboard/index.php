@@ -47,7 +47,7 @@
       <!-- Main content -->
 
 
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">

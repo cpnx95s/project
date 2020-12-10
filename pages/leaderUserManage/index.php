@@ -45,13 +45,13 @@
       <!-- Main content -->
 
 
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">User List</h3>
-            <a href="form-create.php" class="btn btn-primary float-right ">Add User +</a href="">
+            <h3 class="card-title d-inline-block">รายการบัญชีผู้ใช้</h3>
+            <a href="form-create.php" class="btn btn-primary float-right ">เพิ่มบัญชีผู้ใช้</a href="">
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -59,12 +59,12 @@
               <thead>
                 <tr>
                   <th>รหัส</th>
-                  <th>Name</th>
-                  <th>Surname</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Company</th>
-                  <th>Role</th>
+                  <th>ชื่อ</th>
+                  <th>นามสกุล</th>
+                  <th>ยูสเซอร์เนม</th>
+                  <th>อีเมล</th>
+                  <th>องค์กร</th>
+                  <th>บทบาท</th>
                   <th>วันเวลาที่สร้าง</th>
                   <th>จัดการ</th>
                 </tr>
@@ -108,15 +108,15 @@
                     <td><?php echo $value['created']; ?></td>
 
                     <td>
-                    <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
+                      <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-eye"></i>
                       </a> -->
-                  
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
+
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
                         <i class="fa fa-pencil-square-o"></i>
                       </a>
-                   
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
+
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
                         <i class="fa fa-trash-o"></i>
                       </a>
                     </td>
