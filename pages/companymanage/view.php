@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>User Management View</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -142,38 +142,38 @@ if ($result->num_rows > 0) {
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
 
-                  <?php
-                      $id = $_GET['id'];
-                      $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
+                    <?php
+                    $id = $_GET['id'];
+                    $sql2 = "select task.id, task.created, task.name, task.detail, user.name as username
                       from task
                       inner join user on task.create_by = user.id
                       where task.id = $id
                       ";
-                      $result2 = $conn->query($sql2);
-                      // if (!empty($result) && $result->num_rows > 0) {
+                    $result2 = $conn->query($sql2);
+                    // if (!empty($result) && $result->num_rows > 0) {
 
-                      if ($result2->num_rows > 0) {
-                        // output data of each row
-                        while ($row = $result2->fetch_assoc()) {
-                          // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
-                        }
-                      } else {
-                        echo "0 results";
+                    if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result2->fetch_assoc()) {
+                        // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                       }
-                      // for ($id = 1; $id <= 5; $id++) { 
-                      foreach ($result2 as $key => $value2) {
-                      ?>
+                    } else {
+                      echo "0 results";
+                    }
+                    // for ($id = 1; $id <= 5; $id++) { 
+                    foreach ($result2 as $key => $value2) {
+                    ?>
 
-                 
 
-                    <h5><?php echo $value2['name']; ?></h5>
-                    <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?></h6>
+
+                      <h5><?php echo $value2['name']; ?></h5>
+                      <h6 class="text-secondary">Created by <?php echo  $value2['username']; ?> At <?php echo  $value2['created']; ?></h6>
                   </div>
-              
+
                   <div class="mailbox-read-message">
                     <p><?php echo  $value2['detail']; ?></p>
                   </div>
-                  <?php } ?>
+                <?php } ?>
                 </div>
                 <div class="card-footer bg-white">
                   <ul class="mailbox-attachments clearfix">
@@ -231,7 +231,7 @@ if ($result->num_rows > 0) {
                     <a href="#" onclick="deleteItem(<?php echo $_GET['id']; ?>);" class="btn btn-sm btn-danger">
                       <i class="fa fa-trash-o"></i> Delete
                     </a>
-                  </div> 
+                  </div>
                 </div>
               </div>
               <form action="create_comment.php?id=<?php echo $_GET['id']; ?>" method="post">
@@ -324,17 +324,17 @@ if ($result->num_rows > 0) {
 
                   <!-- /.card-footer -->
                   <div class="card-footer">
-                  <?php if($value["user_id"] == $_SESSION["user_id"]) {?>
+                    <?php if ($value["user_id"] == $_SESSION["user_id"]) { ?>
 
-                    <div class="float-left">
-                      <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
-                        <i class="fa fa-pencil-square-o"></i> edit
-                      </a>
-                      <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
-                        <i class="fa fa-trash-o"></i> Delete
-                      </a>
-                    </div>
-                  <?php } ?>
+                      <div class="float-left">
+                        <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                          <i class="fa fa-pencil-square-o"></i> edit
+                        </a>
+                        <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                          <i class="fa fa-trash-o"></i> Delete
+                        </a>
+                      </div>
+                    <?php } ?>
                     <!-- <div class="float-left">
                     <button type="button" class="btn btn-warning text-white"><i class="fa fa-edit"></i> Edit</button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-o-alt"></i> Delete</button>

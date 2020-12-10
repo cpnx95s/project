@@ -89,21 +89,13 @@ if (isset($_POST['save'])) {
 						<title>ทดสอบการส่ง Email</title>
 					</head>
 					<body>
-						<h1>
-						ชื่อผู้สร้างงาน: " . $value2['name'] . "
-						</h1>
+
 						<div style='padding:20px;'>
 							<div>				
-								<h2>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
+								<h3>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h3>
 								<a href='http://localhost/project/pages/customertasks/view.php?id=". $taskid ."' target='_blank'>
-									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อไปยังรายการงาน<< </strong> </h1>
+									<h3><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อไปยังรายการงาน << </strong> </h3>
 								</a>
-							</div>
-							<div style='margin-top:30px;'>
-								<hr>
-								<address>
-									<h4>ติดต่อสอบถาม</h4>
-								</address>
 							</div>
 						</div>
 					</body>

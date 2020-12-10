@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../dist/img/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
@@ -80,7 +80,7 @@
                     // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                   }
                 } else {
-                //   echo "0 results";
+                  //   echo "0 results";
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
@@ -100,11 +100,11 @@
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >
                         <i class="fa fa-eye"></i>
                       </a> -->
-                      <a href="form-edit.php?id=<?php echo $value['id']; ?>" >
+                      <a href="form-edit.php?id=<?php echo $value['id']; ?>">
                         <i class="fa fa-pencil-square-o"></i>
                       </a>
-                   
-                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);" >
+
+                      <a href="#" onclick="disableItem(<?php echo $value['id']; ?>);">
                         <i class="fa fa-trash-o"></i>
                       </a>
                     </td>

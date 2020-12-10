@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>จัดการรายการงาน</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -140,7 +140,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-header">
                     <h3 class="card-title">
-                      Detail
+                      รายละเอียด
                     </h3>
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -156,10 +156,10 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Upload Files</label>
+                  <label>อัปโหลดไฟล์</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="file" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
                   </div>
                   <figure class="figure text-center d-none mt-2">
                     <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
@@ -221,7 +221,7 @@
 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" name="update">Submit</button>
+                <button type="submit" class="btn btn-primary" name="update">บันทึก</button>
               </div>
             </form>
           <?php }

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>จัดการรายการงาน</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -41,7 +41,7 @@
       <!-- Content Header (Page header) -->
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">แก้ไขแผนงาน</h3>

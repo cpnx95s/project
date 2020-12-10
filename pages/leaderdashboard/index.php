@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tasks</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../dist/img/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../dist/img/favicons/favicon-32x32.png">
@@ -269,7 +269,7 @@
                   INNER JOIN status_master s ON t.status_master_id = s.id
                   LEFT JOIN user u ON t.create_by = u.id
                   LEFT JOIN user uc ON t.action_by = uc.id
-                  WHERE t.status_master_id != 1;
+                  WHERE t.status_master_id != 1 and t.status_master_id != 7;
                   ";
 
                   $result = $conn->query($sql);

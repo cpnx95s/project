@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>จัดการรายการงาน</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -39,28 +39,12 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>จัดการรายการงาน</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
-                <li class="breadcrumb-item active">Edit Data</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Edit Data</h3>
+            <h3 class="card-title">แก้ไขข้อมูล</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -135,29 +119,17 @@
                   </select>
                 </div>
 
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">
-                      Detail
-                    </h3>
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="mb-3">
-                      <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
-                    </div>
-                  </div>
+                <div class="form-group">
+                  <label for="taskname">รายละเอียด</label>
+                  <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
                 </div>
 
+
                 <div class="form-group">
-                  <label>Upload Files</label>
+                  <label>อัปโหลดไฟล์</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="file" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
                   </div>
                   <figure class="figure text-center d-none mt-2">
                     <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
@@ -218,7 +190,7 @@
 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" name="update">Submit</button>
+                <button type="submit" class="btn btn-primary" name="update">บันทึก</button>
               </div>
             </form>
           <?php }

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Users Management</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -68,12 +68,12 @@
             <div class="card-body">
 
               <div class="form-group">
-                <label for="Name">Name</label>
+                <label for="name">ชื่อ</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name">
               </div>
 
               <div class="form-group">
-                <label for="SurName">SurName</label>
+                <label for="surname">นามสกุล</label>
                 <input type="text" class="form-control" id="surname" name="surname" placeholder="SurName">
               </div>
 
@@ -88,7 +88,7 @@
               </div>
 
               <div class="form-group">
-                <label for="Email">Email</label>
+                <label for="email">อีเมล</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
               </div>
 
@@ -149,7 +149,7 @@
               </div>
 
               <div class="form-group">
-                <label>Select Roles</label>
+                <label>บทบาท</label>
                 <select class="form-control select" data-placeholder="Select Role" style="width: 100%;" name="role">
                   <?php
                   $mysqli = new mysqli("localhost", "root", "", "myproject");
