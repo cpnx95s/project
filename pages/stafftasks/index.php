@@ -69,7 +69,7 @@
               <thead>
                 <tr>
 
-                  <th>ID</th>
+                  <th>รหัส</th>
                   <th>ชื่องาน</th>
                   <th>Channel</th>
                   <th>วันเผยแพร่</th>

@@ -71,7 +71,7 @@
             <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>รหัส</th>
                   <th>StatusName</th>
                   <th>Description</th>
                   <th>Action</th>

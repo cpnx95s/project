@@ -40,26 +40,13 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Tasks</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">Tasks</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
+
       <!-- /.content-header -->
 
       <!-- Main content -->
 
 
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
@@ -67,7 +54,7 @@
             <!-- <form action="search.php" method="post"> -->
             <form method="post">
               <div class="row">
-                <h3>Search By</h3>
+                <h3>ค้นหาจาก</h3>
               </div>
 
               <section class="content">
@@ -76,7 +63,7 @@
                     <div class="info-box">
 
                       <div class="info-box-content">
-                        <span class="info-box-text">Name</span>
+                        <span class="info-box-text">ชื่อรายการงาน</span>
                         <input class="form-control" type="input" name="task-name" />
                       </div>
                       <!-- /.info-box-content -->
@@ -90,7 +77,7 @@
 
 
                       <div class="info-box-content">
-                        <span class="info-box-text">User</span>
+                        <span class="info-box-text">บัญชีผู้ใช้</span>
                         <span class="info-box-number">
                           <select class="form-control select2" data-placeholder="Select user" name="task-user">
                             <option value="" selected></option>
@@ -128,7 +115,7 @@
                     <div class="info-box">
 
                       <div class="info-box-content">
-                        <span class="info-box-text">Channel</span>
+                        <span class="info-box-text">ช่องทางสังคมออนไลน์</span>
                         <select class="form-control select2" name="task-channel">
                           <option value="" selected></option>
                           <?php
@@ -192,7 +179,7 @@
 
 
                       <div class="info-box-content">
-                        <span class="info-box-text">Status</span>
+                        <span class="info-box-text">สถานะงาน</span>
                         <select class="form-control select" data-placeholder="สถานะงาน_master" style="width: 100%;" name="status">
                           <option value="" selected></option>
                           <?php
@@ -228,7 +215,7 @@
 
               <div class="row float-right">
                 <div class="col">
-                  <button type="submit" class="btn btn-info" name="search">Search</button>
+                  <button type="submit" class="btn btn-info" name="search">ค้นหา</button>
                 </div>
               </div>
             </form>
@@ -239,7 +226,7 @@
             <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>รหัส</th>
                   <th>ชื่องาน</th>
                   <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
