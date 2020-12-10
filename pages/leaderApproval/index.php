@@ -69,14 +69,14 @@
                 <tr>
                   <th>รหัส</th>
                   <th>ชื่องาน</th>
-                  <th>Channel</th>
+                  <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
                   <th>เวลาเผยแพร่</th>
-                  <th>Created At</th>
-                  <th>Created By</th>
-                  <th>Update By</th>
-                  <th>Remark</th>
-                  <th>Action</th>
+                  <th>วันเวลาที่สร้าง</th>
+                  <th>วันเวลาที่สร้าง</th>
+                  <th>แก้ไขล่าสุดโดย</th>
+                  <th>หมายเหตุ</th>
+                  <th>จัดการ</th>
                 </tr>
               </thead>
               <tbody>

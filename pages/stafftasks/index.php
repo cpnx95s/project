@@ -38,29 +38,14 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>จัดการรายการงาน</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">จัดการรายการงาน</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
 
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title d-inline-block">Tasks List</h3>
+            <h3 class="card-title d-inline-block">งานของฉัน</h3>
             <!-- <a href="form-create.php" class="btn btn-primary float-right ">Add Tasks +</a href=""> -->
           </div>
           <!-- /.card-header -->
@@ -71,14 +56,14 @@
 
                   <th>รหัส</th>
                   <th>ชื่องาน</th>
-                  <th>Channel</th>
+                  <th>ช่องทางสังคมออนไลน์</th>
                   <th>วันเผยแพร่</th>
                   <th>เวลาเผยแพร่</th>
-                  <th>Created At</th>
-                  <th>Created By</th>
-                  <th>Remark</th>
+                  <th>วันเวลาที่สร้าง</th>
+                  <th>สร้างโดย</th>
+                  <th>หมายเหตุ</th>
                   <!-- <th>Status</th> -->
-                  <th>Action</th>
+                  <th>จัดการ</th>
                 </tr>
               </thead>
               <tbody>
