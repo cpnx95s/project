@@ -54,7 +54,7 @@ if (isset($_POST['save'])) {
 			
 				}
 			}
-			$sql2 = "SELECT * FROM user WHERE role_master_id = '2' and role_master_id = '3'";
+			$sql2 = "SELECT * FROM user WHERE role_master_id = '2' or role_master_id = '3'";
 			$result2 = $conn->query($sql2);
 			foreach ($result2 as $key => $value2) {
 				$mail = new PHPMailer(true);
