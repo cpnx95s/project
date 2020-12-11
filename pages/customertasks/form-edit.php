@@ -57,15 +57,23 @@
             exit();
           }
           if ($_GET['id']) {
-            $sql = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
+            $sql = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
+            user.id as user_id, files.size as sizefile, task.channel_id
+            from task
+            inner join user on task.create_by = user.id
+            inner join status_master on task.status_master_id = status_master.id
+            inner join file_task on task.id = file_task.task_id
+            inner join files on files.id = file_task.file_id
+            WHERE task.id='" . $_GET['id'] . "'";
+            // $sql = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
               // output data of each row
               while ($row = $result->fetch_assoc()) {
-                // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                // echo "id: " . $row["id"] . " - Name: " . $row["name"] . " " . $row["detail"] . "<br>";
               }
             } else {
-              echo "0 results";
+              // echo "0 results";
             }
           }
           foreach ($result as $key => $value) { ?>
@@ -109,7 +117,7 @@
                       while ($row1 = $result2->fetch_assoc()) {
                       }
                     } else {
-                      echo "0 results";
+                      // echo "0 results";
                     }
                     ?>
                     <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name ?></option>
@@ -128,12 +136,13 @@
                 <div class="form-group">
                   <label>อัปโหลดไฟล์</label>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                    <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
                   </div>
-                  <figure class="figure text-center d-none mt-2">
-                    <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
-                  </figure>
+                  <img id="imgUpload" src="../fileupload/<?php echo $value['filepath']?>" class="figure-img img-fluid rounded"  width="400" height="400" alt="">
+
+                  <!-- <figure class="figure text-center d-none mt-2">
+                  </figure> -->
                 </div>
 
                 <div class="form-group">
@@ -169,7 +178,7 @@
                       }
                     }
                   } else {
-                    echo "0 results";
+                    // echo "0 results";
                   }
                   $sql2 = "Select * FROM status_master where NOT id = '" . $value['status_master_id'] . "'";
                   $result4 = $mysqli->query($sql2);
@@ -178,7 +187,7 @@
                     while ($row1 = $result4->fetch_assoc()) {
                     }
                   } else {
-                    echo "0 results";
+                    // echo "0 results";
                   }
                   ?>
                       <option value="<?php echo $status_id ?>" selected><?php echo $status_name ?></option>

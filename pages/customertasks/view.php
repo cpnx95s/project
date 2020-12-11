@@ -109,8 +109,8 @@ if ($result->num_rows > 0) {
                       <?php
                       foreach ($result as $key => $value) {
                       ?>
-                        <!-- <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" width="400" height="400">
-                        </span> -->
+                        <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" width="400" height="400">
+                        </span>
 
                         <div class="mailbox-attachment-info">
                           <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
