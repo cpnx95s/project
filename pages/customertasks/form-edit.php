@@ -77,7 +77,7 @@
             }
           }
           foreach ($result as $key => $value) { ?>
-            <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post">
+            <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post" enctype="multipart/form-data">
               <div class="card-body">
 
                 <div class="form-group">
@@ -136,7 +136,7 @@
                 <div class="form-group">
                   <label>อัปโหลดไฟล์</label>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
+                    <input type="file" class="custom-file-input" name="fileupload" id="customFile" multiple>
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
                   </div>
                   <img id="imgUpload" src="../fileupload/<?php echo $value['filepath']?>" class="figure-img img-fluid rounded"  width="400" height="400" alt="">
