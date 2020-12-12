@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>รายละเอียดรายการงาน</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -135,7 +135,7 @@ if ($result->num_rows > 0) {
                   <?php if ($value2["user_id"] == $_SESSION["user_id"]) { ?>
 
                     <div class="float-left">
-                      <a href="form-comment-edit.php?id=<?php echo $value2['id']; ?>" class="btn btn-sm btn-warning text-white">
+                      <a href="form-edit.php?id=<?php echo $value2['id']; ?>" class="btn btn-sm btn-warning text-white">
                         <i class="fa fa-pencil-square-o"></i> แก้ไข
                       </a>
                       <a href="#" onclick="deleteItem(<?php echo $value2['id']; ?>);" class="btn btn-sm btn-danger">
