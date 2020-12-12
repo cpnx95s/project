@@ -167,12 +167,17 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of fe95d76... แก้ไขfrom อัพโหลดไฟล์ ของหน้าฟอร์มแก้ไข
 =======
 >>>>>>> parent of fe95d76... แก้ไขfrom อัพโหลดไฟล์ ของหน้าฟอร์มแก้ไข
                     <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
+=======
+                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+>>>>>>> parent of da40a89... แก้ title ทั้งหมด
 =======
                     <input type="file" class="custom-file-input" name="file" id="customFile">
                     <label class="custom-file-label" for="customFile">Choose file</label>
