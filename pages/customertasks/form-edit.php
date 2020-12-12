@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
+  <title>จัดการรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -39,12 +39,28 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>จัดการรายการงาน</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="../customertasks">จัดการรายการงาน</a></li>
+                <li class="breadcrumb-item active">Edit Data</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
 
       <!-- Main content -->
-      <section class="content mt-2">
+      <section class="content">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">แก้ไขข้อมูล</h3>
+            <h3 class="card-title">Edit Data</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -127,17 +143,34 @@
                   </select>
                 </div>
 
-                <div class="form-group">
-                  <label for="taskname">รายละเอียด</label>
-                  <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      Detail
+                    </h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
+                    </div>
+                  </div>
                 </div>
 
-
                 <div class="form-group">
-                  <label>อัปโหลดไฟล์</label>
+                  <label>Upload Files</label>
                   <div class="custom-file">
+<<<<<<< HEAD
                     <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
+=======
+                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+>>>>>>> parent of da40a89... แก้ title ทั้งหมด
                   </div>
                   <img id="imgUpload" src="../fileupload/<?php echo $value['filepath']?>" class="figure-img img-fluid rounded"  width="400" height="400" alt="">
 
@@ -199,7 +232,7 @@
 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" name="update">บันทึก</button>
+                <button type="submit" class="btn btn-primary" name="update">Submit</button>
               </div>
             </form>
           <?php }

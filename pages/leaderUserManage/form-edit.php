@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
+  <title>จัดการรายการงาน</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -34,17 +34,33 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar_leader.php') ?>
+    <?php include_once('../includes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>User Management</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="../customertasks">User Management</a></li>
+                <li class="breadcrumb-item active">Edit Data</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
 
       <!-- Main content -->
-      <section class="content  mt-2">
+      <section class="content">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">แก้ไขข้อมูล</h3>
+            <h3 class="card-title">Edit Data</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -57,7 +73,7 @@
             exit();
           }
           if ($_GET['id']) {
-
+           
             $sql = " SELECT u.id, u.name, u.surname, u.username, u.email, u.created,  u.company_id, 
             u.role_master_id, cp.id as cpid, rm.id as roleid FROM user u
              INNER JOIN company cp ON cp.id = u.company_id
@@ -78,26 +94,26 @@
               <div class="card-body">
 
                 <div class="form-group">
-                  <label for="name">ชื่อ</label>
+                  <label for="name">Name</label>
                   <input type="text" class="form-control" id="name" name="name" value="<?php echo $value['name']; ?>">
                 </div>
 
                 <div class="form-group">
-                  <label for="surname">นามสกุล</label>
+                  <label for="surname">SurName</label>
                   <input type="text" class="form-control" id="surname" name="surname" value="<?php echo $value['surname']; ?>">
                 </div>
 
                 <div class="form-group">
-                  <label for="username">ยูสเซอร์เนม</label>
+                  <label for="username">User Name</label>
                   <input type="text" class="form-control" id="username" name="username" value="<?php echo $value['username']; ?>">
                 </div>
 
                 <div class="form-group">
-                  <label for="email">อีเมล</label>
+                  <label for="email">Email</label>
                   <input type="text" class="form-control" id="email" name="email" value="<?php echo $value['email']; ?>">
                 </div>
                 <div class="form-group">
-                  <label>องค์กร</label>
+                  <label>Select Companys</label>
                   <select class="form-control select2" data-placeholder="Select Companys" style="width: 100%;" name="cpid">
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -138,7 +154,7 @@
                 </div>
                 <!--field ของ channel -->
                 <div class="form-group">
-                  <label>บทบาท</label>
+                  <label>Select Roles</label>
                   <select class="form-control select2" data-placeholder="Select Roles" style="width: 100%;" name="role">
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -180,7 +196,7 @@
 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" name="update">บันทึก</button>
+                <button type="submit" class="btn btn-primary" name="update">Submit</button>
               </div>
             </form>
           <?php }
