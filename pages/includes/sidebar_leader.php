@@ -10,7 +10,7 @@ $name = $link_array[count($link_array) - 2];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>จัดการรายการงาน</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -139,12 +139,12 @@ $name = $link_array[count($link_array) - 2];
             <p>ดูประวัติงาน</p>
           </a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a href="../leaderReport" class="nav-link <?php echo $name == 'leaderReport' ? 'active' : '' ?>">
             <i class="fa fa-pie-chart nav-icon"></i>
-            <p>Report</p>
+            <p>ดูรายงาน</p>
           </a>
-        </li> -->
+        </li>
         <!-- <li class="nav-item">
             <a href="../contacts" class="nav-link <?php echo $name == 'contacts' ? 'active' : '' ?>">
               <i class="fas fa-chalkboard-teacher nav-icon"></i>
