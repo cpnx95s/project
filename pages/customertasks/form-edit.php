@@ -165,6 +165,9 @@
                   <label>Upload Files</label>
                   <div class="custom-file">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of fe95d76... แก้ไขfrom อัพโหลดไฟล์ ของหน้าฟอร์มแก้ไข
                     <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
 =======
