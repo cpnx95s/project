@@ -52,16 +52,6 @@ if (isset($_POST['save'])) {
 		VALUES ('$date', '$time','$user_id', '2', '$taskid')";
 		if (mysqli_query($conn, $sql1)) {
 			$user_id = $_SESSION["user_id"];
-<<<<<<< HEAD
-			if ($size > 0 && $size != 0) {
-				$sql_file = "INSERT INTO files(path, name, size)
-				VALUES ('$path_copy', '$newname', '$size')";
-				if (mysqli_query($conn, $sql_file)) {
-					$fileid = mysqli_insert_id($conn);
-					$sql_filetask = "INSERT INTO file_task(file_id, task_id)
-					VALUES ('$fileid', '$taskid')";
-					if (mysqli_query($conn, $sql_filetask)) {
-=======
 			$sql_file= "INSERT INTO files(path, name, size)
 			VALUES ('$path_copy', '$newname', '$size')";
 			if (mysqli_query($conn, $sql_file)) {
@@ -139,7 +129,6 @@ if (isset($_POST['save'])) {
 					} else {
 						// กรณีส่ง email สำเร็จ
 						echo "ระบบได้ส่งอีเมลแจ้งเตือนเรียบร้อยแล้ว";
->>>>>>> parent of da40a89... แก้ title ทั้งหมด
 					}
 				}
 			}
@@ -212,7 +201,7 @@ if (isset($_POST['save'])) {
 		echo "Error Creating record: " . $conn->error;
 	}
 
-	// header('Refresh:0; url=index.php');
+	 header('Refresh:0; url=index.php');
 }
 $conn->close();
 
