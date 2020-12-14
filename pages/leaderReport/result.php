@@ -87,51 +87,61 @@
                 <p class="lead">รายการงานทั้งหมด</p>
                 <div class="row">
                     <div class="col-12 table-responsive">
-                        <table class="table table-striped">
+                        <table id="dataTable" class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>ลำดับ</th>
-                                    <th>ชื่อรายการงาน</th>
-                                    <th>วันที่ทำงาน</th>
-                                    <th>เวลาเริ่มทำงาน</th>
-                                    <th>เวลาสิ้นสุดการทำงาน</th>
-                                    <th>ใช้เวลาทำงานทั้งหมด (นาที)</th>
+                                    <th>ชื่องาน</th>
+                                    <th>วันที่</th>
+                                    <th>เวลาเริ่ม</th>
+                                    <th>เวลาสิ้นสุด</th>
+                                    <th>รวม (นาที)</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Call of Duty</td>
-                                    <td>455-981-221</td>
-                                    <td>El snort testosterone trophy driving gloves handsome</td>
-                                    <td>$64.50</td>
-                                    <td>$64.50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Need for Speed IV</td>
-                                    <td>247-925-726</td>
-                                    <td>Wes Anderson umami biodiesel</td>
-                                    <td>$50.00</td>
-                                    <td>$64.50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Monsters DVD</td>
-                                    <td>735-845-642</td>
-                                    <td>Terry Richardson helvetica tousled street art master</td>
-                                    <td>$10.70</td>
-                                    <td>$64.50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Grown Ups Blue Ray</td>
-                                    <td>422-568-642</td>
-                                    <td>Tousled lomo letterpress</td>
-                                    <td>$25.99</td>
-                                    <td>$64.50</td>
-                                </tr>
+                                <?php
+                                $user_id = $_SESSION["user_id"];
+                                // $sql = "SELECT th.id, th.actiondate, th.actiontime as start, th.remark, th.action_by, th.task_id, th.status_master_id , t.name as taskname, COUNT(th.task_id) AS NumberOftask, t.created as createddate
+                                // FROM task_history th
+                                // INNER JOIN task t ON t.id = th.status_master_id
+                                // where th.action_by = $user_id and th.status_master_id = 2 and stop = (th2.actiontime FROM task_history th2 WHERE  where th2.action_by = $user_id and th2.status_master_id = 6)          
+                                // ";
 
+                                $sql = "SELECT th.id, th.actiondate, th.actiontime as start, th.remark, th.action_by, th.task_id, th.status_master_id , t.name as taskname, COUNT(th.task_id) AS NumberOftask, t.created as createddate
+                                FROM task_history th
+                                INNER JOIN task t ON t.id = th.status_master_id
+                                where th.action_by = $user_id and th.status_master_id = 2 and stop = (th2.actiontime FROM task_history th2 WHERE  where th2.action_by = $user_id and th2.status_master_id = 6)          
+                                ";
+                                
+
+                                $result = $conn->query($sql);
+
+                                // if (!empty($result) && $result->num_rows > 0) {
+
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while ($row = $result->fetch_assoc()) {
+                                        // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                                    }
+                                } else {
+                                    echo "0 results";
+                                }
+                                // for ($id = 1; $id <= 5; $id++) { 
+                                foreach ($result as $key => $value) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo '1'; ?></td>
+                                        <td><?php echo $value['taskname']; ?></td>
+                                        <td><?php echo substr($value['createddate'], 0, 10); ?></td>
+                                        <td><?php echo $value['start']; ?></td>
+                                        <td><?php echo $value['stop']; ?></td>
+                                        <td><?php echo 'x'; ?></td>
+
+                                    </tr>
+                                <?php }
+                                $conn->close();
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -141,7 +151,7 @@
                             <tbody>
                                 <tr>
                                     <th style="width:50%">จำนวนงานทั้งหมดที่ดำเนินการ :</th>
-                                    <td>X งาน</td>
+                                    <td><?php echo $value['NumberOftask']; ?> งาน</td>
                                 </tr>
                                 <tr>
                                     <th>เวลาเฉลี่ยในการทำงานต่อหนึ่งงาน</th>
@@ -192,10 +202,10 @@
         $(function() {
             $('#dataTable').DataTable({
                 "paging": true,
-                "lengthChange": true,
-                "searching": true,
+                "lengthChange": false,
+                "searching": false,
                 "ordering": false,
-                "info": true,
+                "info": false,
                 "autoWidth": true
             });
         });
