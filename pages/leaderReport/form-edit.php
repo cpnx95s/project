@@ -40,12 +40,11 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
 
-
       <!-- Main content -->
       <section class="content mt-2">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">แก้ไขรายการงาน</h3>
+            <h3 class="card-title">แก้ไขข้อมูล</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -58,25 +57,17 @@
             exit();
           }
           if ($_GET['id']) {
-            // $sql = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_master.status_name as statusname,
-            // user.id as user_id, files.size as sizefile, task.channel_id
-            // from task
-            // inner join user on task.create_by = user.id
-            // inner join status_master on task.status_master_id = status_master.id
-            // inner join file_task on task.id = file_task.task_id
-            // inner join files on files.id = file_task.file_id
-            // WHERE task.id='" . $_GET['id'] . "'";
-
             $sql = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
               // output data of each row
               while ($row = $result->fetch_assoc()) {
-                // echo "id: " . $row["id"] . " - Name: " . $row["name"] . " " . $row["detail"] . "<br>";
+                // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
               }
             } else {
               echo "0 results";
             }
+
           }
           foreach ($result as $key => $value) { ?>
             <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post">
@@ -112,40 +103,51 @@
                     } else {
                       echo "0 results";
                     }
-                    $sql2 = "Select * FROM channel where NOT id = '" . $value['channel_id'] . "'";
+                    $sql2 = "Select * FROM channel where NOT id = '".$value['channel_id']."'";
                     $result2 = $mysqli->query($sql2);
                     if ($result2->num_rows > 0) {
                       // output data of each row
                       while ($row1 = $result2->fetch_assoc()) {
+
                       }
                     } else {
-                      // echo "0 results";
+                      echo "0 results";
                     }
-                    ?>
-                    <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name ?></option>
-                    <?php foreach ($result2 as $key => $value2) { ?>
+                     ?>
+                      <option value="<?php echo $channel_id ?>" selected><?php echo $channel_name?></option>
+                      <?php foreach($result2 as $key => $value2){ ?>
                       <option value="<?php echo $value2["id"] ?>"><?php echo $value2["name"] ?></option>
-                    <?php } ?>
+                      <?php } ?>
                   </select>
                 </div>
 
-                <div class="form-group">
-                  <label for="taskname">รายละเอียด</label>
-                  <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      รายละเอียด
+                    </h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">
                   <label>อัปโหลดไฟล์</label>
                   <div class="custom-file">
-
-                    <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
+                    <input type="file" class="custom-file-input" name="file" id="customFile">
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
-
                   </div>
-                  <img id="imgUpload" src="../fileupload/<?php echo $value['filepath'] ?>" class="figure-img img-fluid rounded" width="400" height="400" alt="">
-
-                  <!-- <figure class="figure text-center d-none mt-2">
-                  </figure> -->
+                  <figure class="figure text-center d-none mt-2">
+                    <img id="imgUpload" class="figure-img img-fluid rounded" alt="">
+                  </figure>
                 </div>
 
                 <div class="form-group">
@@ -163,38 +165,39 @@
                   <label>สถานะงาน_master</label>
                   <select class="form-control select" style="width: 100%;" name="status">
                   <?php
-                  $mysqli = new mysqli("localhost", "root", "", "myproject");
-                  // Check connection
-                  if ($mysqli->connect_errno) {
-                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                    exit();
-                  }
-                  $sql = "Select * FROM status_master";
-                  $result3 = $mysqli->query($sql);
-                  if ($result3->num_rows > 0) {
-                    // output data of each row
-                    while ($row = $result3->fetch_assoc()) {
-                      // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                      if ($row["id"] == $value['status_master_id']) {
-                        $status_name = $row["status_name"];
-                        $status_id = $row["id"];
+                    $mysqli = new mysqli("localhost", "root", "", "myproject");
+                    // Check connection
+                    if ($mysqli->connect_errno) {
+                      echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                      exit();
+                    }
+                    $sql = "Select * FROM status_master";
+                    $result3 = $mysqli->query($sql);
+                    if ($result3->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result3->fetch_assoc()) {
+                        // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
+                        if ($row["id"] == $value['status_master_id']) {
+                          $status_name = $row["status_name"];
+                          $status_id = $row["id"];
+                        }
                       }
+                    } else {
+                      echo "0 results";
                     }
-                  } else {
-                    // echo "0 results";
-                  }
-                  $sql2 = "Select * FROM status_master where NOT id = '" . $value['status_master_id'] . "'";
-                  $result4 = $mysqli->query($sql2);
-                  if ($result4->num_rows > 0) {
-                    // output data of each row
-                    while ($row1 = $result4->fetch_assoc()) {
+                    $sql2 = "Select * FROM status_master where NOT id = '".$value['status_master_id']."'";
+                    $result4 = $mysqli->query($sql2);
+                    if ($result4->num_rows > 0) {
+                      // output data of each row
+                      while ($row1 = $result4->fetch_assoc()) {
+
+                      }
+                    } else {
+                      echo "0 results";
                     }
-                  } else {
-                    // echo "0 results";
-                  }
-                  ?>
-                      <option value="<?php echo $status_id ?>" selected><?php echo $status_name ?></option>
-                      <?php foreach ($result4 as $key => $value3) { ?>
+                     ?>
+                      <option value="<?php echo $status_id ?>" selected><?php echo $status_name?></option>
+                      <?php foreach($result4 as $key => $value3){ ?>
                       <option value="<?php echo $value3["id"] ?>"><?php echo $value3["status_name"] ?></option>
                       <?php } ?>
                   </select>

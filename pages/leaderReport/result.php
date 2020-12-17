@@ -1,6 +1,7 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
 <?php include_once('../includes/convertstatus.php') ?>
+<?php include_once('../includes/calculatetime.php') ?>
 <!DOCTYPE html>
 <html>
 
@@ -74,13 +75,37 @@
                 <!-- /.row -->
 
                 <div class="row">
+                    <?php
+                    if (isset($_POST['search'])) {
+                        $user_id = $_POST["task_user"];
+                        $GLOBALS['iduser'] = $user_id;
+                        $sql_name = "SELECT * FROM user WHERE id = $user_id";
+                        $result = $conn->query($sql_name);
 
-                    <!-- /.col -->
-                    <div class="col-12">
-                        <p class="lead">TIFFANY HWANG</p>
+                        // if (!empty($result) && $result->num_rows > 0) {
+
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) {
+                                // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                            }
+                        } else {
+                            // echo "0 results";
+                        }
+                        // for ($id = 1; $id <= 5; $id++) { 
+                        foreach ($result as $key => $value1) {
+
+                    ?>
+
+                            <!-- /.col -->
+                            <div class="col-12">
+                                <p class="lead"><?php echo $value1['name']; ?></p>
 
 
-                    </div>
+                            </div>
+
+                    <?php }
+                    } ?>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -107,15 +132,23 @@
                                 // INNER JOIN task t ON t.id = th.status_master_id
                                 // where th.action_by = $user_id and th.status_master_id = 2 and stop = (th2.actiontime FROM task_history th2 WHERE  where th2.action_by = $user_id and th2.status_master_id = 6)          
                                 // ";
+                                //     th.id, th.actiondate, th.actiontime as start, th.remark, th.action_by, th.task_id, th.status_master_id , t.name as taskname,
+                                //     COUNT(th.task_id) AS NumberOftask, t.created as createddate
+                                //    FROM task_history th
+                                //    INNER JOIN task t ON t.id = th.task_id
+                                $user = $GLOBALS['iduser'];
+                                $sql = "SELECT th.id, th.actiondate, th.actiontime as start, th.remark, 
+                                th.action_by, th.task_id, th.status_master_id , t.name as taskname, t.created as createddate
+                                FROM task_history th 
+                                INNER JOIN task t ON t.id = th.task_id
+                                WHERE th.action_by = $user and th.status_master_id = 3";
 
-                                $sql = "SELECT th.id, th.actiondate, th.actiontime as start, th.remark, th.action_by, th.task_id, th.status_master_id , t.name as taskname, COUNT(th.task_id) AS NumberOftask, t.created as createddate
-                                FROM task_history th
-                                INNER JOIN task t ON t.id = th.status_master_id
-                                where th.action_by = $user_id and th.status_master_id = 2 and stop = (th2.actiontime FROM task_history th2 WHERE  where th2.action_by = $user_id and th2.status_master_id = 6)          
-                                ";
-                                
-
+                                $sql2 = "SELECT th.task_id, th.actiontime as stop from task_history th
+                                INNER JOIN task t ON t.id = th.task_id
+                                WHERE th.status_master_id = 6";
                                 $result = $conn->query($sql);
+                                $result2 = $conn->query($sql2);
+                                $countTask = $result->num_rows;
 
                                 // if (!empty($result) && $result->num_rows > 0) {
 
@@ -125,21 +158,33 @@
                                         // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
                                     }
                                 } else {
-                                    echo "0 results";
+                                    // echo "0 results";
                                 }
-                                // for ($id = 1; $id <= 5; $id++) { 
+                                // for ($id = 1; $id <= 5; $id++) {                                    
                                 foreach ($result as $key => $value) {
+                                    foreach ($result2 as $key => $value2) {
+                                        if ($value['task_id'] == $value2['task_id']) {
+                                            $time = diff2time($value['start'], $value2['stop']);
+                                            $secs = strtotime($value['start']) - strtotime($value2['stop']);
+                                            $datetime1 = new DateTime($value['start']);
+                                            $datetime2 = new DateTime($value2['stop']);
+                                            $interval = $datetime1->diff($datetime2);
+                                            $time2 =  $interval->format('%h:%i:%s');
+                                            // array_push($array1, $time2);
+                                            // $averageTask = averagetime($array1, $countTask);
                                 ?>
-                                    <tr>
-                                        <td><?php echo '1'; ?></td>
-                                        <td><?php echo $value['taskname']; ?></td>
-                                        <td><?php echo substr($value['createddate'], 0, 10); ?></td>
-                                        <td><?php echo $value['start']; ?></td>
-                                        <td><?php echo $value['stop']; ?></td>
-                                        <td><?php echo 'x'; ?></td>
+                                            <tr>
+                                                <td><?php echo '1'; ?></td>
+                                                <td><?php echo $value['taskname']; ?></td>
+                                                <td><?php echo substr($value['createddate'], 0, 10); ?></td>
+                                                <td><?php echo $value['start']; ?></td>
+                                                <td><?php echo $value2['stop']; ?></td>
+                                                <td><?php echo $time; ?></td>
 
-                                    </tr>
+                                            </tr>
                                 <?php }
+                                    }
+                                }
                                 $conn->close();
                                 ?>
                             </tbody>
@@ -151,7 +196,7 @@
                             <tbody>
                                 <tr>
                                     <th style="width:50%">จำนวนงานทั้งหมดที่ดำเนินการ :</th>
-                                    <td><?php echo $value['NumberOftask']; ?> งาน</td>
+                                    <td><?php echo $countTask; ?> งาน</td>
                                 </tr>
                                 <tr>
                                     <th>เวลาเฉลี่ยในการทำงานต่อหนึ่งงาน</th>

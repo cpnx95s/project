@@ -69,12 +69,13 @@
               <tbody>
                 <?php
                 $user_id = $_SESSION["user_id"];
+                echo $user_id;
                 $sql = "select  DISTINCT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by, t.status_master_id,  c.name as channel_name, s.status_name  , u.name as username, t.remark
                 FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 3";
+                where t.status_master_id = 3 and t.action_by = $user_id";
 
                 $result = $conn->query($sql);
 

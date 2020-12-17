@@ -45,7 +45,7 @@
         <!-- Default box -->
         <div class="card-header">
           <!-- <form action="search.php" method="post"> -->
-          <form method="post" action="result.php">
+          <form role="form" method="post" action="result.php">
             <div class="row">
               <h3>รายงานประสิทธิภาพการทำงานของพนักงาน</h3>
             </div>
@@ -57,11 +57,11 @@
                 <div class="col-md-12 col-12">
                   <div class="info-box">
 
-
+                  <!-- <div class="form-group"> -->
                     <div class="info-box-content">
                       <span class="info-box-text">บัญชีผู้ใช้</span>
                       <span class="info-box-number">
-                        <select class="form-control select2" data-placeholder="Select user" name="task-user">
+                        <select class="form-control select2" data-placeholder="Select user" name="task_user">
                           <option value="" selected></option>
                           <?php
                           $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -79,14 +79,16 @@
                               // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
                             }
                           } else {
-                            echo "0 results";
+                            // echo "0 results";
                           }
 
                           foreach ($result as $key => $value) { ?>
                             <option value="<?php echo $value['id']; ?>"><?php echo ucwords($value['name']); ?></option>
                           <?php } ?>
-                        </select></span>
-                    </div>
+                        </select>
+                      </span>
+                    <!-- </div> -->
+                  </div>
                     <!-- /.info-box-content -->
                   </div>
                   <!-- /.info-box -->

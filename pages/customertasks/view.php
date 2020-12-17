@@ -63,18 +63,23 @@ if ($result->num_rows > 0) {
               <div class="card card-success card-outline">
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
-
+                    
+                  <!--  -->
+                     <!-- 
+                      
+                      inner join files on files.id = file_task.file_id -->
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
-                      user.id as user_id, files.size as sizefile
+                    $sql2 = "select task.id, task.created, task.name, task.detail, 
+                      user.id as user_id, user.name as username, status_master.status_name as statusname,
+                      files.path as filepath, files.name as filename, files.id as fileid, files.size as sizefile
                       from task
                       inner join user on task.create_by = user.id
                       inner join status_master on task.status_master_id = status_master.id
-                      inner join file_task on task.id = file_task.task_id
-                      inner join files on files.id = file_task.file_id
-                      where task.id = $id
-                      ";
+                      left join file_task on task.id = file_task.task_id
+                      left join files on files.id = file_task.file_id
+                      where task.id = $id";
+                    // $sql2 = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
                     $result2 = $conn->query($sql2);
 
 
@@ -83,9 +88,10 @@ if ($result->num_rows > 0) {
                     if ($result2->num_rows > 0) {
                       // output data of each row
                       while ($row = $result2->fetch_assoc()) {
-                        // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                        // echo "id: " . $row["id"] . " - Name: "  . "<br>";
                       }
                     } else {
+                      echo "result 0";
                     }
                     // for ($id = 1; $id <= 5; $id++) { 
 
