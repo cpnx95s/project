@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
         $time = date("h:i:s");
         echo $date;
         echo $time;
-        $sql = "UPDATE task SET launch_date = '$launchdate', launch_time = '$launchtime', name = '$taskname', detail = ' $detail', status_master_id = '2' WHERE id='" . $_GET['id'] . "'";
+        $sql = "UPDATE task SET launch_date = '$launchdate', launch_time = '$launchtime', name = '$taskname', detail = ' $detail', status_master_id = '1' WHERE id='" . $_GET['id'] . "'";
         if ($conn->query($sql) === TRUE) {
             $sql1 = "INSERT INTO task_history(actiondate, actiontime, action_by, task_id,status_master_id)
             VALUES ('$date', '$time', '$user_id', '$taskid', '2')";

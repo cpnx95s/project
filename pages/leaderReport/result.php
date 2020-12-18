@@ -170,8 +170,25 @@
                                             $datetime2 = new DateTime($value2['stop']);
                                             $interval = $datetime1->diff($datetime2);
                                             $time2 =  $interval->format('%h:%i:%s');
+                                            $array1 = array();
+                                            $array[] = $value['start'];
+                                            $array[] = $value2['stop'];
+                                            // echo  $datetime1;
+                                            // echo  $datetime2;
+
+                                            // $start_time = $value['start']->format('H:i:s');
+                                            // $end_time = $value2['stop']->format('H:i:s');
+                                            // echo date_format($value['start'], 'H:i:s');
+                                            //  echo  $start_time;
+                                            // echo  $end_time;
+                                            array_push($array1, $value['start']);
+                                            array_push($array1, $value2['stop']);
+                                            // print_r($array1);
+
+                                            // print_r($array1);
+
                                             // array_push($array1, $time2);
-                                            // $averageTask = averagetime($array1, $countTask);
+                                            $averageTask = averagetime($array1, $countTask);
                                 ?>
                                             <tr>
                                                 <td><?php echo '1'; ?></td>

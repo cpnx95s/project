@@ -69,7 +69,6 @@
               <tbody>
                 <?php
                 $user_id = $_SESSION["user_id"];
-                echo $user_id;
                 $sql = "select  DISTINCT t.id, t.name, t.launch_date, t.launch_time, t.created, t.channel_id, t.create_by, t.status_master_id,  c.name as channel_name, s.status_name  , u.name as username, t.remark
                 FROM task t  
                 INNER JOIN channel c ON t.channel_id = c.id 

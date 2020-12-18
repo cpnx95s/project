@@ -13,8 +13,7 @@ function diff2time($time_a,$time_b){
 
 function averagetime(array $time, $countTask) {
     foreach ($time as $key => $value) {
-        echo $value['start'];
-        echo $value['end'];
+ 
     }
     // $totaltime = '';
     // foreach($time_a as $time) {

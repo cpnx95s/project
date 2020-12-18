@@ -26,7 +26,7 @@ if ($_GET['id']) {
         $sql1 = "INSERT INTO task_history(actiondate, actiontime, remark, action_by, task_id, status_master_id)
             VALUES ('$date', '$time', '$remark', '$user_id', '$task_id', '$status_id')";
         if ($conn->query($sql1)) {
-          $sql2 = "SELECT user.name as name, task.name as taskname, task.id as taskid FROM task 
+          $sql2 = "SELECT user.email, user.name as name, task.name as taskname, task.id as taskid FROM task 
           INNER JOIN user on task.action_by = user.id WHERE task.id = '" . $_GET['id'] . "'";
           $result2 = $conn->query($sql2);
           foreach ($result2 as $key => $value2) {
@@ -39,7 +39,7 @@ if ($_GET['id']) {
               $mail->SMTPAuth = true;
 
               $gmail_username = "thetong1911.2@gmail.com"; // gmail ที่ใช้ส่ง
-              $gmail_password = "0816068459"; // รหัสผ่าน gmail
+              $gmail_password = "Tongmook39"; // รหัสผ่าน gmail
               // ตั้งค่าอนุญาตการใช้งานได้ที่นี่ https://myaccount.google.com/lesssecureapps?pli=1
 
               $sender = "IBS Support"; // ชื่อผู้ส่ง
@@ -65,8 +65,8 @@ if ($_GET['id']) {
 
 						<div style='padding:20px;'>
 							<div>				
-								<h2>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
-								<a href='http://localhost/project/pages/customertasks/view.php?id=" . $taskid . "' target='_blank'>
+								<h2>รายการงาน : " . $value2['taskname'] . "<strong style='color:#0000ff;'></strong></h2>
+								<a href='http://localhost/project/pages/customertasks/view.php?id=" . $value2['taskid'] . "' target='_blank'>
 									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อดูรายการงาน<< </strong> </h1>
 								</a>
 							</div>
@@ -101,6 +101,6 @@ if ($_GET['id']) {
   } else {
     echo "Error record: " . $conn->error;
   }
-  header('Refresh:0; url=index.php');
+  // header('Refresh:0; url=index.php');
 }
 ?>

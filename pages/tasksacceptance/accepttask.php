@@ -38,7 +38,7 @@ if ($_GET['id']) {
               $mail->SMTPAuth = true;
 
               $gmail_username = "thetong1911.2@gmail.com"; // gmail ที่ใช้ส่ง
-              $gmail_password = "0816068459"; // รหัสผ่าน gmail
+              $gmail_password = "Tongmook39"; // รหัสผ่าน gmail
               // ตั้งค่าอนุญาตการใช้งานได้ที่นี่ https://myaccount.google.com/lesssecureapps?pli=1
 
               $sender = "IBS Support"; // ชื่อผู้ส่ง
@@ -64,8 +64,8 @@ if ($_GET['id']) {
 
 						<div style='padding:20px;'>
 							<div>				
-								<h2>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
-								<a href='http://localhost/project/pages/customertasks/view.php?id=" . $taskid . "' target='_blank'>
+								<h2>รายการงาน : " . $value2['taskname'] . "<strong style='color:#0000ff;'></strong></h2>
+								<a href='http://localhost/project/pages/customertasks/view.php?id=" . $value2['taskid'] . "' target='_blank'>
 									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อดูรายการงาน<< </strong> </h1>
 								</a>
 							</div>

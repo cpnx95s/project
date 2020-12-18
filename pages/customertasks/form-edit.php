@@ -58,16 +58,14 @@
             exit();
           }
           if ($_GET['id']) {
-            // $sql = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_master.status_name as statusname,
-            // user.id as user_id, files.size as sizefile, task.channel_id
-            // from task
-            // inner join user on task.create_by = user.id
-            // inner join status_master on task.status_master_id = status_master.id
-            // inner join file_task on task.id = file_task.task_id
-            // inner join files on files.id = file_task.file_id
-            // WHERE task.id='" . $_GET['id'] . "'";
-
-            $sql = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
+            $sql = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
+            user.id as user_id, files.size as sizefile, task.channel_id
+            from task
+            inner join user on task.create_by = user.id
+            inner join status_master on task.status_master_id = status_master.id
+            inner join file_task on task.id = file_task.task_id
+            inner join files on files.id = file_task.file_id
+            WHERE task.id='" . $_GET['id'] . "'";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
               // output data of each row
@@ -75,11 +73,11 @@
                 // echo "id: " . $row["id"] . " - Name: " . $row["name"] . " " . $row["detail"] . "<br>";
               }
             } else {
-              echo "0 results";
+              // echo "0 results";
             }
           }
           foreach ($result as $key => $value) { ?>
-            <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post">
+            <form role="form" action="update.php?id=<?php echo $value['id']; ?>" method="post" enctype="multipart/form-data">
               <div class="card-body">
 
                 <div class="form-group">
@@ -138,7 +136,7 @@
                   <label>อัปโหลดไฟล์</label>
                   <div class="custom-file">
 
-                    <input type="file" class="custom-file-input" name="fileuploadedit" id="customFile" multiple>
+                    <input type="file" class="custom-file-input" name="fileupload" id="customFile" multiple>
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
 
                   </div>
