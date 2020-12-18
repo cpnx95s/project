@@ -82,7 +82,7 @@ if (isset($_POST['save'])) {
 				$email_sender = "noreply@ibsone.com"; // เมล์ผู้ส่ง 
 				$email_receiver = $value2['email']; // เมล์ผู้รับ ***
 
-				$subject = "สร้างงาน"; // หัวข้อเมล์
+				$subject = "มีแจ้งเตือนงานใหม่ถึงคุณ"; // หัวข้อเมล์
 
 				$mail->Username = $gmail_username;
 				$mail->Password = $gmail_password;
@@ -95,25 +95,18 @@ if (isset($_POST['save'])) {
 				<html>
 					<head>
 						<meta charset=utf-8'/>
-						<title>ทดสอบการส่ง Email</title>
+						<title>มีแจ้งเตือนงานใหม่</title>
 					</head>
 					<body>
-						<h1>
-						ชื่อผู้สร้างงาน: " . $value2['name'] . "
-						</h1>
+
 						<div style='padding:20px;'>
 							<div>				
 								<h2>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
 								<a href='http://localhost/project/pages/customertasks/view.php?id=" . $taskid . "' target='_blank'>
-									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อไปยังรายการงาน<< </strong> </h1>
+									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อดูรายการงาน<< </strong> </h1>
 								</a>
 							</div>
-							<div style='margin-top:30px;'>
-								<hr>
-								<address>
-									<h4>ติดต่อสอบถาม</h4>
-								</address>
-							</div>
+
 						</div>
 					</body>
 				</html>

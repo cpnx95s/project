@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>จัดการรายการงาน</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -122,7 +122,7 @@
                 <div class="form-group">
                   <label for="ชื่องาน">รายละเอียด</label>
                   <div class="mb-3">
-                    <textarea id="detail" name="detail" style="width: 100%" ><?php echo $value['detail']; ?></textarea>
+                    <textarea id="detail" name="detail" style="width: 100%"><?php echo $value['detail']; ?></textarea>
                   </div>
                 </div>
 
