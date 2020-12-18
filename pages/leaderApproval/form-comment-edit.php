@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -34,7 +34,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar.php') ?>
+    <?php include_once('../includes/sidebar_leader.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -71,21 +71,25 @@
             } else {
               echo "0 results";
             }
-
           }
           foreach ($result as $key => $value) { ?>
             <form role="form" action="update-comment.php?id=<?php echo $value['id']; ?>" method="post">
               <div class="card-body">
 
                 <div class="form-group">
-                  <label for="title">Subject</label>
+                  <label for="title">หัวข้อ</label>
                   <input type="text" class="form-control" id="title" name="title" value="<?php echo $value['title']; ?>">
                 </div>
 
-                <div class="card card-success card-outline">
+                <div class="form-group">
+                  <label for="title">รายละเอียด</label>
+                  <textarea id="content" name="content" style="width: 100%"><?php echo $value['content']; ?></textarea>
+                </div>
+
+                <!-- <div class="card card-success card-outline">
                   <div class="card-header">
                     <h3 class="card-title">
-                      Detail
+                      รายละเอียด
                     </h3>
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -98,11 +102,11 @@
                       <textarea id="content" name="content" style="width: 100%"><?php echo $value['content']; ?></textarea>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-success" name="update">Submit</button>
+                <button type="submit" class="btn btn-success" name="update">แสดงความคิดเห็น</button>
               </div>
             </form>
           <?php }

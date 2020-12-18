@@ -6,11 +6,11 @@ if ($_GET['id']) {
 
   $sql = "DELETE FROM comments WHERE id='" . $_GET['id'] . "'";
   if ($conn->query($sql) === TRUE) {
-    echo '<script> alert("ลบสำเร็จ")</script>';
+    echo '<script> alert("ลบความคิดเห็นสำเร็จ")</script>';
     $conn->close();
   } else {
     echo "Error deleting record: " . $conn->error;
   }
-  header('Refresh:0; url=http://localhost/project/pages/staffdashboard/view.php?id=' . $taskid);
+  header('Refresh:0; url=index.php');
 }
 ?>

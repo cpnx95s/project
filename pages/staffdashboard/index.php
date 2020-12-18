@@ -361,7 +361,7 @@
     };
 
     function pickItem(id) {
-      if (confirm('Are you sure, you want to Pick up this item?') == true) {
+      if (confirm('ยืนยันหยิบงานใช่หรือไม่') == true) {
         window.location = `pickItem.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }

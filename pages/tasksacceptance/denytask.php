@@ -44,7 +44,7 @@ if ($_GET['id']) {
               $email_sender = "noreply@ibsone.com"; // เมล์ผู้ส่ง 
               $email_receiver = "thetong1911.2@gmail.com"; // เมล์ผู้รับ ***
 
-              $subject = "แก้ไขสถานะงาน"; // หัวข้อเมล์
+              $subject = "มีงานถูกปฎิเสธ"; // หัวข้อเมล์
 
               $mail->Username = $gmail_username;
               $mail->Password = $gmail_password;
@@ -52,34 +52,27 @@ if ($_GET['id']) {
               $mail->addAddress($email_receiver);
               $mail->Subject = $subject;
 
-              $email_content = "
-              <!DOCTYPE html>
-              <html>
-                  <head>
-                      <meta charset=utf-8'/>
-                      <title>ทดสอบการส่ง Email</title>
-                  </head>
-                  <body>
-                      <h1>
-                      ชื่อผู้แก้ไขงาน: " . $value2['name'] . "
-                      </h1>
-                      <div style='padding:20px;'>
-                          <div>				
-                              <h2>ชื่่องานที่แก้ไข : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
-                              <a href='http://localhost/project/pages/taskacceptance/view.php?id=". $taskid ."' target='_blank'>
-                                  <h1><strong style='color:#3c83f9;'> >> กรุณาคลิ๊กที่นี่ เพื่อตั้งรหัสผ่านใหม่<< </strong> </h1>
-                              </a>
-                          </div>
-                          <div style='margin-top:30px;'>
-                              <hr>
-                              <address>
-                                  <h4>ติดต่อสอบถาม</h4>
-                              </address>
-                          </div>
-                      </div>
-                  </body>
-              </html>
-          ";
+            $email_content = "
+				<!DOCTYPE html>
+				<html>
+					<head>
+						<meta charset=utf-8'/>
+						<title>แจ้งเตือนรายการงาน</title>
+					</head>
+					<body>
+
+						<div style='padding:20px;'>
+							<div>				
+								<h2>รายการงาน : " . $taskname . "<strong style='color:#0000ff;'></strong></h2>
+								<a href='http://localhost/project/pages/customertasks/view.php?id=" . $taskid . "' target='_blank'>
+									<h1><strong style='color:#3c83f9;'> >> คลิ๊กที่นี่ เพื่อดูรายการงาน<< </strong> </h1>
+								</a>
+							</div>
+
+						</div>
+					</body>
+				</html>
+			";
 
               //  ถ้ามี email ผู้รับ
               if ($email_receiver) {

@@ -64,17 +64,22 @@ if ($result->num_rows > 0) {
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
 
+                    <!--  -->
+                    <!-- 
+                      
+                      inner join files on files.id = file_task.file_id -->
                     <?php
                     $id = $_GET['id'];
-                    $sql2 = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
-                      user.id as user_id, files.size as sizefile
+                    $sql2 = "select task.id, task.created, task.name, task.detail, 
+                      user.id as user_id, user.name as username, status_master.status_name as statusname,
+                      files.path as filepath, files.name as filename, files.id as fileid, files.size as sizefile
                       from task
                       inner join user on task.create_by = user.id
                       inner join status_master on task.status_master_id = status_master.id
-                      inner join file_task on task.id = file_task.task_id
-                      inner join files on files.id = file_task.file_id
-                      where task.id = $id
-                      ";
+                      left join file_task on task.id = file_task.task_id
+                      left join files on files.id = file_task.file_id
+                      where task.id = $id";
+                    // $sql2 = "Select * FROM task WHERE id='" . $_GET['id'] . "'";
                     $result2 = $conn->query($sql2);
 
 
@@ -83,9 +88,10 @@ if ($result->num_rows > 0) {
                     if ($result2->num_rows > 0) {
                       // output data of each row
                       while ($row = $result2->fetch_assoc()) {
-                        // echo "id: " . $row["id"] . " - Name: " . $row["channel_name"] . " " . $row["lastname"] . "<br>";
+                        // echo "id: " . $row["id"] . " - Name: "  . "<br>";
                       }
                     } else {
+                      echo "result 0";
                     }
                     // for ($id = 1; $id <= 5; $id++) { 
 
@@ -109,8 +115,8 @@ if ($result->num_rows > 0) {
                       <?php
                       foreach ($result as $key => $value) {
                       ?>
-                        <!-- <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" width="400" height="400">
-                        </span> -->
+                        <span class=""><img src="../fileupload/<?php echo $value2['filepath']; ?>" width="400" height="400">
+                        </span>
 
                         <div class="mailbox-attachment-info">
                           <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
@@ -135,7 +141,7 @@ if ($result->num_rows > 0) {
                   <?php if ($value2["user_id"] == $_SESSION["user_id"]) { ?>
 
                     <div class="float-left">
-                      <a href="form-comment-edit.php?id=<?php echo $value2['id']; ?>" class="btn btn-sm btn-warning text-white">
+                      <a href="form-edit.php?id=<?php echo $value2['id']; ?>" class="btn btn-sm btn-warning text-white">
                         <i class="fa fa-pencil-square-o"></i> แก้ไข
                       </a>
                       <a href="#" onclick="deleteItem(<?php echo $value2['id']; ?>);" class="btn btn-sm btn-danger">
@@ -181,7 +187,7 @@ if ($result->num_rows > 0) {
 
               <?php
               $id = $_GET['id'];
-              $sql = "select c.title, c.content, c.created, c.updated, c.task_id, c.user_id , u.name as username
+              $sql = "select c.id as cid, c.title, c.content, c.created, c.updated, c.task_id, c.user_id , u.name as username
               FROM comments c 
               INNER JOIN user u ON c.user_id = u.id
               where c.task_id = $id";
@@ -207,7 +213,7 @@ if ($result->num_rows > 0) {
                     <div class="mailbox-read-info">
                       <!-- <h5>รบกวนรีวิว Splash Banner ให้หน่อยค่ะ</h5> -->
                       <h5><?php echo $value['title']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo $value['username']; ?> At <?php echo $value['created']; ?></h6>
+                      <h6 class="text-secondary">สร้างโดย <?php echo  $value2['username']; ?> วันที่ <?php echo substr($value2['created'], 0, 10); ?> เวลา <?php echo substr($value2['created'], 11, 5); ?> น. | <?php echo  $statusth1; ?>
                     </div>
                     <!-- /.mailbox-read-info -->
 
@@ -229,10 +235,10 @@ if ($result->num_rows > 0) {
                     <?php if ($value["user_id"] == $_SESSION["user_id"]) { ?>
 
                       <div class="float-left">
-                        <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                        <a href="form-comment-edit.php?id=<?php echo $value['cid']; ?>" class="btn btn-sm btn-warning text-white">
                           <i class="fa fa-pencil-square-o"></i> แก้ไข
                         </a>
-                        <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                        <a href="#" onclick="deleteItem(<?php echo $value['cid']; ?>);" class="btn btn-sm btn-danger">
                           <i class="fa fa-trash-o"></i> ลบ
                         </a>
                       </div>

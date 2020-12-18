@@ -82,20 +82,19 @@ if (isset($_POST['save'])) {
 				$email_sender = "noreply@ibsone.com"; // เมล์ผู้ส่ง 
 				$email_receiver = $value2['email']; // เมล์ผู้รับ ***
 
-				$subject = "มีแจ้งเตือนงานใหม่ถึงคุณ"; // หัวข้อเมล์
+				$subject = "มีงานใหม่"; // หัวข้อเมล์
 
 				$mail->Username = $gmail_username;
 				$mail->Password = $gmail_password;
 				$mail->setFrom($email_sender, $sender);
 				$mail->addAddress($email_receiver);
 				$mail->Subject = $subject;
-
 				$email_content = "
 				<!DOCTYPE html>
 				<html>
 					<head>
 						<meta charset=utf-8'/>
-						<title>มีแจ้งเตือนงานใหม่</title>
+						<title>แจ้งเตือนรายการงาน</title>
 					</head>
 					<body>
 

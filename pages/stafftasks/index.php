@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>จัดการรายการงาน</title>
+ <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -162,14 +162,14 @@
     });
 
     function unpickItem(id) {
-      if (confirm('Are you sure, you want to unpickup this item?') == true) {
+      if (confirm('ยืนยันคืนงานใช่หรือไม่') == true) {
         window.location = `unpickItem.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }
     };
 
     function sendItem(id) {
-      if (confirm('Are you sure, you want to send this item to Leader?') == true) {
+      if (confirm('ยืนยันส่งงานใช่หรือไม่') == true) {
         window.location = `sendItem.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }

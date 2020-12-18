@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
         if (mysqli_query($conn, $sql)) {
 
-            echo '<script> alert("สร้างสำเร็จ")</script>';
+            echo '<script> alert("แสดงความคิดเห็นสำเร็จ")</script>';
         } else {
             echo "Error Creating record: " . $conn->error;
         }

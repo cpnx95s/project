@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
             // if ($conn->query($sql1)) {
             //     echo '<script> alert("แก้ไขสำเร็จ")</script>';
             // }
-            echo '<script> alert("แก้ไขสำเร็จ")</script>';
+            echo '<script> alert("แก้ไขความคิดเห็นสำเร็จ")</script>';
         } else {
             echo "Error Updating record: " . $conn->error;
         }

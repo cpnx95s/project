@@ -3,7 +3,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 
-require '/xampp/htdocs/MyPJ/pages/vendor/autoload.php';
+require '/xampp/htdocs/project/pages/vendor/autoload.php';
 if ($_GET['id']) {
   $userid = $_SESSION['user_id'];
   $sql = "UPDATE task SET status_master_id =  '2', action_by = $userid WHERE id='" . $_GET['id'] . "'";
@@ -27,7 +27,7 @@ if ($_GET['id']) {
             VALUES ('$date', '$time', '$user_id', '$task_id', '2')";
         if ($conn->query($sql1)) {
           $user_id = $_SESSION["user_id"];
-          echo '<script> alert("Finished unpickup!")</script>';
+          echo '<script> alert("คืนงานสำเร็จ")</script>';
         }
       }
     } else {

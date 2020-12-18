@@ -63,9 +63,9 @@ if ($result->num_rows > 0) {
               <div class="card card-success card-outline">
                 <div class="card-body p-3">
                   <div class="mailbox-read-info">
-                    
-                  <!--  -->
-                     <!-- 
+
+                    <!--  -->
+                    <!-- 
                       
                       inner join files on files.id = file_task.file_id -->
                     <?php
@@ -187,7 +187,7 @@ if ($result->num_rows > 0) {
 
               <?php
               $id = $_GET['id'];
-              $sql = "select c.title, c.content, c.created, c.updated, c.task_id, c.user_id , u.name as username
+              $sql = "select c.id as cid, c.title, c.content, c.created, c.updated, c.task_id, c.user_id , u.name as username
               FROM comments c 
               INNER JOIN user u ON c.user_id = u.id
               where c.task_id = $id";
@@ -213,7 +213,7 @@ if ($result->num_rows > 0) {
                     <div class="mailbox-read-info">
                       <!-- <h5>รบกวนรีวิว Splash Banner ให้หน่อยค่ะ</h5> -->
                       <h5><?php echo $value['title']; ?></h5>
-                      <h6 class="text-secondary">Created by <?php echo $value['username']; ?> At <?php echo $value['created']; ?></h6>
+                      <h6 class="text-secondary">สร้างโดย <?php echo  $value2['username']; ?> วันที่ <?php echo substr($value2['created'], 0, 10); ?> เวลา <?php echo substr($value2['created'], 11, 5); ?> น. | <?php echo  $statusth1; ?>
                     </div>
                     <!-- /.mailbox-read-info -->
 
@@ -235,10 +235,10 @@ if ($result->num_rows > 0) {
                     <?php if ($value["user_id"] == $_SESSION["user_id"]) { ?>
 
                       <div class="float-left">
-                        <a href="form-comment-edit.php?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-warning text-white">
+                        <a href="form-comment-edit.php?id=<?php echo $value['cid']; ?>" class="btn btn-sm btn-warning text-white">
                           <i class="fa fa-pencil-square-o"></i> แก้ไข
                         </a>
-                        <a href="#" onclick="deleteItem(<?php echo $value['id']; ?>);" class="btn btn-sm btn-danger">
+                        <a href="#" onclick="deleteItem(<?php echo $value['cid']; ?>);" class="btn btn-sm btn-danger">
                           <i class="fa fa-trash-o"></i> ลบ
                         </a>
                       </div>

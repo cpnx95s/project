@@ -31,7 +31,7 @@ if ($_GET['id']) {
     
         if ($conn->query($sql1)) {
           $user_id = $_SESSION["user_id"];
-          echo '<script> alert("Finished Pickup!")</script>';
+          echo '<script> alert("หยิบงานสำเร็จ")</script>';
         }
       }
     } else {

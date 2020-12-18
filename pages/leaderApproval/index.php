@@ -164,14 +164,14 @@
     });
 
     function acceptItem(id) {
-      if (confirm('Are you sure, you want to Accept this task?') == true) {
+      if (confirm('ยืนยันส่งงานเพื่อรอการตรวจรับงานจากลูกค้าใช่หรือไม่') == true) {
         window.location = `accepttask.php?id=${id}`;
         // window.location='delete.php?id='+id;
       }
     };
 
     function denyItem(id) {
-      var retVal = prompt("Enter your Reason for not passing : ");
+      var retVal = prompt("เหตุผลที่ไม่ยอมรับงานนี้คือ");
       if (retVal != null) {
         window.location = `denytask.php?id=${id}&remark=${retVal}`;
       }
