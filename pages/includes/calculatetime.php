@@ -28,13 +28,14 @@ function averagetime(array $time, $countTask) {
                 $interval = $newTimeAdd->diff($newTimeRead);
 
                 // $intervals[$i] = $interval->format('%h:%i:%s');//get days
-                $intervals[] = $interval->format('%h:%i:%s');
+                $intervals[] = array($interval->format('%h:%i:%s'));
         }
-        // echo AddPlayTime($intervals);
+        echo AddPlayTime($intervals);
+        print_r($intervals);
         if(!empty($intervals))
         {
             $average = average($intervals);
-            echo $average;
+            // echo $average;
         }
 
     // $totaltime = '';
@@ -78,18 +79,18 @@ function AddPlayTime($times) {
 
 function average($arr)
 {
-    $sum = strtotime('00:00:00');
- $sum2=0;  
- foreach ($arr as $v){
+//     $sum = strtotime('00:00:00');
+//  $sum2=0;  
+//  foreach ($arr as $v){
 
-        $sum1=strtotime($v)-$sum;
+//         $sum1=strtotime($v)-$sum;
 
-        $sum2 = $sum2+$sum1;
-    }
+//         $sum2 = $sum2+$sum1;
+//     }
 
-    $sum3=$sum+$sum2;
+//     $sum3=$sum+$sum2;
 
-    echo date("H:i:s",$sum3);
+//     echo date("H:i:s",$sum3);
 
     
 //     $sum = strtotime('00:00:00');
