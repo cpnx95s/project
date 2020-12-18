@@ -160,9 +160,14 @@
                                 } else {
                                     // echo "0 results";
                                 }
-                                // for ($id = 1; $id <= 5; $id++) {                                    
+                                // for ($id = 1; $id <= 5; $id++) {   
+                                    $i = 0;
+
                                 foreach ($result as $key => $value) {
+
+
                                     foreach ($result2 as $key => $value2) {
+
                                         if ($value['task_id'] == $value2['task_id']) {
                                             $time = diff2time($value['start'], $value2['stop']);
                                             $secs = strtotime($value['start']) - strtotime($value2['stop']);
@@ -171,8 +176,9 @@
                                             $interval = $datetime1->diff($datetime2);
                                             $time2 =  $interval->format('%h:%i:%s');
                                             $array1 = array();
-                                            $array[] = $value['start'];
-                                            $array[] = $value2['stop'];
+                                            $array1[$i] = array('start' => $value['start'], 'stop' => $value2['stop']);
+                                            $i = $i + 1;
+
                                             // echo  $datetime1;
                                             // echo  $datetime2;
 
@@ -180,9 +186,11 @@
                                             // $end_time = $value2['stop']->format('H:i:s');
                                             // echo date_format($value['start'], 'H:i:s');
                                             //  echo  $start_time;
-                                            // echo  $end_time;
-                                            array_push($array1, $value['start']);
-                                            array_push($array1, $value2['stop']);
+                                            // echo $value['start'];
+                                            // echo  strtotime($value['start']);
+                                            // array_push($array1, $value['start']);
+                                            // array_push($array1, $value2['stop']);
+                                            // print_r($array1);
                                             // print_r($array1);
 
                                             // print_r($array1);

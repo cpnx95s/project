@@ -74,7 +74,8 @@
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.status_master_id = 3 and t.action_by = $user_id";
+                INNER JOIN task_history th ON t.id = th.task_id
+                where t.status_master_id = 3 and th.action_by = $user_id";
 
                 $result = $conn->query($sql);
 
