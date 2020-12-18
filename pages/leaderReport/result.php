@@ -196,7 +196,7 @@
                                             // print_r($array1);
 
                                             // array_push($array1, $time2);
-                                            $averageTask = averagetime($array1, $countTask);
+                                            // $averageTask = averagetime($array1, $countTask);
                                 ?>
                                             <tr>
                                                 <td><?php echo '1'; ?></td>
