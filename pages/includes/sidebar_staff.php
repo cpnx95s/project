@@ -37,7 +37,7 @@ $name = $link_array[count($link_array) - 2];
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 
-<nav class="main-header navbar navbar-expand border-bottom navbar-dark bg-success">
+<nav class="main-header navbar navbar-expand border-bottom navbar-dark bg-danger">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">

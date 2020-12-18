@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -98,9 +98,9 @@
                     <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
+                    <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
                     <td><?php echo $value['username']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo substr($value['created'], 0, 10); ?> , <?php echo substr($value['created'], 11, 5); ?></td>
                     <td style="color:#C70039"><?php echo $value['remark']; ?></td>
                     <td>
 

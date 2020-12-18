@@ -97,8 +97,8 @@
                     <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
+                    <td><?php echo substr($value['created'], 0, 10); ?> , <?php echo substr($value['created'], 11, 5); ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['actionby']; ?></td>
                     <td class="text-danger"><?php echo $value['remark']; ?></td>

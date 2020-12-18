@@ -58,7 +58,7 @@
             exit();
           }
           if ($_GET['id']) {
-            $sql = "select task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
+            $sql = "select task.launch_date,task.launch_time,task.id, task.created, task.name, task.detail, files.path as filepath, files.name as filename, files.id as fileid, user.name as username, status_name as statusname,
             user.id as user_id, files.size as sizefile, task.channel_id
             from task
             inner join user on task.create_by = user.id
@@ -87,8 +87,8 @@
 
                 <!--field ของ channel -->
                 <div class="form-group">
-                  <label>Select ช่องทางสังคมออนไลน์</label>
-                  <select class="form-control select2" data-placeholder="Select ช่องทางสังคมออนไลน์" style="width: 100%;" name="channel">
+                  <label>ช่องทางสังคมออนไลน์</label>
+                  <select class="form-control select2" data-placeholder="ช่องทางสังคมออนไลน์" style="width: 100%;" name="channel">
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "myproject");
                     // Check connection
@@ -140,7 +140,7 @@
                     <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
 
                   </div>
-                  <img id="imgUpload" src="../fileupload/<?php echo $value['filepath'] ?>" class="figure-img img-fluid rounded" width="400" height="400" alt="">
+                  <img id="imgUpload" src="../fileupload/<?php echo $value['filepath'] ?>" class="figure-img img-fluid rounded" >
 
                   <!-- <figure class="figure text-center d-none mt-2">
                   </figure> -->

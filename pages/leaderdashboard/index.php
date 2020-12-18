@@ -191,7 +191,7 @@
                             echo "Failed to connect to MySQL: " . $mysqli->connect_error;
                             exit();
                           }
-                          $sql = "Select * FROM status_master";
+                          $sql = "Select * FROM status_master where id !=7 and id != 1";
                           $result = $mysqli->query($sql);
                           if ($result->num_rows > 0) {
                             // output data of each row
@@ -269,7 +269,7 @@
                   INNER JOIN status_master s ON t.status_master_id = s.id
                   LEFT JOIN user u ON t.create_by = u.id
                   LEFT JOIN user uc ON t.action_by = uc.id
-                  WHERE t.status_master_id != 1;
+                  WHERE t.status_master_id != 1 and t.status_master_id != 7;
                   ";
 
                   $result = $conn->query($sql);
@@ -297,8 +297,8 @@
                     <td><a href="view.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
                     <td><?php echo $value['channel_name']; ?></td>
                     <td><?php echo $value['launch_date']; ?></td>
-                    <td><?php echo $value['launch_time']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
+                    <td><?php echo substr($value['created'], 0, 10); ?> , <?php echo substr($value['created'], 11, 5); ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['actionby']; ?></td>
                     <td><?php echo $statusth1; ?></td>

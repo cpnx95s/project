@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -77,7 +77,7 @@
                 INNER JOIN channel c ON t.channel_id = c.id 
                 INNER JOIN status_master s ON t.status_master_id = s.id
                 INNER JOIN user u ON t.create_by = u.id
-                where t.create_by = $user_id and t.status_master_id != 7
+                where t.create_by = $user_id and t.status_master_id != 7 and t.status_master_id != 1
                 ORDER BY t.id ASC
                 ";
 
@@ -106,7 +106,7 @@
                     <td><?php echo substr($value['launch_time'], 0, 5); ?></td>
                     <td><?php echo $statusth1; ?></td>
 
-                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo substr($value['created'], 0, 10); ?> , <?php echo substr($value['created'], 11, 5); ?></td>
                     <td>
                       <a href="view.php?id=<?php echo $value['id']; ?>">
                         <i class="fa fa-eye"></i>

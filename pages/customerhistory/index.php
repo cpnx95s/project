@@ -85,10 +85,12 @@
                 }
                 // for ($id = 1; $id <= 5; $id++) { 
                 foreach ($result as $key => $value) {
+                  $statusth1 = statusth($value['statusname']);
+
                 ?>
                   <tr>
 
-                    <td>คุณ <?php echo $value['statusname']; ?> รายการงาน [ <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> ] เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น.</td>
+                    <td>คุณได้เปลี่ยนสถานะรายการงาน <strong style="color:red;"><?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?></strong> เป็น <strong style="color:red;"><?php echo $statusth1; ?></strong> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo substr($value['actiontime'], 0, 5); ?> น.</td>
 
                   </tr>
                 <?php }

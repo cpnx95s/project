@@ -105,7 +105,7 @@
                     <td><?php echo $value['email']; ?></td>
                     <td><?php echo $value['cpname']; ?></td>
                     <td><?php echo $value['rolename']; ?></td>
-                    <td><?php echo $value['created']; ?></td>
+                    <td><?php echo substr($value['created'], 0, 10); ?> , <?php echo substr($value['created'], 11, 5); ?></td>
 
                     <td>
                       <!-- <a href="view.php?id=<?php echo $value['id']; ?>" >

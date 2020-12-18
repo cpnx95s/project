@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -90,7 +90,7 @@
                 ?>
                   <tr>
 
-                    <td>คุณได้เปลี่ยนสถานะรายการงาน <?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?> เป็น <?php echo $statusth1; ?> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo $value['actiontime']; ?> น.</td>
+                    <td>คุณได้เปลี่ยนสถานะรายการงาน <strong style="color:green;"><?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?></strong> เป็น <strong style="color:green;"><?php echo $statusth1; ?></strong> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo substr($value['actiontime'], 0, 5); ?> น.</td>
 
                   </tr>
                 <?php }
