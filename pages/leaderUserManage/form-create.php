@@ -34,33 +34,18 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar.php') ?>
+    <?php include_once('../includes/sidebar_leader.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Users Management</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Users Management</a></li>
-                <li class="breadcrumb-item active">Create Users</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
+
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create Users</h3>
+            <h3 class="card-title">เพิ่มบัญชีผู้ใช้</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -68,60 +53,32 @@
             <div class="card-body">
 
               <div class="form-group">
-                <label for="Name">Name</label>
+                <label for="Name">ชื่อ</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name">
               </div>
 
               <div class="form-group">
-                <label for="SurName">SurName</label>
+                <label for="SurName">นามสกุล</label>
                 <input type="text" class="form-control" id="surname" name="surname" placeholder="SurName">
               </div>
 
               <div class="form-group">
-                <label for="UserName">UserName</label>
+                <label for="UserName">ชื่อผู้ใช้</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="UserName">
               </div>
 
               <div class="form-group">
-                <label for="Password">Password</label>
+                <label for="Password">รหัสผ่าน</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
               </div>
 
               <div class="form-group">
-                <label for="Email">Email</label>
+                <label for="Email">อีเมล</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
               </div>
 
               <div class="form-group">
-                <label>Select Channel</label>
-                <select class="form-control select2" data-placeholder="Select Channel" style="width: 100%;" name="channel">
-                  <?php
-                  $mysqli = new mysqli("localhost", "root", "", "myproject");
-
-                  // Check connection
-                  if ($mysqli->connect_errno) {
-                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                    exit();
-                  }
-                  $sql = "Select * FROM channel";
-                  $result = $mysqli->query($sql);
-                  if ($result->num_rows > 0) {
-                    // output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                      // echo "id: " . $row["id"] . " - Name: " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-                    }
-                  } else {
-                    // echo "0 results";
-                  }
-
-                  foreach ($result as $key => $value) { ?>
-                    <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label>Select Company</label>
+                <label>องค์กร</label>
                 <select class="form-control select2" data-placeholder="Select Companys" style="width: 100%;" name="company">
                   <?php
                   $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -149,7 +106,7 @@
               </div>
 
               <div class="form-group">
-                <label>Select Roles</label>
+                <label>บทบาท</label>
                 <select class="form-control select" data-placeholder="Select Role" style="width: 100%;" name="role">
                   <?php
                   $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -178,7 +135,7 @@
 
             </div>
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary" name="save">Submit</button>
+              <button type="submit" class="btn btn-primary" name="save">บันทึก</button>
             </div>
           </form>
         </div>

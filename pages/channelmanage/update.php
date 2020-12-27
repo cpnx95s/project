@@ -6,14 +6,14 @@ if (isset($_GET['id'])) {
     if (isset($_POST['update'])) {
         // $launchdate = $_POST['launchdate'];
         // $launchtime = $_POST['launchtime'];
-        $channelname = $_POST['channelname'];
+        $ชื่อช่องทางสังคมออนไลน์ = $_POST['ชื่อช่องทางสังคมออนไลน์'];
         $description = $_POST['description'];
         date_default_timezone_set("Asia/Bangkok");
         // $date = date("Y-m-d");
         // $time = date("h:i:s");
         // $userid = $_GET['id'];
         // $user_id = $_SESSION["user_id"];
-        $sql = "UPDATE channel SET name = '$channelname', description = '$description' WHERE id='" . $_GET['id'] . "'";
+        $sql = "UPDATE channel SET name = '$ชื่อช่องทางสังคมออนไลน์', description = '$description' WHERE id='" . $_GET['id'] . "'";
         if ($conn->query($sql) === TRUE) {
             echo '<script> alert("แก้ไขสำเร็จ")</script>';
             // echo '<script> alert("แก้ไขสำเร็จ")</script>';

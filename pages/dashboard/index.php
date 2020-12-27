@@ -180,7 +180,7 @@
 
                       <div class="info-box-content">
                         <span class="info-box-text">สถานะงาน</span>
-                        <select class="form-control select" data-placeholder="สถานะงาน_master" style="width: 100%;" name="status">
+                        <select class="form-control select" data-placeholder="สถานะงาน" style="width: 100%;" name="status">
                           <option value="" selected></option>
                           <?php
                           $mysqli = new mysqli("localhost", "root", "", "myproject");
@@ -190,7 +190,7 @@
                             echo "Failed to connect to MySQL: " . $mysqli->connect_error;
                             exit();
                           }
-                          $sql = "Select * FROM status_master where id !=7 and id != 1";
+                          $sql = "Select * FROM status_master where id != 7 and id != 1";
                           $result = $mysqli->query($sql);
                           if ($result->num_rows > 0) {
                             // output data of each row
@@ -201,8 +201,10 @@
                             echo "0 results";
                           }
 
-                          foreach ($result as $key => $value) { ?>
-                            <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
+                          foreach ($result as $key => $value) {
+                            $statusth1 = statusth($value['status_name']);
+                          ?>
+                            <option value="<?php echo $value['id']; ?>"><?php echo $statusth1; ?></option>
                           <?php } ?>
                         </select>
                       </div>

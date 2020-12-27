@@ -120,7 +120,7 @@
                                     <th>วันที่</th>
                                     <th>เวลาเริ่ม</th>
                                     <th>เวลาสิ้นสุด</th>
-                                    <th>รวม (นาที)</th>
+                                    <th>รวม</th>
 
                                 </tr>
                             </thead>
@@ -165,9 +165,9 @@
 
                                 foreach ($result as $key => $value) {
 
-
+                                    $z=0;
                                     foreach ($result2 as $key => $value2) {
-
+                                    $z = $z + 1;
                                         if ($value['task_id'] == $value2['task_id']) {
                                             $time = diff2time($value['start'], $value2['stop']);
                                             $secs = strtotime($value['start']) - strtotime($value2['stop']);
@@ -199,11 +199,11 @@
                                             $averageTask = averagetime($array1, $countTask);
                                 ?>
                                             <tr>
-                                                <td><?php echo '1'; ?></td>
+                                                <td><?php echo $z; ?></td>
                                                 <td><?php echo $value['taskname']; ?></td>
                                                 <td><?php echo substr($value['createddate'], 0, 10); ?></td>
-                                                <td><?php echo $value['start']; ?></td>
-                                                <td><?php echo $value2['stop']; ?></td>
+                                                <td><?php echo substr($value['start'],0 ,5); ?></td>
+                                                <td><?php echo substr($value2['stop'], 0, 5); ?></td>
                                                 <td><?php echo $time; ?></td>
 
                                             </tr>

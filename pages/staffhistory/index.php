@@ -61,7 +61,7 @@
                 <?php
                 $user_id = $_SESSION["user_id"];
                 $sql = "SELECT th.id, th.actiondate, th.actiontime, th.remark, th.action_by, th.task_id, th.status_master_id, 
-                t.name as taskname, c.name as channelname, s.status_name as statusname,u.name as username
+                t.name as taskname, c.name as ชื่อช่องทางสังคมออนไลน์, s.status_name as statusname,u.name as username
                 FROM task_history th
                 INNER JOIN task t ON t.id = th.task_id 
                 INNER JOIN status_master s ON s.id = th.status_master_id 
@@ -90,7 +90,7 @@
                 ?>
                   <tr>
 
-                    <td>คุณได้เปลี่ยนสถานะรายการงาน <strong style="color:green;"><?php echo $value['channelname']; ?> : <?php echo $value['taskname']; ?></strong> เป็น <strong style="color:green;"><?php echo $statusth1; ?></strong> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo substr($value['actiontime'], 0, 5); ?> น.</td>
+                    <td>คุณได้เปลี่ยนสถานะรายการงาน <strong style="color:green;"><?php echo $value['ชื่อช่องทางสังคมออนไลน์']; ?> : <?php echo $value['taskname']; ?></strong> เป็น <strong style="color:green;"><?php echo $statusth1; ?></strong> เมื่อวันที่ <?php echo $value['actiondate']; ?> เวลา <?php echo substr($value['actiontime'], 0, 5); ?> น.</td>
 
                   </tr>
                 <?php }

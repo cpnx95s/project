@@ -44,7 +44,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
               <li class="breadcrumb-item"><a href="../admin">Admin Management</a></li>
-              <li class="breadcrumb-item active">Edit Data</li>
+              <li class="breadcrumb-item active">แก้ไขข้อมูล</li>
             </ol>
           </div>
         </div>
@@ -55,7 +55,7 @@
     <section class="content">
       <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Edit Data</h3>
+        <h3 class="card-title">แก้ไขข้อมูล</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

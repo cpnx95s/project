@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Company Management</title>
+  <title>ระบบติดตามสำหรับการจัดการสื่อโฆษณาบนสังคมออนไลน์</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicons -->
@@ -34,33 +34,17 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar & Main Sidebar Container -->
-    <?php include_once('../includes/sidebar.php') ?>
+    <?php include_once('../includes/sidebar_leader.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Company Management</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="../dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="../customertasks">Company Management</a></li>
-                <li class="breadcrumb-item active">Create Company</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
 
       <!-- Main content -->
-      <section class="content">
+      <section class="content mt-2">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create Company</h3>
+            <h3 class="card-title">เพิ่มข้อมูลองค์กร</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -68,20 +52,20 @@
             <div class="card-body">
 
               <div class="form-group">
-                <label for="Company Name">Company Name</label>
+                <label for="Company Name">ชื่อองค์กร</label>
                 <input type="text" class="form-control" id="companyname" name="companyname" placeholder="Company Name">
               </div>
 
               <div class="form-group">
-                <label for="Description">Description</label>
+                <label for="Description">คำอธิบาย</label>
                 <input type="text" class="form-control" id="description" name="description" placeholder="Description">
               </div>
 
-             
+
 
             </div>
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary" name="save">Submit</button>
+              <button type="submit" class="btn btn-primary" name="save">บันทึก</button>
             </div>
           </form>
         </div>

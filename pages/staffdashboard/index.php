@@ -1,5 +1,6 @@
 <?php include_once('../authen.php') ?>
 <?php include_once('../includes/connect.php') ?>
+<?php include_once('../includes/convertstatus.php') ?>
 <!DOCTYPE html>
 <html>
 
@@ -188,7 +189,7 @@
                             echo "Failed to connect to MySQL: " . $mysqli->connect_error;
                             exit();
                           }
-                          $sql = "Select * FROM status_master where id != 7";
+                          $sql = "Select * FROM status_master where id != 7 and id != 1";
                           $result = $mysqli->query($sql);
                           if ($result->num_rows > 0) {
                             // output data of each row
@@ -199,8 +200,10 @@
                             echo "0 results";
                           }
 
-                          foreach ($result as $key => $value) { ?>
-                            <option value="<?php echo $value['id']; ?>"><?php echo $value['status_name']; ?></option>
+                          foreach ($result as $key => $value) {
+                            $statusth1 = statusth($value['status_name']);
+                            ?>
+                            <option value="<?php echo $value['id']; ?>"><?php echo $statusth1; ?></option>
                           <?php } ?>
                         </select>
                       </div>
